@@ -1,14 +1,9 @@
-import { FirstStep } from "@/components/auth/FirstStep";
-import { SecondStep } from "@/components/auth/SecondStep";
-import React from "react";
+"use client";
+import { Register } from "@/components/auth/Register";
+import { Container } from "@mantine/core";
 
-function Register() {
-	return (
-		<>
-			<FirstStep />
-			<SecondStep />
-		</>
-	);
+function RegisterPage() {
+	return <Register />;
 }
 
-export default Register;
+export default RegisterPage;
