@@ -11,7 +11,11 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: any }) {
 	return (
-		<html lang="en">
+		<html
+			lang="en"
+			// dark theme support for users with javascript-disabled user agents
+			data-mantine-color-scheme="dark"
+		>
 			<head>
 				<ColorSchemeScript />
 				<link rel="shortcut icon" />
@@ -21,7 +25,10 @@ export default function RootLayout({ children }: { children: any }) {
 				/>
 			</head>
 			<body>
-				<MantineProvider theme={theme}>
+				<MantineProvider
+					theme={theme}
+					defaultColorScheme="dark"
+				>
 					{children}
 				</MantineProvider>
 			</body>
