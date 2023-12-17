@@ -6,13 +6,17 @@ export const metadata = {
 		"a seamless and intuitive interface for exploring real-time stock sentiments and related information via the Arbitra Pulse API.",
 };
 
-export default function RootLayout({ children }: { children: any }) {
+export default function DashboardLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
 	return (
 		<>
 			{/* nav */}
 			<DashboardNav />
 			{/* content */}
-			<h1>dashboard layout</h1>
+			{children}
 		</>
 	);
 }
