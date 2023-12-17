@@ -12,6 +12,7 @@ import {
 } from "@mantine/core";
 import { useInputState } from "@mantine/hooks";
 import { IconCheck, IconX } from "@tabler/icons-react";
+import { CustomContainer } from "../ui/CustomContainer";
 
 function PasswordRequirement({
 	meets,
@@ -106,10 +107,7 @@ export function SecondStep() {
 		));
 
 	return (
-		<Container
-			size={420}
-			my={40}
-		>
+		<CustomContainer>
 			<Paper
 				p={30}
 				mt={30}
@@ -140,6 +138,6 @@ export function SecondStep() {
 					{checks}
 				</div>
 			</Paper>
-		</Container>
+		</CustomContainer>
 	);
 }

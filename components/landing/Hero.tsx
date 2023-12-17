@@ -1,5 +1,6 @@
 import { Title, Text, Button, Container, Anchor } from "@mantine/core";
 import classes from "./Hero.module.css";
+import Link from "next/link";
 
 export function Hero() {
 	return (
@@ -49,16 +50,18 @@ export function Hero() {
 				</Container>
 
 				<div className={classes.controls}>
-					<Button
-						variant="gradient"
-						gradient={{
-							from: "blue",
-							to: "red",
-						}}
-						size="sm"
-					>
-						Get Started
-					</Button>
+					<Link href="/register">
+						<Button
+							variant="gradient"
+							gradient={{
+								from: "blue",
+								to: "red",
+							}}
+							size="sm"
+						>
+							Get Started
+						</Button>
+					</Link>
 				</div>
 			</div>
 		</Container>

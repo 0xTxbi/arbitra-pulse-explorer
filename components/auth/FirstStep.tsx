@@ -1,11 +1,9 @@
-import { TextInput, Paper, Container } from "@mantine/core";
+import { TextInput, Paper } from "@mantine/core";
+import { CustomContainer } from "../ui/CustomContainer";
 
 export function FirstStep() {
 	return (
-		<Container
-			size={420}
-			my={40}
-		>
+		<CustomContainer>
 			<Paper
 				p={30}
 				mt={30}
@@ -23,6 +21,6 @@ export function FirstStep() {
 					mt="md"
 				/>
 			</Paper>
-		</Container>
+		</CustomContainer>
 	);
 }

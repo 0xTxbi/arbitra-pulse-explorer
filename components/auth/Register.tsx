@@ -1,8 +1,6 @@
 import { useState } from "react";
 import {
 	IconUserCheck,
-	IconMailOpened,
-	IconShieldCheck,
 	IconCircleCheck,
 	IconWriting,
 	IconKey,
@@ -12,9 +10,10 @@ import { FirstStep } from "./FirstStep";
 import { SecondStep } from "./SecondStep";
 import classes from "./Register.module.css";
 import { ThirdStep } from "./ThirdStep";
+import { LastStep } from "./LastStep";
 
 export function Register() {
-	const [active, setActive] = useState(1);
+	const [active, setActive] = useState(0);
 	// navigate through steps
 	const nextStep = () =>
 		setActive((current) => (current < 3 ? current + 1 : current));
@@ -89,7 +88,7 @@ export function Register() {
 
 				{/* Completed Step */}
 				<Stepper.Completed>
-					<Center>Account Created</Center>
+					<LastStep />
 				</Stepper.Completed>
 			</Stepper>
 
@@ -106,7 +105,14 @@ export function Register() {
 					</Button>
 				)}
 				{active !== 3 && (
-					<Button onClick={nextStep}>
+					<Button
+						variant="gradient"
+						gradient={{
+							from: "blue",
+							to: "red",
+						}}
+						onClick={nextStep}
+					>
 						Next step
 					</Button>
 				)}
