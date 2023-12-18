@@ -1,7 +1,8 @@
 "use client";
+
 import { Grid, SimpleGrid, Skeleton, rem } from "@mantine/core";
 
-export default function Page({ params }: { params: { ticker: string } }) {
+export default function Loading() {
 	const PRIMARY_COL_HEIGHT = rem(800);
 	const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-md) / 2)`;
 
@@ -14,7 +15,6 @@ export default function Page({ params }: { params: { ticker: string } }) {
 				<Skeleton
 					height={PRIMARY_COL_HEIGHT}
 					radius="md"
-					animate={false}
 				/>
 				<Grid gutter="md">
 					<Grid.Col>
@@ -23,7 +23,6 @@ export default function Page({ params }: { params: { ticker: string } }) {
 								SECONDARY_COL_HEIGHT
 							}
 							radius="md"
-							animate={false}
 						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
@@ -32,7 +31,6 @@ export default function Page({ params }: { params: { ticker: string } }) {
 								SECONDARY_COL_HEIGHT
 							}
 							radius="md"
-							animate={false}
 						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
@@ -41,7 +39,6 @@ export default function Page({ params }: { params: { ticker: string } }) {
 								SECONDARY_COL_HEIGHT
 							}
 							radius="md"
-							animate={false}
 						/>
 					</Grid.Col>
 				</Grid>
