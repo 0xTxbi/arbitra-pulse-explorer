@@ -7,7 +7,7 @@ import classes from "./Footer.module.css";
 export function Footer() {
 	return (
 		<Container
-			size="md"
+			size="xl"
 			className={classes.footer}
 		>
 			<div className={classes.inner}>
