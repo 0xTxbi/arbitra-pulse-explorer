@@ -1,4 +1,5 @@
 import { DashboardNav } from "@/components/navigation/DashboardNav";
+import { Footer } from "@/components/navigation/Footer";
 import { Container } from "@mantine/core";
 import { Metadata, ResolvingMetadata } from "next";
 
@@ -30,6 +31,7 @@ export default function DashboardLayout({
 		<>
 			{/* nav */}
 			<DashboardNav />
+
 			{/* content */}
 			<Container
 				size="xl"
@@ -37,6 +39,9 @@ export default function DashboardLayout({
 			>
 				{children}
 			</Container>
+
+			{/* footer */}
+			<Footer />
 		</>
 	);
 }

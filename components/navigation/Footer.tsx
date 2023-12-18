@@ -2,9 +2,9 @@
 import { Anchor, Group, rem, Container, Text, Code } from "@mantine/core";
 import { IconCoffee } from "@tabler/icons-react";
 
-import classes from "./SearchFooter.module.css";
+import classes from "./Footer.module.css";
 
-export function SearchFooter() {
+export function Footer() {
 	return (
 		<Container
 			size="md"

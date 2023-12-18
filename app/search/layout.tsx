@@ -1,4 +1,4 @@
-import { SearchFooter } from "@/components/navigation/SearchFooter";
+import { Footer } from "@/components/navigation/Footer";
 import { SearchNav } from "@/components/navigation/SearchNav";
 
 export const metadata = {
@@ -36,7 +36,7 @@ export default function SearchLayout({
 
 			{/* footer */}
 			<div style={{ marginTop: "auto" }}>
-				<SearchFooter />
+				<Footer />
 			</div>
 		</div>
 	);
