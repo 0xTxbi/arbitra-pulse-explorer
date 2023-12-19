@@ -1,4 +1,6 @@
 "use client";
+import { CompanyInfo } from "@/components/stock-info/CompanyInfo";
+import { StockMain } from "@/components/stock-info/StockMain";
 import { Grid, SimpleGrid, Skeleton, rem } from "@mantine/core";
 
 export default function Page({ params }: { params: { ticker: string } }) {
@@ -11,20 +13,10 @@ export default function Page({ params }: { params: { ticker: string } }) {
 				cols={{ base: 1, sm: 2 }}
 				spacing="lg"
 			>
-				<Skeleton
-					height={PRIMARY_COL_HEIGHT}
-					radius="md"
-					animate={false}
-				/>
+				<StockMain />
 				<Grid gutter="md">
 					<Grid.Col>
-						<Skeleton
-							height={
-								SECONDARY_COL_HEIGHT
-							}
-							radius="md"
-							animate={false}
-						/>
+						<CompanyInfo />
 					</Grid.Col>
 					<Grid.Col span={6}>
 						<Skeleton

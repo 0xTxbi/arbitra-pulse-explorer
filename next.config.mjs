@@ -1,15 +1,27 @@
-import bundleAnalyzer from '@next/bundle-analyzer';
+import bundleAnalyzer from "@next/bundle-analyzer";
 
 const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
+	enabled: process.env.ANALYZE === "true",
 });
 
 export default withBundleAnalyzer({
-  reactStrictMode: false,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  experimental: {
-    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
-  },
+	reactStrictMode: false,
+	eslint: {
+		ignoreDuringBuilds: true,
+	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "companieslogo.com",
+			},
+			{
+				protocol: "https",
+				hostname: "api.polygon.io",
+			},
+		],
+	},
+	experimental: {
+		optimizePackageImports: ["@mantine/core", "@mantine/hooks"],
+	},
 });

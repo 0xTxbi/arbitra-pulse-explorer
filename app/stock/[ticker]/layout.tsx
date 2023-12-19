@@ -35,7 +35,7 @@ export default function DashboardLayout({
 			{/* content */}
 			<Container
 				size="xl"
-				mt={10}
+				mt="xl"
 			>
 				{children}
 			</Container>
