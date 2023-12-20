@@ -39,7 +39,7 @@ export function SearchNav() {
 		<div className={classes.header}>
 			<Container
 				className={classes.mainSection}
-				size="md"
+				size="xl"
 			>
 				<Group justify="space-between">
 					<Logo />
