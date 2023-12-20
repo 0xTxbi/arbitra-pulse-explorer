@@ -1,6 +1,8 @@
 "use client";
 import { CompanyInfo } from "@/components/stock-info/CompanyInfo";
 import { MarketStats } from "@/components/stock-info/MarketStats";
+import { News } from "@/components/stock-info/News";
+import { Sentiment } from "@/components/stock-info/Sentiment";
 import { StockMain } from "@/components/stock-info/StockMain";
 import { Grid, SimpleGrid, Skeleton, rem } from "@mantine/core";
 
@@ -16,20 +18,17 @@ export default function Page({ params }: { params: { ticker: string } }) {
 			>
 				<StockMain />
 				<Grid gutter="md">
-					<Grid.Col>
+					<Grid.Col span={6}>
+						<Sentiment />
+					</Grid.Col>
+					<Grid.Col span={6}>
 						<CompanyInfo />
 					</Grid.Col>
 					<Grid.Col span={6}>
 						<MarketStats />
 					</Grid.Col>
 					<Grid.Col span={6}>
-						<Skeleton
-							height={
-								SECONDARY_COL_HEIGHT
-							}
-							radius="md"
-							animate={false}
-						/>
+						{/* <News /> */}
 					</Grid.Col>
 				</Grid>
 			</SimpleGrid>

@@ -10,7 +10,7 @@ export function CompanyInfo() {
 			{/* Stock Basic Details */}
 			<Stack>
 				<Title
-					order={2}
+					order={4}
 					size="h4"
 				>
 					About
