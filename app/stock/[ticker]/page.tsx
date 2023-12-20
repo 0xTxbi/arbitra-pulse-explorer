@@ -28,7 +28,7 @@ export default function Page({ params }: { params: { ticker: string } }) {
 						<MarketStats />
 					</Grid.Col>
 					<Grid.Col span={6}>
-						{/* <News /> */}
+						<News />
 					</Grid.Col>
 				</Grid>
 			</SimpleGrid>
