@@ -4,7 +4,7 @@ import { MarketStats } from "@/components/stock-info/MarketStats";
 import { News } from "@/components/stock-info/News";
 import { Sentiment } from "@/components/stock-info/Sentiment";
 import { StockMain } from "@/components/stock-info/StockMain";
-import { Grid, SimpleGrid, Skeleton, rem } from "@mantine/core";
+import { Grid, SimpleGrid, rem } from "@mantine/core";
 
 export default function Page({ params }: { params: { ticker: string } }) {
 	const PRIMARY_COL_HEIGHT = rem(800);
