@@ -26,7 +26,7 @@ export default function Page({ params }: { params: { ticker: string } }) {
 				<StockMain />
 			</div>
 			<div style={box2Style}>
-				<Grid gutter="md">
+				<Grid gutter="xl">
 					<Grid.Col span={6}>
 						<Sentiment />
 					</Grid.Col>
