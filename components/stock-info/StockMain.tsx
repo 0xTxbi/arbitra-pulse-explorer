@@ -1,17 +1,10 @@
-import {
-	Title,
-	Text,
-	Stack,
-	Group,
-	Image,
-	Container,
-	NumberFormatter,
-} from "@mantine/core";
-import NextImage from "next/image";
+import { Title, Text, Stack, Group, NumberFormatter } from "@mantine/core";
+import StockChart from "./StockChart";
 
 export function StockMain() {
 	return (
 		<Stack
+			h="100%"
 			justify="space-between"
 			gap="lg"
 		>
@@ -40,6 +33,7 @@ export function StockMain() {
 						thousandSeparator
 					/>
 				</Text>
+				<StockChart />
 			</div>
 		</Stack>
 	);

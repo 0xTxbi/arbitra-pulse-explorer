@@ -4,19 +4,28 @@ import { MarketStats } from "@/components/stock-info/MarketStats";
 import { News } from "@/components/stock-info/News";
 import { Sentiment } from "@/components/stock-info/Sentiment";
 import { StockMain } from "@/components/stock-info/StockMain";
-import { Grid, SimpleGrid, rem } from "@mantine/core";
+import { Flex, Grid } from "@mantine/core";
 
 export default function Page({ params }: { params: { ticker: string } }) {
-	const PRIMARY_COL_HEIGHT = rem(800);
-	const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-md) / 2)`;
+	const containerStyle = {
+		gap: "sm",
+		margin: 0,
+	};
+
+	const box1Style = {
+		flex: "0 0 55%",
+	};
+
+	const box2Style = {
+		flex: "0 0 40%",
+	};
 
 	return (
-		<>
-			<SimpleGrid
-				cols={{ base: 1, sm: 2 }}
-				spacing="lg"
-			>
+		<Flex style={containerStyle}>
+			<div style={box1Style}>
 				<StockMain />
+			</div>
+			<div style={box2Style}>
 				<Grid gutter="md">
 					<Grid.Col span={6}>
 						<Sentiment />
@@ -31,7 +40,7 @@ export default function Page({ params }: { params: { ticker: string } }) {
 						<News />
 					</Grid.Col>
 				</Grid>
-			</SimpleGrid>
-		</>
+			</div>
+		</Flex>
 	);
 }
