@@ -1,6 +1,8 @@
-import { Title, Text, Container } from "@mantine/core";
+import { Title, Text, Container, SimpleGrid, Group } from "@mantine/core";
 import classes from "./Search.module.css";
 import { SearchInput } from "./SearchInput";
+import { SearchResult } from "./SearchResult";
+import { Carousel } from "@mantine/carousel";
 
 export function Search() {
 	return (
@@ -57,9 +59,25 @@ export function Search() {
 					</Text>
 				</Container>
 
+				{/* search input */}
 				<div className={classes.searchSection}>
 					<SearchInput />
 				</div>
+
+				{/* search results */}
+				<Container>
+					<Carousel
+						slideSize="33.333333%"
+						slideGap="md"
+						loop
+						align="start"
+						slidesToScroll={1}
+					>
+						<SearchResult />
+						<SearchResult />
+						<SearchResult />
+					</Carousel>
+				</Container>
 			</div>
 		</Container>
 	);
