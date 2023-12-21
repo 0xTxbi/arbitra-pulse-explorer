@@ -19,6 +19,7 @@ import {
 	IconSettings,
 	IconChevronDown,
 	IconBookmark,
+	IconDashboard,
 } from "@tabler/icons-react";
 
 import classes from "./SearchNav.module.css";
@@ -118,6 +119,33 @@ export function SearchNav() {
 							</UnstyledButton>
 						</Menu.Target>
 						<Menu.Dropdown>
+							<Menu.Item
+								component={Link}
+								href="/dashboard"
+								leftSection={
+									<IconDashboard
+										style={{
+											width: rem(
+												16
+											),
+											height: rem(
+												16
+											),
+										}}
+										color={
+											theme
+												.colors
+												.blue[6]
+										}
+										stroke={
+											1.5
+										}
+									/>
+								}
+							>
+								Dashboard
+							</Menu.Item>
+
 							<Menu.Item
 								component={Link}
 								href="/watchlist"

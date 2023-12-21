@@ -1,4 +1,5 @@
 import { DashboardNav } from "@/components/navigation/DashboardNav";
+import { Footer } from "@/components/navigation/Footer";
 
 export const metadata = {
 	title: "Dashboard | Arbitra Pulse Explorer",
@@ -17,6 +18,8 @@ export default function DashboardLayout({
 			<DashboardNav />
 			{/* content */}
 			{children}
+			{/* footer */}
+			<Footer />
 		</>
 	);
 }
