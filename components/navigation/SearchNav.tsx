@@ -25,6 +25,7 @@ import {
 import classes from "./SearchNav.module.css";
 import Logo from "../ui/Logo";
 import Link from "next/link";
+import LiveTimeAndDate from "../ui/LiveTimeAndDate";
 
 const mockUserData = {
 	name: "txbi",
@@ -45,6 +46,9 @@ export function SearchNav() {
 			>
 				<Group justify="space-between">
 					<Logo />
+
+					{/* display time and date in real-time */}
+					<LiveTimeAndDate />
 
 					<Burger
 						opened={opened}
