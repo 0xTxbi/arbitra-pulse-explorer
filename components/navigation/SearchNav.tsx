@@ -23,6 +23,7 @@ import {
 
 import classes from "./SearchNav.module.css";
 import Logo from "../ui/Logo";
+import Link from "next/link";
 
 const mockUserData = {
 	name: "txbi",
@@ -118,6 +119,8 @@ export function SearchNav() {
 						</Menu.Target>
 						<Menu.Dropdown>
 							<Menu.Item
+								component={Link}
+								href="/watchlist"
 								leftSection={
 									<IconBookmark
 										style={{

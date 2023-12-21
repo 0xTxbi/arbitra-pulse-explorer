@@ -13,7 +13,7 @@ export default withBundleAnalyzer({
 		remotePatterns: [
 			{
 				protocol: "https",
-				hostname: "companieslogo.com",
+				hostname: "upload.wikimedia.org",
 			},
 			{
 				protocol: "https",

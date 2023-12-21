@@ -1,10 +1,10 @@
 import { Title, Text, Container } from "@mantine/core";
-import classes from "./Search.module.css";
-import { SearchInput } from "./SearchInput";
-import { SearchResult } from "./SearchResult";
-import { Carousel } from "@mantine/carousel";
+import classes from "./Watchlist.module.css";
 
-export function Search() {
+import { Carousel } from "@mantine/carousel";
+import { WatchlistItem } from "./WatchlistItem";
+
+export function Watchlist() {
 	return (
 		<Container
 			className={classes.wrapper}
@@ -15,7 +15,7 @@ export function Search() {
 					ta="center"
 					className={classes.title}
 				>
-					explore{" "}
+					your{" "}
 					<Text
 						component="span"
 						variant="gradient"
@@ -25,20 +25,9 @@ export function Search() {
 						}}
 						inherit
 					>
-						stock
+						watchlist
 					</Text>{" "}
-					information
-					<Text
-						component="span"
-						variant="gradient"
-						gradient={{
-							from: "red",
-							to: "blue",
-						}}
-						inherit
-					>
-						.
-					</Text>
+					.
 				</Title>
 
 				<Container
@@ -51,31 +40,28 @@ export function Search() {
 						ta="center"
 						className={classes.description}
 					>
-						discover real-time stock
-						insights and trends. enter a
-						stock symbol or company name in
-						the search bar below to access
-						detailed information.
+						effortlessly monitor stock
+						symbols, track current prices,
+						and manage your portfolio — all
+						in one place.
 					</Text>
 				</Container>
 
-				{/* search input */}
-				<div className={classes.searchSection}>
-					<SearchInput />
-				</div>
-
 				{/* search results */}
-				<Container>
+				<Container
+					mt="xl"
+					fluid
+				>
 					<Carousel
 						slideSize="33.333333%"
 						slideGap="md"
 						loop
-						align="start"
+						align="center"
 						slidesToScroll={1}
 					>
-						<SearchResult />
-						<SearchResult />
-						<SearchResult />
+						<WatchlistItem />
+						<WatchlistItem />
+						<WatchlistItem />
 					</Carousel>
 				</Container>
 			</div>

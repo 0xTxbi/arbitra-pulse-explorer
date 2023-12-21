@@ -23,6 +23,7 @@ import {
 
 import classes from "./DashboardNav.module.css";
 import Logo from "../ui/Logo";
+import Link from "next/link";
 
 const mockUserData = {
 	name: "txbi",
@@ -122,6 +123,8 @@ export function DashboardNav() {
 						</Menu.Target>
 						<Menu.Dropdown>
 							<Menu.Item
+								component={Link}
+								href="/watchlist"
 								leftSection={
 									<IconBookmark
 										style={{
