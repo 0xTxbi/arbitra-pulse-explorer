@@ -6,8 +6,6 @@ import React from "react";
 const LiveTimeAndDate: React.FC = () => {
 	const { date, time, timeOfDay } = useDate();
 
-	console.log(date, time, timeOfDay);
-
 	return (
 		<Group>
 			<Group gap="xs">
