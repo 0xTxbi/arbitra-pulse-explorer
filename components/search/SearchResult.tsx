@@ -1,9 +1,5 @@
-import { Group, Paper, Text, ThemeIcon, SimpleGrid } from "@mantine/core";
-import {
-	IconArrowUpRight,
-	IconArrowDownRight,
-	IconGrowth,
-} from "@tabler/icons-react";
+import { Group, Paper, Text, ThemeIcon } from "@mantine/core";
+import { IconGrowth } from "@tabler/icons-react";
 import classes from "./Search.module.css";
 
 const data = { title: "AAPL", value: "$1,500", diff: 34 };

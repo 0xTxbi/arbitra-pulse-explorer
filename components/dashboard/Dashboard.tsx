@@ -2,6 +2,7 @@
 
 import { Container, Grid, Skeleton } from "@mantine/core";
 import { Welcome } from "./sections/Welcome";
+import { TopGainers } from "./sections/TopGainers";
 
 const child = (
 	<Skeleton
@@ -22,7 +23,7 @@ export function Dashboard() {
 					<Welcome />
 				</Grid.Col>
 				<Grid.Col span={{ base: 12, xs: 8 }}>
-					{child}
+					<TopGainers />
 				</Grid.Col>
 				<Grid.Col span={{ base: 12, xs: 8 }}>
 					{child}
