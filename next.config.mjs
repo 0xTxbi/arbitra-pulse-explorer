@@ -19,6 +19,10 @@ export default withBundleAnalyzer({
 				protocol: "https",
 				hostname: "api.polygon.io",
 			},
+			{
+				protocol: "https",
+				hostname: "encrypted-tbn2.gstatic.com",
+			},
 		],
 	},
 	experimental: {

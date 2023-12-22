@@ -1,10 +1,10 @@
 "use client";
-
 import { Container, Grid, Skeleton } from "@mantine/core";
 import { Welcome } from "./sections/Welcome";
 import { TopGainers } from "./sections/TopGainers";
 import { UpcomingEarnings } from "./sections/UpcomingEarnings";
 import { FeaturedStock } from "./sections/FeaturedStock";
+import { DashboardNews } from "./sections/DashboardNews";
 
 const child = (
 	<Skeleton
@@ -40,7 +40,7 @@ export function Dashboard() {
 					{child}
 				</Grid.Col>
 				<Grid.Col span={{ base: 12, xs: 6 }}>
-					{child}
+					<DashboardNews />
 				</Grid.Col>
 			</Grid>
 		</Container>
