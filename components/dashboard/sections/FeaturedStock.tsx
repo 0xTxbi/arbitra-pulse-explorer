@@ -14,7 +14,7 @@ export function FeaturedStock() {
 				Featured Stock
 			</Title>
 			<SimpleGrid
-				cols={2}
+				cols={{ base: 1, sm: 1, lg: 2 }}
 				spacing="xl"
 			>
 				{/* company info */}
