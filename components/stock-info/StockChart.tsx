@@ -1,17 +1,21 @@
 import React, { useEffect, useRef } from "react";
 import { createChart } from "lightweight-charts";
 
-const StockChart: React.FC = () => {
+interface StockChartProps {
+	width?: number;
+	height?: number;
+}
+
+const StockChart: React.FC<StockChartProps> = ({ width, height }) => {
 	const chartContainerRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		if (chartContainerRef.current) {
 			const chart = createChart(chartContainerRef.current, {
-				width: 600,
-				height: 600,
+				width,
+				height,
 				layout: {
 					background: {
-						// type: "solid",
 						color: "transparent",
 					},
 					textColor: "#d1d4dc",
@@ -25,7 +29,7 @@ const StockChart: React.FC = () => {
 					},
 				},
 				rightPriceScale: {
-					borderVisible: false,
+					borderVisible: true,
 				},
 				timeScale: {
 					borderVisible: false,
