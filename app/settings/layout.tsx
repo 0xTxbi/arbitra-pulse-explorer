@@ -13,13 +13,23 @@ export default function SettingsLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<>
+		<div
+			style={{
+				display: "flex",
+				flexDirection: "column",
+				minHeight: "100vh",
+			}}
+		>
 			{/* nav */}
 			<DashboardNav />
+
 			{/* content */}
-			{children}
+			<div>{children}</div>
+
 			{/* footer */}
-			<Footer />
-		</>
+			<div style={{ marginTop: "auto" }}>
+				<Footer />
+			</div>
+		</div>
 	);
 }
