@@ -184,6 +184,8 @@ export function DashboardNav() {
 								Settings
 							</Menu.Label>
 							<Menu.Item
+								component={Link}
+								href="/settings"
 								leftSection={
 									<IconSettings
 										style={{
