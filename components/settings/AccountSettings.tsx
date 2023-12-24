@@ -48,6 +48,7 @@ export default function AccountSettings() {
 					</Tabs.Tab>
 					<Tabs.Tab
 						value="notifications"
+						disabled
 						leftSection={
 							<IconBellCog
 								size={12}
@@ -58,6 +59,7 @@ export default function AccountSettings() {
 					</Tabs.Tab>
 					<Tabs.Tab
 						value="deactivation"
+						disabled
 						leftSection={
 							<IconUserX size={12} />
 						}

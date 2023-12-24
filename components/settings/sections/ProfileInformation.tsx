@@ -5,6 +5,7 @@ import {
 	Container,
 	Divider,
 	Group,
+	Stack,
 	TextInput,
 	Title,
 } from "@mantine/core";
@@ -26,22 +27,23 @@ export function ProfileInformation() {
 			</Group>
 
 			{/* input */}
-			<TextInput
-				leftSectionPointerEvents="none"
-				disabled
-				leftSection={<IconAt size={12} />}
-				label="Your Username"
-				placeholder="Your Username"
-				value="txbi"
-			/>
-			<TextInput
-				mt="md"
-				disabled
-				rightSectionPointerEvents="none"
-				label="Your email"
-				placeholder="Your email"
-				value="txbi@arbitra.pulse"
-			/>
+			<Stack gap="lg">
+				<TextInput
+					leftSectionPointerEvents="none"
+					disabled
+					leftSection={<IconAt size={12} />}
+					label="Your Username"
+					placeholder="Your Username"
+					value="txbi"
+				/>
+				<TextInput
+					disabled
+					rightSectionPointerEvents="none"
+					label="Your email"
+					placeholder="Your email"
+					value="txbi@arbitra.pulse"
+				/>
+			</Stack>
 		</Container>
 	);
 }
