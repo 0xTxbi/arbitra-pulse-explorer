@@ -1,15 +1,13 @@
 "use client";
-
 import { Container, Tabs, Title } from "@mantine/core";
-import React from "react";
 import { ProfileInformation } from "./sections/ProfileInformation";
 import {
 	IconBellCog,
 	IconKey,
-	IconUser,
 	IconUserCog,
 	IconUserX,
 } from "@tabler/icons-react";
+import { UpdatePassword } from "./sections/UpdatePassword";
 
 export default function AccountSettings() {
 	return (
@@ -25,7 +23,7 @@ export default function AccountSettings() {
 			</Title>
 			{/* sections */}
 			<Tabs
-				defaultValue="gallery"
+				defaultValue="profile-information"
 				mt="xl"
 				orientation="vertical"
 			>
@@ -41,7 +39,7 @@ export default function AccountSettings() {
 						Profile Information
 					</Tabs.Tab>
 					<Tabs.Tab
-						value="password"
+						value="update-password"
 						leftSection={
 							<IconKey size={12} />
 						}
@@ -73,6 +71,12 @@ export default function AccountSettings() {
 					pl={10}
 				>
 					<ProfileInformation />
+				</Tabs.Panel>
+				<Tabs.Panel
+					value="update-password"
+					pl={10}
+				>
+					<UpdatePassword />
 				</Tabs.Panel>
 			</Tabs>
 		</Container>
