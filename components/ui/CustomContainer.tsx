@@ -8,7 +8,7 @@ interface CustomContainerProps {
 
 export function CustomContainer({
 	children,
-	height = 50,
+	height = 30,
 }: CustomContainerProps) {
 	return (
 		<Container

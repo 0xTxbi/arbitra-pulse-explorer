@@ -5,7 +5,7 @@ import {
 	IconWriting,
 	IconKey,
 } from "@tabler/icons-react";
-import { Button, Center, Container, Group, Stepper, rem } from "@mantine/core";
+import { Button, Container, Group, Stepper, rem } from "@mantine/core";
 import { FirstStep } from "./FirstStep";
 import { SecondStep } from "./SecondStep";
 import classes from "./Register.module.css";
@@ -23,7 +23,7 @@ export function Register() {
 	return (
 		<Container
 			className={classes.wrapper}
-			size={1400}
+			fluid
 		>
 			<Stepper
 				active={active}
