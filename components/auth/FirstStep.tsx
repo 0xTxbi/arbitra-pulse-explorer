@@ -1,5 +1,6 @@
 import { TextInput, Paper } from "@mantine/core";
 import { CustomContainer } from "../ui/CustomContainer";
+import { IconAt } from "@tabler/icons-react";
 
 export function FirstStep() {
 	return (
@@ -10,13 +11,14 @@ export function FirstStep() {
 				radius="md"
 			>
 				<TextInput
-					label="First Name"
-					placeholder="Your Name"
+					label="Username"
+					leftSection={<IconAt size={12} />}
+					placeholder="txbi"
 					required
 				/>
 				<TextInput
-					label="Email"
-					placeholder="username@domain.com"
+					label="Your Email Address"
+					placeholder="txbi@arbitra.pulse"
 					required
 					mt="md"
 				/>
