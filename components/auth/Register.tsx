@@ -11,6 +11,8 @@ import { SecondStep } from "./SecondStep";
 import classes from "./Register.module.css";
 import { ThirdStep } from "./ThirdStep";
 import { LastStep } from "./LastStep";
+import { useForm } from "@mantine/form";
+import { RegisterFormValues } from "@/utils/AuthFormValues";
 
 export function Register() {
 	const [active, setActive] = useState(0);
@@ -20,77 +22,104 @@ export function Register() {
 	const prevStep = () =>
 		setActive((current) => (current > 0 ? current - 1 : current));
 
+	// form
+	const form = useForm<RegisterFormValues>({
+		initialValues: {
+			username: "",
+			email: "",
+			password: "",
+		},
+	});
+
 	return (
 		<Container
 			className={classes.wrapper}
 			fluid
 		>
-			<Stepper
-				active={active}
-				onStepClick={setActive}
-				allowNextStepsSelect={false}
-				completedIcon={
-					<IconCircleCheck
-						style={{
-							width: rem(18),
-							height: rem(18),
-						}}
-					/>
-				}
+			<form
+				onSubmit={form.onSubmit((values) =>
+					console.log(values)
+				)}
 			>
-				{/* First step */}
-				<Stepper.Step
-					icon={
-						<IconWriting
+				<Stepper
+					active={active}
+					onStepClick={setActive}
+					allowNextStepsSelect={false}
+					completedIcon={
+						<IconCircleCheck
 							style={{
 								width: rem(18),
 								height: rem(18),
 							}}
 						/>
 					}
-					label="Step 1"
-					description="your basics"
 				>
-					<FirstStep />
-				</Stepper.Step>
+					{/* First step */}
+					<Stepper.Step
+						icon={
+							<IconWriting
+								style={{
+									width: rem(
+										18
+									),
+									height: rem(
+										18
+									),
+								}}
+							/>
+						}
+						label="Step 1"
+						description="your basics"
+					>
+						<FirstStep form={form} />
+					</Stepper.Step>
 
-				{/* Second step */}
-				<Stepper.Step
-					icon={
-						<IconKey
-							style={{
-								width: rem(18),
-								height: rem(18),
-							}}
-						/>
-					}
-					label="Step 2"
-					description="secure your account"
-				>
-					<SecondStep />
-				</Stepper.Step>
+					{/* Second step */}
+					<Stepper.Step
+						icon={
+							<IconKey
+								style={{
+									width: rem(
+										18
+									),
+									height: rem(
+										18
+									),
+								}}
+							/>
+						}
+						label="Step 2"
+						description="secure your account"
+					>
+						<SecondStep form={form} />
+					</Stepper.Step>
 
-				{/* Third step */}
-				<Stepper.Step
-					icon={
-						<IconUserCheck
-							style={{
-								width: rem(18),
-								height: rem(18),
-							}}
-						/>
-					}
-					label="Step 3"
-					description="almost there"
-				>
-					<ThirdStep />
-				</Stepper.Step>
+					{/* Third step */}
+					<Stepper.Step
+						icon={
+							<IconUserCheck
+								style={{
+									width: rem(
+										18
+									),
+									height: rem(
+										18
+									),
+								}}
+							/>
+						}
+						label="Step 3"
+						description="almost there"
+					>
+						<ThirdStep />
+					</Stepper.Step>
 
-				{/* Completed Step */}
-				<Stepper.Completed>
-					<LastStep />
-				</Stepper.Completed>
-			</Stepper>
+					{/* Completed Step */}
+					<Stepper.Completed>
+						<LastStep />
+					</Stepper.Completed>
+				</Stepper>
+			</form>
 
 			<Group
 				justify="center"
@@ -104,17 +133,36 @@ export function Register() {
 						Back
 					</Button>
 				)}
-				{active !== 3 && (
+				{active === 1 ? (
 					<Button
 						variant="gradient"
 						gradient={{
 							from: "blue",
 							to: "red",
 						}}
-						onClick={nextStep}
+						onClick={() => {
+							console.log(
+								form.values
+							);
+							console.log("hey");
+							nextStep();
+						}}
 					>
-						Next step
+						Create Account
 					</Button>
+				) : (
+					active !== 3 && (
+						<Button
+							variant="gradient"
+							gradient={{
+								from: "blue",
+								to: "red",
+							}}
+							onClick={nextStep}
+						>
+							Next step
+						</Button>
+					)
 				)}
 			</Group>
 		</Container>
