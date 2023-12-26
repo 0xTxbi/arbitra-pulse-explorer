@@ -5,7 +5,7 @@ import {
 	IconWriting,
 	IconKey,
 } from "@tabler/icons-react";
-import { Button, Container, Group, Loader, Stepper, rem } from "@mantine/core";
+import { Button, Container, Group, Stepper, rem } from "@mantine/core";
 import { FirstStep } from "./FirstStep";
 import { SecondStep } from "./SecondStep";
 import classes from "./Register.module.css";
@@ -35,9 +35,8 @@ export function Register() {
 	});
 
 	// submit handler
-	const { handleSubmit, registrationLoading, error } = useRegistration();
-
-	console.log(registrationLoading, error);
+	const { handleSubmit, registrationLoading, registrationError } =
+		useRegistration();
 
 	return (
 		<Container
@@ -118,10 +117,14 @@ export function Register() {
 						}
 						label="Step 3"
 						description="almost there"
+						loading={registrationLoading}
 					>
 						<ThirdStep
 							loading={
 								registrationLoading
+							}
+							error={
+								registrationError
 							}
 						/>
 					</Stepper.Step>
@@ -141,6 +144,7 @@ export function Register() {
 					<Button
 						variant="default"
 						onClick={prevStep}
+						disabled={registrationLoading}
 					>
 						Back
 					</Button>
@@ -174,6 +178,7 @@ export function Register() {
 							to: "red",
 						}}
 						onClick={nextStep}
+						disabled={registrationLoading}
 					>
 						Next step
 					</Button>

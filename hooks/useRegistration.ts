@@ -3,11 +3,13 @@ import { useState } from "react";
 
 export const useRegistration = () => {
 	const [registrationLoading, setRegistrationLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
+	const [registrationError, setRegistrationError] = useState<
+		string | null
+	>(null);
 
 	const handleSubmit = async (values: RegisterFormValues) => {
 		setRegistrationLoading(true);
-		setError(null);
+		setRegistrationError(null);
 
 		try {
 			const response = await fetch(
@@ -28,19 +30,19 @@ export const useRegistration = () => {
 			} else {
 				// handle registration error
 				console.error("Registration failed");
-				setError(
+				setRegistrationError(
 					"Registration failed. Please try again."
 				);
 			}
 		} catch (error) {
 			console.error("Error during registration:", error);
-			setError(
-				"An unexpected error occurred while creating your account. Please try again."
+			setRegistrationError(
+				"An unexpected error was encountered while creating your account. Please try again."
 			);
 		} finally {
 			setRegistrationLoading(false);
 		}
 	};
 
-	return { handleSubmit, registrationLoading, error };
+	return { handleSubmit, registrationLoading, registrationError };
 };
