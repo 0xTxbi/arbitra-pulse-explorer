@@ -5,7 +5,15 @@ import {
 	IconWriting,
 	IconKey,
 } from "@tabler/icons-react";
-import { Button, Container, Group, Stepper, rem } from "@mantine/core";
+import {
+	Anchor,
+	Button,
+	Container,
+	Group,
+	Stepper,
+	Text,
+	rem,
+} from "@mantine/core";
 import { FirstStep } from "./FirstStep";
 import { SecondStep } from "./SecondStep";
 import classes from "./Register.module.css";
@@ -196,6 +204,27 @@ export function Register() {
 						</Button>
 					</Link>
 				)}
+			</Group>
+
+			<Group
+				justify="center"
+				mt="xl"
+			>
+				<Text
+					ta="center"
+					size="sm"
+				>
+					have an existing account?{" "}
+					<Anchor
+						href="/login"
+						// c="dimmed"
+						lh={1}
+						size="sm"
+					>
+						Sign In
+					</Anchor>{" "}
+					instead
+				</Text>
 			</Group>
 		</Container>
 	);
