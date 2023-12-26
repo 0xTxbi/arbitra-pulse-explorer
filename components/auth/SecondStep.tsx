@@ -1,16 +1,5 @@
 "use client";
-
-import {
-	Box,
-	Progress,
-	PasswordInput,
-	Group,
-	Text,
-	Center,
-	Paper,
-} from "@mantine/core";
-import { useInputState } from "@mantine/hooks";
-import { IconCheck, IconX } from "@tabler/icons-react";
+import { PasswordInput, Paper } from "@mantine/core";
 import { CustomContainer } from "../ui/CustomContainer";
 import { UseFormReturnType } from "@mantine/form";
 import { RegisterFormValues } from "@/utils/AuthFormValues";
@@ -30,8 +19,9 @@ export function SecondStep({
 				<div>
 					<PasswordInput
 						placeholder="Your password"
-						label="Password"
+						label="Your Password"
 						required
+						autoComplete="new-password"
 					/>
 
 					{/* confirm password */}
@@ -41,8 +31,9 @@ export function SecondStep({
 						)}
 						placeholder="Your password"
 						mt="md"
-						label="Password"
+						label="Confirm Password"
 						required
+						autoComplete="new-password"
 					/>
 				</div>
 			</Paper>

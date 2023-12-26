@@ -5,7 +5,7 @@ import {
 	IconWriting,
 	IconKey,
 } from "@tabler/icons-react";
-import { Button, Container, Group, Stepper, rem } from "@mantine/core";
+import { Button, Container, Group, Loader, Stepper, rem } from "@mantine/core";
 import { FirstStep } from "./FirstStep";
 import { SecondStep } from "./SecondStep";
 import classes from "./Register.module.css";
@@ -13,9 +13,12 @@ import { ThirdStep } from "./ThirdStep";
 import { LastStep } from "./LastStep";
 import { useForm } from "@mantine/form";
 import { RegisterFormValues } from "@/utils/AuthFormValues";
+import { useRegistration } from "@/hooks/useRegistration";
+import Link from "next/link";
 
 export function Register() {
 	const [active, setActive] = useState(0);
+	console.log(active);
 	// navigate through steps
 	const nextStep = () =>
 		setActive((current) => (current < 3 ? current + 1 : current));
@@ -30,6 +33,11 @@ export function Register() {
 			password: "",
 		},
 	});
+
+	// submit handler
+	const { handleSubmit, registrationLoading, error } = useRegistration();
+
+	console.log(registrationLoading, error);
 
 	return (
 		<Container
@@ -111,7 +119,11 @@ export function Register() {
 						label="Step 3"
 						description="almost there"
 					>
-						<ThirdStep />
+						<ThirdStep
+							loading={
+								registrationLoading
+							}
+						/>
 					</Stepper.Step>
 
 					{/* Completed Step */}
@@ -125,7 +137,7 @@ export function Register() {
 				justify="center"
 				mt="xl"
 			>
-				{active !== 0 && (
+				{active !== 0 && active !== 3 && (
 					<Button
 						variant="default"
 						onClick={prevStep}
@@ -144,14 +156,29 @@ export function Register() {
 							console.log(
 								form.values
 							);
-							console.log("hey");
+
+							handleSubmit(
+								form.values
+							);
+
 							nextStep();
 						}}
 					>
 						Create Account
 					</Button>
+				) : active !== 3 ? (
+					<Button
+						variant="gradient"
+						gradient={{
+							from: "blue",
+							to: "red",
+						}}
+						onClick={nextStep}
+					>
+						Next step
+					</Button>
 				) : (
-					active !== 3 && (
+					<Link href="/dashboard">
 						<Button
 							variant="gradient"
 							gradient={{
@@ -160,9 +187,9 @@ export function Register() {
 							}}
 							onClick={nextStep}
 						>
-							Next step
+							View Dashboard
 						</Button>
-					)
+					</Link>
 				)}
 			</Group>
 		</Container>
