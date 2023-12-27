@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export const useLogin = () => {
 	const [loginLoading, setLoginLoading] = useState(false);
+	const [loginSuccess, setLoginSuccess] = useState(false);
 	const [loginError, setLoginError] = useState<string | null>(null);
 
 	const handleSubmit = async (values: LoginFormValues) => {
@@ -25,9 +26,11 @@ export const useLogin = () => {
 
 			if (response.ok) {
 				// handle successful authentication
+				setLoginSuccess(true);
 				console.log("Authentication successful!");
 			} else {
 				// handle authentication error
+				setLoginSuccess(false);
 				console.error("Authentication failed");
 				setLoginError(
 					"Authentication failed. Please try again."
@@ -35,6 +38,7 @@ export const useLogin = () => {
 			}
 		} catch (error) {
 			console.error("Error during authentication:", error);
+			setLoginSuccess(false);
 			setLoginError(
 				"An unexpected error was encountered while authenticating your account. Please try again."
 			);
@@ -43,5 +47,5 @@ export const useLogin = () => {
 		}
 	};
 
-	return { handleSubmit, loginLoading, loginError };
+	return { handleSubmit, loginLoading, loginSuccess, loginError };
 };

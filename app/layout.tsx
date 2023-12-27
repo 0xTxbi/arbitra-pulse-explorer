@@ -4,6 +4,9 @@ import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { theme } from "../theme";
 // carousel style
 import "@mantine/carousel/styles.css";
+// notifications style
+import "@mantine/notifications/styles.css";
+import { Notifications } from "@mantine/notifications";
 
 export const metadata = {
 	title: "Arbitra Pulse Explorer",
@@ -31,6 +34,7 @@ export default function RootLayout({ children }: { children: any }) {
 					theme={theme}
 					defaultColorScheme="dark"
 				>
+					<Notifications />
 					{children}
 				</MantineProvider>
 			</body>
