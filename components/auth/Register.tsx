@@ -4,6 +4,9 @@ import {
 	IconCircleCheck,
 	IconWriting,
 	IconKey,
+	IconArrowNarrowRight,
+	IconArrowNarrowLeft,
+	IconDashboard,
 } from "@tabler/icons-react";
 import {
 	Anchor,
@@ -12,6 +15,7 @@ import {
 	Group,
 	Stepper,
 	Text,
+	Title,
 	rem,
 } from "@mantine/core";
 import { FirstStep } from "./FirstStep";
@@ -26,7 +30,7 @@ import Link from "next/link";
 
 export function Register() {
 	const [active, setActive] = useState(0);
-	console.log(active);
+
 	// navigate through steps
 	const nextStep = () =>
 		setActive((current) => (current < 3 ? current + 1 : current));
@@ -51,6 +55,12 @@ export function Register() {
 			className={classes.wrapper}
 			fluid
 		>
+			<Title
+				mb="xl"
+				ta="center"
+			>
+				Create An Account
+			</Title>
 			<form
 				onSubmit={form.onSubmit((values) =>
 					console.log(values)
@@ -151,6 +161,11 @@ export function Register() {
 				{active !== 0 && active !== 3 && (
 					<Button
 						variant="default"
+						leftSection={
+							<IconArrowNarrowLeft
+								size={12}
+							/>
+						}
 						onClick={prevStep}
 						disabled={registrationLoading}
 					>
@@ -185,6 +200,11 @@ export function Register() {
 							from: "blue",
 							to: "red",
 						}}
+						leftSection={
+							<IconArrowNarrowRight
+								size={12}
+							/>
+						}
 						onClick={nextStep}
 						disabled={registrationLoading}
 					>
@@ -198,6 +218,13 @@ export function Register() {
 								from: "blue",
 								to: "red",
 							}}
+							leftSection={
+								<IconDashboard
+									size={
+										12
+									}
+								/>
+							}
 							onClick={nextStep}
 						>
 							View Dashboard

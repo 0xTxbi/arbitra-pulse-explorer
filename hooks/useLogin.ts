@@ -18,15 +18,16 @@ export const useLogin = () => {
 						"Content-Type":
 							"application/json",
 					},
+					credentials: "include",
 					body: JSON.stringify(values),
 				}
 			);
 
 			if (response.ok) {
-				// handle successful registration
+				// handle successful authentication
 				console.log("Authentication successful!");
 			} else {
-				// handle registration error
+				// handle authentication error
 				console.error("Authentication failed");
 				setLoginError(
 					"Authentication failed. Please try again."
