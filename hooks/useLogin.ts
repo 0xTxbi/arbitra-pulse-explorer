@@ -12,7 +12,7 @@ export const useLogin = () => {
 
 		try {
 			const response = await fetch(
-				"https://arbitra-pulse-auth.onrender.com/login",
+				"https://arbitra-pulse-auth.fly.dev/login",
 				{
 					method: "POST",
 					headers: {
