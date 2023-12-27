@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
 	IconUserCheck,
 	IconCircleCheck,
@@ -7,6 +7,7 @@ import {
 	IconArrowNarrowRight,
 	IconArrowNarrowLeft,
 	IconDashboard,
+	IconCheck,
 } from "@tabler/icons-react";
 import {
 	Anchor,
@@ -27,13 +28,20 @@ import { useForm } from "@mantine/form";
 import { RegisterFormValues } from "@/utils/AuthFormValues";
 import { useRegistration } from "@/hooks/useRegistration";
 import Link from "next/link";
+import { notifications } from "@mantine/notifications";
 
 export function Register() {
 	const [active, setActive] = useState(0);
 
 	// navigate through steps
 	const nextStep = () =>
-		setActive((current) => (current < 3 ? current + 1 : current));
+		setActive((current: any) => {
+			if (form.validate().hasErrors) {
+				return current;
+			}
+
+			return current < 3 ? current + 1 : current;
+		});
 	const prevStep = () =>
 		setActive((current) => (current > 0 ? current - 1 : current));
 
@@ -42,13 +50,72 @@ export function Register() {
 		initialValues: {
 			username: "",
 			email: "",
-			password: "",
+			hashedPassword: "",
+		},
+
+		validate: (values) => {
+			if (active === 0) {
+				return {
+					username:
+						values.username.trim().length <
+						1
+							? "Your username must include at least 1 character"
+							: null,
+					// TODO: improve regex
+					email: /^\S+@\S+$/.test(values.email)
+						? null
+						: "The email address you provided is invalid",
+				};
+			}
+
+			if (active === 1) {
+				return {
+					password:
+						values.hashedPassword.length < 8
+							? "Password must include at least 8 characters"
+							: null,
+				};
+			}
+
+			return {};
 		},
 	});
 
+	// notif ID
+	const loginNotifId: any = useRef(null);
+
 	// submit handler
-	const { handleSubmit, registrationLoading, registrationError } =
-		useRegistration();
+	const {
+		handleSubmit,
+		registrationLoading,
+		registrationSuccess,
+		registrationError,
+	} = useRegistration();
+
+	// useEffect hook to handle loginSuccess change
+	useEffect(() => {
+		if (registrationSuccess) {
+			// update notifications
+			notifications.update({
+				id: loginNotifId.current,
+				color: "teal",
+				title: "Account Creation Successful",
+				message: "Welcome to Arbitra Pulse!",
+				icon: (
+					<IconCheck
+						style={{
+							width: rem(15),
+							height: rem(15),
+						}}
+					/>
+				),
+				loading: false,
+				autoClose: 3000,
+			});
+		}
+	}, [registrationSuccess]);
+
+	console.log(registrationLoading, registrationError);
 
 	return (
 		<Container
@@ -167,7 +234,7 @@ export function Register() {
 							/>
 						}
 						onClick={prevStep}
-						disabled={registrationLoading}
+						// disabled={registrationLoading}
 					>
 						Back
 					</Button>
@@ -188,8 +255,29 @@ export function Register() {
 								form.values
 							);
 
+							console.log(
+								registrationSuccess
+							);
+							// display notifications
+							loginNotifId.current =
+								notifications.show(
+									{
+										loading: true,
+										title: "Creating Account",
+										message: "We're creating your account. Please wait a moment",
+										autoClose: false,
+										withCloseButton:
+											false,
+									}
+								);
+
 							nextStep();
 						}}
+						disabled={
+							form.values
+								.hashedPassword
+								.length < 8
+						}
 					>
 						Create Account
 					</Button>

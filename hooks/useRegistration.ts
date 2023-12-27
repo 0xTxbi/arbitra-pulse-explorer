@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export const useRegistration = () => {
 	const [registrationLoading, setRegistrationLoading] = useState(false);
+	const [registrationSuccess, setRegistrationSuccess] = useState(false);
 	const [registrationError, setRegistrationError] = useState<
 		string | null
 	>(null);
@@ -13,7 +14,7 @@ export const useRegistration = () => {
 
 		try {
 			const response = await fetch(
-				"https://arbitra-pulse-auth.onrender.com/register",
+				"https://arbitra-pulse-auth.fly.dev/register",
 				{
 					method: "POST",
 					headers: {
@@ -26,15 +27,18 @@ export const useRegistration = () => {
 
 			if (response.ok) {
 				// handle successful registration
+				setRegistrationSuccess(true);
 				console.log("Account created successful!");
 			} else {
 				// handle registration error
+				setRegistrationSuccess(false);
 				console.error("Registration failed");
 				setRegistrationError(
 					"Registration failed. Please try again."
 				);
 			}
 		} catch (error) {
+			setRegistrationSuccess(false);
 			console.error("Error during registration:", error);
 			setRegistrationError(
 				"An unexpected error was encountered while creating your account. Please try again."
@@ -44,5 +48,10 @@ export const useRegistration = () => {
 		}
 	};
 
-	return { handleSubmit, registrationLoading, registrationError };
+	return {
+		handleSubmit,
+		registrationLoading,
+		registrationSuccess,
+		registrationError,
+	};
 };

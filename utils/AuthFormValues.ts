@@ -1,7 +1,7 @@
 export interface RegisterFormValues {
-	username?: string;
-	email?: string;
-	password?: string;
+	username: string;
+	email: string;
+	hashedPassword: string;
 }
 
 export interface LoginFormValues {

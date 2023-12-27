@@ -18,20 +18,13 @@ export function SecondStep({
 			>
 				<div>
 					<PasswordInput
-						placeholder="Your password"
-						label="Your Password"
-						required
-						autoComplete="new-password"
-					/>
-
-					{/* confirm password */}
-					<PasswordInput
 						{...form.getInputProps(
-							"password"
+							"hashedPassword"
 						)}
 						placeholder="Your password"
 						mt="md"
-						label="Confirm Password"
+						label="Your Password"
+						description="Password must be at least 8 characters long."
 						required
 						autoComplete="new-password"
 					/>
