@@ -22,11 +22,21 @@ import { useRouter } from "next/navigation";
 
 export function Login() {
 	const router = useRouter();
-	// form
 	const form = useForm<LoginFormValues>({
 		initialValues: {
 			usernameOrEmail: "",
 			password: "",
+		},
+
+		validate: {
+			usernameOrEmail: (value) =>
+				value.length < 1
+					? "Your username must include at least 1 character"
+					: null,
+			password: (value) =>
+				value.length < 8
+					? "Password must include at least 8 characters"
+					: null,
 		},
 	});
 
@@ -98,6 +108,7 @@ export function Login() {
 						label="Your Password"
 						required
 						autoComplete="new-password"
+						description="Password must be at least 8 characters long."
 						disabled={loginLoading}
 						{...form.getInputProps(
 							"password"
@@ -111,6 +122,7 @@ export function Login() {
 				mt="xl"
 			>
 				<Button
+					type="submit"
 					variant="gradient"
 					gradient={{
 						from: "blue",
@@ -127,7 +139,13 @@ export function Login() {
 							<IconLogin size={12} />
 						)
 					}
-					disabled={loginLoading}
+					disabled={
+						loginLoading ||
+						form.values.password.length <
+							8 ||
+						form.values.usernameOrEmail
+							.length < 1
+					}
 					onClick={() => {
 						console.log(form.values);
 

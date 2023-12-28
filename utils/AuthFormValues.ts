@@ -5,6 +5,6 @@ export interface RegisterFormValues {
 }
 
 export interface LoginFormValues {
-	usernameOrEmail?: string;
-	password?: string;
+	usernameOrEmail: string;
+	password: string;
 }
