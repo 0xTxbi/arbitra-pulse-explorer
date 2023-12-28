@@ -1,10 +1,19 @@
+"use client";
+
 import { Title, Text, Container } from "@mantine/core";
 import classes from "./Search.module.css";
 import { SearchInput } from "./SearchInput";
 import { SearchResult } from "./SearchResult";
 import { Carousel } from "@mantine/carousel";
+import { useState } from "react";
 
 export function Search() {
+	const [searchResult, setSearchResult] = useState(null);
+
+	const handleSearch = (result) => {
+		setSearchResult(result);
+	};
+
 	return (
 		<Container
 			className={classes.wrapper}
@@ -61,7 +70,7 @@ export function Search() {
 
 				{/* search input */}
 				<div className={classes.searchSection}>
-					<SearchInput />
+					<SearchInput onSearch={handleSearch} />
 				</div>
 
 				{/* search results */}
@@ -73,9 +82,15 @@ export function Search() {
 						align="start"
 						slidesToScroll={1}
 					>
-						<SearchResult />
-						<SearchResult />
-						<SearchResult />
+						<SearchResult
+							result={searchResult}
+						/>
+						<SearchResult
+							result={searchResult}
+						/>
+						<SearchResult
+							result={searchResult}
+						/>
 					</Carousel>
 				</Container>
 			</div>

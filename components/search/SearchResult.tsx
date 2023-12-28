@@ -4,7 +4,7 @@ import classes from "./Search.module.css";
 
 const data = { title: "AAPL", value: "$1,500", diff: 34 };
 
-export function SearchResult() {
+export function SearchResult({ result }) {
 	return (
 		<Paper
 			withBorder
@@ -22,6 +22,7 @@ export function SearchResult() {
 						fz="xs"
 						className={classes.label}
 					>
+						{result}
 						{data.title}
 					</Text>
 					<Text
