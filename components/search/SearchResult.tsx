@@ -5,13 +5,14 @@ import classes from "./Search.module.css";
 const data = { title: "AAPL", value: "$1,500", diff: 34 };
 
 export function SearchResult({ result }: any) {
+	console.log(result);
 	return (
 		<Paper
 			withBorder
 			p="md"
 			radius="md"
 			mr={15}
-			key={data.title}
+			key={result?.symbol}
 		>
 			<Group justify="apart">
 				<div>
@@ -22,24 +23,18 @@ export function SearchResult({ result }: any) {
 						fz="xs"
 						className={classes.label}
 					>
-						{result}
+						{result?.exchange}
 					</Text>
 					<Text
 						fw={700}
 						fz="xl"
 					>
-						{data.value}
+						{result?.symbol}
 					</Text>
 				</div>
 				<ThemeIcon
 					color="gray"
 					variant="light"
-					style={{
-						color:
-							data.diff > 0
-								? "var(--mantine-color-teal-6)"
-								: "var(--mantine-color-red-6)",
-					}}
 					size={38}
 					radius="md"
 				>
@@ -56,13 +51,10 @@ export function SearchResult({ result }: any) {
 			>
 				<Text
 					component="span"
-					c={data.diff > 0 ? "teal" : "red"}
 					fw={700}
 				>
 					{data.diff}%
 				</Text>{" "}
-				{data.diff > 0 ? "increase" : "decrease"}{" "}
-				compared to last month
 			</Text>
 		</Paper>
 	);

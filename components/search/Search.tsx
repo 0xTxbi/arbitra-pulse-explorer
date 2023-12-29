@@ -10,7 +10,9 @@ import { useStockSearch } from "@/hooks/useStockSearch";
 
 export function Search() {
 	const [searchResult, setSearchResult] = useState(null);
-	const [searchLoading, setSearchLoading] = useState(false);
+	const [searchLoading, setSearchLoading] = useState<boolean | null>(
+		null
+	);
 	const { searchStock } = useStockSearch(setSearchLoading);
 
 	console.log(`we are loading ${searchLoading}`);
@@ -18,6 +20,8 @@ export function Search() {
 	const handleSearch = (result: any) => {
 		setSearchResult(result);
 	};
+
+	console.log(searchResult);
 
 	return (
 		<Container
@@ -107,21 +111,15 @@ export function Search() {
 							align="start"
 							slidesToScroll={1}
 						>
-							<SearchResult
-								result={
-									searchResult
-								}
-							/>
-							<SearchResult
-								result={
-									searchResult
-								}
-							/>
-							<SearchResult
-								result={
-									searchResult
-								}
-							/>
+							{searchResult?.stocks?.map(
+								(result) => (
+									<SearchResult
+										result={
+											result
+										}
+									/>
+								)
+							)}
 						</Carousel>
 					)}
 				</Container>

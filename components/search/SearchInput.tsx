@@ -1,5 +1,4 @@
 "use client";
-import { useStockSearch } from "@/hooks/useStockSearch";
 import { TextInput, ActionIcon, rem, Loader } from "@mantine/core";
 import { IconSearch, IconArrowRight } from "@tabler/icons-react";
 import { ChangeEvent, FC, useState } from "react";
@@ -24,15 +23,12 @@ export const SearchInput: FC<SearchInputProps> = ({
 		const searchResult = await searchStock(searchValue);
 
 		console.log(searchResult);
-		onSearch(searchValue);
+		onSearch(searchResult);
 	};
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(event.target.value);
 	};
-
-	console.log(searchValue);
-	console.log(searchLoading);
 
 	return (
 		<TextInput
