@@ -4,7 +4,7 @@ import classes from "./Search.module.css";
 
 const data = { title: "AAPL", value: "$1,500", diff: 34 };
 
-export function SearchResult({ result }) {
+export function SearchResult({ result }: any) {
 	return (
 		<Paper
 			withBorder

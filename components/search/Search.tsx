@@ -15,7 +15,7 @@ export function Search() {
 
 	console.log(`we are loading ${searchLoading}`);
 
-	const handleSearch = (result) => {
+	const handleSearch = (result: any) => {
 		setSearchResult(result);
 	};
 
