@@ -6,13 +6,18 @@ import { ChangeEvent, FC, useState } from "react";
 
 interface SearchInputProps {
 	onSearch: (value: string) => void;
+	searchStock: (query: string) => Promise<any>;
+	searchLoading: boolean;
 	[key: string]: any;
 }
 
-export const SearchInput: FC<SearchInputProps> = ({ onSearch, ...props }) => {
+export const SearchInput: FC<SearchInputProps> = ({
+	onSearch,
+	searchStock,
+	searchLoading,
+	...props
+}) => {
 	const [searchValue, setSearchValue] = useState("");
-	const { searchStock, searchLoading, searchSuccess, searchError } =
-		useStockSearch();
 
 	// search for stock
 	const handleSearch = async () => {
@@ -26,7 +31,8 @@ export const SearchInput: FC<SearchInputProps> = ({ onSearch, ...props }) => {
 		setSearchValue(event.target.value);
 	};
 
-	console.log(searchLoading, searchError, searchSuccess);
+	console.log(searchValue);
+	console.log(searchLoading);
 
 	return (
 		<TextInput
@@ -51,7 +57,10 @@ export const SearchInput: FC<SearchInputProps> = ({ onSearch, ...props }) => {
 					size={32}
 					radius="xl"
 					variant="gradient"
-					disabled={searchLoading}
+					disabled={
+						searchLoading ||
+						searchValue.length < 1
+					}
 					gradient={{
 						from: "red",
 						to: "blue",

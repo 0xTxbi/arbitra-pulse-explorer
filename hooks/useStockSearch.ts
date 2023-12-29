@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-export function useStockSearch() {
-	const [searchLoading, setSearchLoading] = useState(false);
+export function useStockSearch(setSearchLoading: (loading: boolean) => void) {
 	const [searchSuccess, setSearchSuccess] = useState(false);
 	const [searchError, setSearchError] = useState(null);
 
@@ -26,5 +25,5 @@ export function useStockSearch() {
 		}
 	};
 
-	return { searchStock, searchLoading, searchSuccess, searchError };
+	return { searchStock, searchSuccess, searchError };
 }

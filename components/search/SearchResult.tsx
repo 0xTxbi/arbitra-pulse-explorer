@@ -23,7 +23,6 @@ export function SearchResult({ result }) {
 						className={classes.label}
 					>
 						{result}
-						{data.title}
 					</Text>
 					<Text
 						fw={700}
