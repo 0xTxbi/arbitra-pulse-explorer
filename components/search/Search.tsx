@@ -1,10 +1,15 @@
 "use client";
+import {
+	Title,
+	Text,
+	Container,
+	Skeleton,
+	SimpleGrid,
+	Group,
+} from "@mantine/core";
 
-import { Title, Text, Container, Skeleton, SimpleGrid } from "@mantine/core";
-import classes from "./Search.module.css";
 import { SearchInput } from "./SearchInput";
 import { SearchResult } from "./SearchResult";
-import { Carousel } from "@mantine/carousel";
 import { useState } from "react";
 import { useStockSearch } from "@/hooks/useStockSearch";
 
@@ -24,14 +29,11 @@ export function Search() {
 	console.log(searchResult);
 
 	return (
-		<Container
-			className={classes.wrapper}
-			size={1400}
-		>
-			<div className={classes.inner}>
+		<Container size="xl">
+			<div>
 				<Title
 					ta="center"
-					className={classes.title}
+					mb="md"
 				>
 					explore{" "}
 					<Text
@@ -60,6 +62,7 @@ export function Search() {
 				</Title>
 
 				<Container
+					mb="lg"
 					p={0}
 					size={600}
 				>
@@ -67,7 +70,6 @@ export function Search() {
 						size="lg"
 						c="dimmed"
 						ta="center"
-						className={classes.description}
 					>
 						discover real-time stock
 						insights and trends. enter a
@@ -78,18 +80,22 @@ export function Search() {
 				</Container>
 
 				{/* search input */}
-				<div className={classes.searchSection}>
+
+				<Container>
 					<SearchInput
 						onSearch={handleSearch}
 						searchStock={searchStock}
 						searchLoading={searchLoading}
 					/>
-				</div>
+				</Container>
 
 				{/* search results */}
 				<Container>
 					{searchLoading ? (
-						<SimpleGrid cols={3}>
+						<SimpleGrid
+							cols={3}
+							mt="xl"
+						>
 							<Skeleton
 								height={125}
 								width={287}
@@ -104,12 +110,9 @@ export function Search() {
 							/>
 						</SimpleGrid>
 					) : (
-						<Carousel
-							slideSize="33.333333%"
-							slideGap="md"
-							loop
-							align="start"
-							slidesToScroll={1}
+						<Group
+							justify="center"
+							mt="xl"
 						>
 							{searchResult?.stocks?.map(
 								(result) => (
@@ -120,7 +123,14 @@ export function Search() {
 									/>
 								)
 							)}
-						</Carousel>
+						</Group>
+					)}
+
+					{searchResult?.stocks?.length < 1 && (
+						<Text ta="center">
+							oops. no stocks found.
+							try another keyword
+						</Text>
 					)}
 				</Container>
 			</div>
