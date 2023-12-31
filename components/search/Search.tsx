@@ -12,6 +12,7 @@ import { SearchInput } from "./SearchInput";
 import { SearchResult } from "./SearchResult";
 import { useState } from "react";
 import { useStockSearch } from "@/hooks/useStockSearch";
+import Link from "next/link";
 
 export function Search() {
 	const [searchResult, setSearchResult] = useState(null);
@@ -81,7 +82,10 @@ export function Search() {
 
 				{/* search input */}
 
-				<Container>
+				<Container
+					fluid
+					size="lg"
+				>
 					<SearchInput
 						onSearch={handleSearch}
 						searchStock={searchStock}
@@ -90,49 +94,57 @@ export function Search() {
 				</Container>
 
 				{/* search results */}
-				<Container>
-					{searchLoading ? (
-						<SimpleGrid
-							cols={3}
-							mt="xl"
-						>
-							<Skeleton
-								height={125}
-								width={287}
-							/>
-							<Skeleton
-								height={125}
-								width={287}
-							/>
-							<Skeleton
-								height={125}
-								width={287}
-							/>
-						</SimpleGrid>
-					) : (
-						<Group
-							justify="center"
-							mt="xl"
-						>
-							{searchResult?.stocks?.map(
-								(result) => (
+
+				{searchLoading ? (
+					<SimpleGrid
+						cols={3}
+						mt="xl"
+					>
+						<Skeleton
+							height={100}
+							width={200}
+						/>
+						<Skeleton
+							height={100}
+							width={200}
+						/>
+						<Skeleton
+							height={100}
+							width={200}
+						/>
+					</SimpleGrid>
+				) : (
+					<Group
+						justify="center"
+						mt="xl"
+					>
+						{searchResult?.stocks?.map(
+							(result) => (
+								<Link
+									href={`/stock/${result?.symbol}`}
+									style={{
+										textDecoration:
+											"none",
+										color: "white",
+									}}
+								>
 									<SearchResult
 										result={
 											result
 										}
 									/>
-								)
-							)}
-						</Group>
-					)}
+								</Link>
+							)
+						)}
+					</Group>
+				)}
 
-					{searchResult?.stocks?.length < 1 && (
-						<Text ta="center">
-							oops. no stocks found.
-							try another keyword
-						</Text>
-					)}
-				</Container>
+				{searchResult?.stocks?.length < 1 && (
+					<Text ta="center">
+						oops. no stocks found. try
+						another keyword
+					</Text>
+				)}
 			</div>
 		</Container>
 	);
