@@ -1,3 +1,4 @@
+import { extractDomain } from "@/utils/extractDomain";
 import { Title, Text, Stack, Group, Badge } from "@mantine/core";
 import { IconWorld } from "@tabler/icons-react";
 import Link from "next/link";
@@ -26,7 +27,7 @@ export function CompanyInfo({ companyUrl, description }) {
 					}}
 					leftSection={<IconWorld size={15} />}
 				>
-					{companyUrl}
+					{extractDomain(companyUrl)}
 				</Badge>
 
 				<Group>
