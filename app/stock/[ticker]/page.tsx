@@ -33,7 +33,10 @@ export default function Page({ params }: { params: { ticker: string } }) {
 	return (
 		<Flex style={containerStyle}>
 			<div style={box1Style}>
-				<StockMain />
+				<StockMain
+					symbol={stockInfo?.symbol}
+					companyName={stockInfo?.companyName}
+				/>
 			</div>
 			<div style={box2Style}>
 				<Grid gutter="xl">
