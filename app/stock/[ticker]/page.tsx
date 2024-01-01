@@ -4,7 +4,10 @@ import { MarketStats } from "@/components/stock-info/MarketStats";
 import { News } from "@/components/stock-info/News";
 import { Sentiment } from "@/components/stock-info/Sentiment";
 import { StockMain } from "@/components/stock-info/StockMain";
+import useStockInfo from "@/hooks/useStockInfo";
+
 import { Flex, Grid } from "@mantine/core";
+import { useEffect } from "react";
 
 export default function Page({ params }: { params: { ticker: string } }) {
 	const containerStyle = {
@@ -19,6 +22,13 @@ export default function Page({ params }: { params: { ticker: string } }) {
 	const box2Style = {
 		flex: "0 0 40%",
 	};
+
+	console.log(params.ticker);
+
+	const { stockInfo, stockInfoLoading, stockError } = useStockInfo(
+		params.ticker
+	);
+	console.log(stockInfo, stockInfoLoading, stockError);
 
 	return (
 		<Flex style={containerStyle}>
