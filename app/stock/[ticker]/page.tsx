@@ -44,7 +44,14 @@ export default function Page({ params }: { params: { ticker: string } }) {
 						<Sentiment />
 					</Grid.Col>
 					<Grid.Col span={6}>
-						<CompanyInfo />
+						<CompanyInfo
+							companyUrl={
+								stockInfo?.homepageUrl
+							}
+							description={
+								stockInfo?.description
+							}
+						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
 						<MarketStats />
