@@ -1,10 +1,25 @@
-import { Title, Text, Container } from "@mantine/core";
+"use client";
+import {
+	Title,
+	Text,
+	Container,
+	SimpleGrid,
+	Skeleton,
+	Group,
+	Anchor,
+} from "@mantine/core";
 import classes from "./Watchlist.module.css";
 
-import { Carousel } from "@mantine/carousel";
 import { WatchlistItem } from "./WatchlistItem";
+import useWatchlist from "@/hooks/useWatchlist";
+import Link from "next/link";
 
 export function Watchlist() {
+	const { watchlistInfo, watchlistLoading, watchlistError } =
+		useWatchlist();
+
+	console.log(watchlistInfo, watchlistLoading, watchlistError);
+
 	return (
 		<Container
 			className={classes.wrapper}
@@ -47,23 +62,68 @@ export function Watchlist() {
 					</Text>
 				</Container>
 
-				{/* search results */}
-				<Container
-					mt="xl"
-					fluid
-				>
-					<Carousel
-						slideSize="33.333333%"
-						slideGap="md"
-						loop
-						align="center"
-						slidesToScroll={1}
+				{/* watchlist results */}
+				{watchlistLoading ? (
+					<SimpleGrid
+						cols={3}
+						mt="xl"
 					>
-						<WatchlistItem />
-						<WatchlistItem />
-						<WatchlistItem />
-					</Carousel>
-				</Container>
+						<Skeleton
+							height={100}
+							width={200}
+						/>
+						<Skeleton
+							height={100}
+							width={200}
+						/>
+						<Skeleton
+							height={100}
+							width={200}
+						/>
+					</SimpleGrid>
+				) : (
+					<Group
+						justify="center"
+						mt="xl"
+					>
+						{watchlistInfo?.map(
+							(watchlistItem) => (
+								<Link
+									href={`/stock/${watchlistItem?.symbol}`}
+									style={{
+										textDecoration:
+											"none",
+										color: "white",
+									}}
+								>
+									<WatchlistItem
+										item={
+											watchlistItem
+										}
+									/>
+								</Link>
+							)
+						)}
+					</Group>
+				)}
+
+				{watchlistInfo?.length < 1 && (
+					<Container
+						size="xs"
+						mt="lg"
+					>
+						<Text ta="center">
+							you haven't added any
+							stock to your watchlist.
+							begin by{" "}
+							<Anchor href="/search">
+								searching
+							</Anchor>{" "}
+							for stocks to add to
+							your watchlist
+						</Text>
+					</Container>
+				)}
 			</div>
 		</Container>
 	);
