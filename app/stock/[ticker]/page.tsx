@@ -32,7 +32,9 @@ export default function Page({ params }: { params: { ticker: string } }) {
 	return (
 		<Flex
 			style={containerStyle}
-			gap="xl"
+			direction={{ base: "column", sm: "row" }}
+			gap={{ base: "xl", sm: "lg" }}
+			justify={{ sm: "center" }}
 		>
 			<div style={box1Style}>
 				{stockInfoLoading ? (

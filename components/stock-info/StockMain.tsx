@@ -1,7 +1,15 @@
 "use client";
 
-import { Title, Text, Stack, Group, NumberFormatter } from "@mantine/core";
+import {
+	Title,
+	Text,
+	Stack,
+	Group,
+	NumberFormatter,
+	Button,
+} from "@mantine/core";
 import StockChart from "./StockChart";
+import { IconBookmark } from "@tabler/icons-react";
 
 export function StockMain({ info }) {
 	return (
@@ -12,20 +20,38 @@ export function StockMain({ info }) {
 		>
 			{/* Stock Basic Details */}
 			<div>
-				<Group>
-					<Text
-						size="sm"
-						c="dimmed"
-					>
-						{info?.symbol}
-					</Text>
-				</Group>
-				<Title
-					order={2}
-					size="h1"
+				<Text
+					size="sm"
+					c="dimmed"
 				>
-					{info?.companyName}
-				</Title>
+					{info?.symbol}
+				</Text>
+
+				<Group justify="space-between">
+					<Title
+						order={2}
+						size="h1"
+					>
+						{info?.companyName}
+					</Title>
+
+					{/* add to watchlist button */}
+					<Button
+						size="xs"
+						variant="gradient"
+						gradient={{
+							from: "blue",
+							to: "red",
+						}}
+						leftSection={
+							<IconBookmark
+								size={12}
+							/>
+						}
+					>
+						Add to Watchlist
+					</Button>
+				</Group>
 
 				{/* stock price */}
 				<Text size="xl">
