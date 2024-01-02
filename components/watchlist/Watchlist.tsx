@@ -18,8 +18,6 @@ export function Watchlist() {
 	const { watchlistInfo, watchlistLoading, watchlistError } =
 		useWatchlist();
 
-	console.log(watchlistInfo, watchlistLoading, watchlistError);
-
 	return (
 		<Container
 			className={classes.wrapper}

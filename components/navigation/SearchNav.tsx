@@ -20,6 +20,7 @@ import {
 	IconChevronDown,
 	IconBookmark,
 	IconDashboard,
+	IconSearch,
 } from "@tabler/icons-react";
 
 import classes from "./SearchNav.module.css";
@@ -46,6 +47,21 @@ export function SearchNav() {
 			>
 				<Group justify="space-between">
 					<Logo />
+
+					<Link
+						href="/search"
+						style={{
+							textDecoration: "none",
+							color: "inherit",
+						}}
+					>
+						<Group gap="xs">
+							<IconSearch size={15} />
+							<Text size="sm">
+								Search Stocks
+							</Text>
+						</Group>
+					</Link>
 
 					{/* display time and date in real-time */}
 					<LiveTimeAndDate />

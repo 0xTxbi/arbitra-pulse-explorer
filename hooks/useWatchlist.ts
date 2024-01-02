@@ -3,7 +3,6 @@ import { useCookies } from "react-cookie";
 
 const useWatchlist = () => {
 	const [cookies] = useCookies(["token"]);
-	console.log(cookies.token);
 
 	const [watchlistInfo, setWatchlistInfo] = useState(null);
 

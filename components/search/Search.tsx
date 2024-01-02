@@ -21,13 +21,9 @@ export function Search() {
 	);
 	const { searchStock } = useStockSearch(setSearchLoading);
 
-	console.log(`we are loading ${searchLoading}`);
-
 	const handleSearch = (result: any) => {
 		setSearchResult(result);
 	};
-
-	console.log(searchResult);
 
 	return (
 		<Container size="xl">
