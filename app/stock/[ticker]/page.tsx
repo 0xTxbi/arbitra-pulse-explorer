@@ -27,8 +27,6 @@ export default function Page({ params }: { params: { ticker: string } }) {
 		flex: "0 0 40%",
 	};
 
-	console.log(params.ticker);
-
 	console.log(stockInfo, stockInfoLoading, stockError);
 
 	return (

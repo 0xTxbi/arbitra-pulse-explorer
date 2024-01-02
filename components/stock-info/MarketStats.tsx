@@ -17,6 +17,10 @@ export function MarketStats({ quickInfo }) {
 				</Title>
 				{/* company info */}
 				<StatInfo
+					title="Date Listed"
+					value={quickInfo?.listDate}
+				/>
+				<StatInfo
 					title="Market Cap"
 					value={quickInfo?.marketCap}
 					isCurrency
