@@ -1,10 +1,12 @@
 import { LoginFormValues } from "@/utils/AuthFormValues";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 
 export const useLogin = () => {
 	const [loginLoading, setLoginLoading] = useState(false);
 	const [loginSuccess, setLoginSuccess] = useState(false);
 	const [loginError, setLoginError] = useState<string | null>(null);
+	const [cookies, setCookie] = useCookies(["token"]);
 
 	const handleSubmit = async (values: LoginFormValues) => {
 		setLoginLoading(true);
@@ -25,6 +27,15 @@ export const useLogin = () => {
 			);
 
 			if (response.ok) {
+				const data = await response.json();
+				console.log(data);
+
+				// store token in a secure http-only cookie
+				setCookie("token", data.token, {
+					path: "/",
+					secure: true,
+					sameSite: "strict",
+				});
 				// handle successful authentication
 				setLoginSuccess(true);
 				console.log("Authentication successful!");
