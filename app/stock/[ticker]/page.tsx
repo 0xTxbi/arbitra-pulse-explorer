@@ -32,7 +32,10 @@ export default function Page({ params }: { params: { ticker: string } }) {
 	console.log(stockInfo, stockInfoLoading, stockError);
 
 	return (
-		<Flex style={containerStyle}>
+		<Flex
+			style={containerStyle}
+			gap="xl"
+		>
 			<div style={box1Style}>
 				{stockInfoLoading ? (
 					<Skeleton

@@ -35,7 +35,7 @@ export function StockMain({ info }) {
 						thousandSeparator
 					/>
 				</Text>
-				<StockChart />
+				<StockChart height={500} />
 			</div>
 		</Stack>
 	);
