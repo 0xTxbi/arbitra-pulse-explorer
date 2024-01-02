@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 
 const useWatchlist = () => {
+	const [cookies] = useCookies(["token"]);
+	console.log(cookies.token);
+
 	const [watchlistInfo, setWatchlistInfo] = useState(null);
 
 	const [watchlistLoading, setWatchlistLoading] =
@@ -15,7 +19,12 @@ const useWatchlist = () => {
 			setWatchlistLoading(true);
 
 			const response = await fetch(
-				`https://arbitra-pulse-auth.fly.dev/watchlist`
+				`https://arbitra-pulse-auth.fly.dev/watchlist`,
+				{
+					headers: {
+						Authorization: `Bearer ${cookies.token}`,
+					},
+				}
 			);
 
 			// check if request was successful – status code 200

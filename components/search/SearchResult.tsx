@@ -1,5 +1,4 @@
-import { Badge, Group, Paper, Stack, Text, ThemeIcon } from "@mantine/core";
-import { IconGrowth } from "@tabler/icons-react";
+import { Badge, Paper, Stack, Text } from "@mantine/core";
 
 export function SearchResult({ result }: any) {
 	console.log(result);
