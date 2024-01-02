@@ -1,4 +1,5 @@
 "use client";
+
 import { CompanyInfo } from "@/components/stock-info/CompanyInfo";
 import { MarketStats } from "@/components/stock-info/MarketStats";
 import { News } from "@/components/stock-info/News";
@@ -6,10 +7,13 @@ import { Sentiment } from "@/components/stock-info/Sentiment";
 import { StockMain } from "@/components/stock-info/StockMain";
 import useStockInfo from "@/hooks/useStockInfo";
 
-import { Flex, Grid } from "@mantine/core";
-import { useEffect } from "react";
+import { Flex, Grid, Skeleton } from "@mantine/core";
 
 export default function Page({ params }: { params: { ticker: string } }) {
+	const { stockInfo, stockInfoLoading, stockError } = useStockInfo(
+		params.ticker
+	);
+
 	const containerStyle = {
 		gap: "sm",
 		margin: 0,
@@ -25,18 +29,19 @@ export default function Page({ params }: { params: { ticker: string } }) {
 
 	console.log(params.ticker);
 
-	const { stockInfo, stockInfoLoading, stockError } = useStockInfo(
-		params.ticker
-	);
 	console.log(stockInfo, stockInfoLoading, stockError);
 
 	return (
 		<Flex style={containerStyle}>
 			<div style={box1Style}>
-				<StockMain
-					symbol={stockInfo?.symbol}
-					companyName={stockInfo?.companyName}
-				/>
+				{stockInfoLoading ? (
+					<Skeleton
+						height="100%"
+						width="100%"
+					/>
+				) : (
+					<StockMain info={stockInfo} />
+				)}
 			</div>
 			<div style={box2Style}>
 				<Grid gutter="xl">
@@ -44,17 +49,23 @@ export default function Page({ params }: { params: { ticker: string } }) {
 						<Sentiment />
 					</Grid.Col>
 					<Grid.Col span={6}>
-						<CompanyInfo
-							companyUrl={
-								stockInfo?.homepageUrl
-							}
-							description={
-								stockInfo?.description
-							}
-						/>
+						{stockInfoLoading ? (
+							<Skeleton
+								height="100%"
+								width="100%"
+							/>
+						) : (
+							<CompanyInfo
+								companyInfo={
+									stockInfo
+								}
+							/>
+						)}
 					</Grid.Col>
 					<Grid.Col span={6}>
-						<MarketStats />
+						<MarketStats
+							quickInfo={stockInfo}
+						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
 						<News />

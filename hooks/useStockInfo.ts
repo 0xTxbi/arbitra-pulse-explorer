@@ -43,7 +43,7 @@ const useStockInfo = (ticker: string) => {
 	// automatically fetch stock info when the component loads
 	useEffect(() => {
 		fetchStockInfo();
-	}, []);
+	}, [ticker]);
 
 	return { stockInfo, stockInfoLoading, stockError };
 };

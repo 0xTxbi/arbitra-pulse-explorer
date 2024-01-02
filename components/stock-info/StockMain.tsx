@@ -1,7 +1,9 @@
+"use client";
+
 import { Title, Text, Stack, Group, NumberFormatter } from "@mantine/core";
 import StockChart from "./StockChart";
 
-export function StockMain({ symbol, companyName }) {
+export function StockMain({ info }) {
 	return (
 		<Stack
 			h="100%"
@@ -15,14 +17,14 @@ export function StockMain({ symbol, companyName }) {
 						size="sm"
 						c="dimmed"
 					>
-						{symbol}
+						{info?.symbol}
 					</Text>
 				</Group>
 				<Title
 					order={2}
 					size="h1"
 				>
-					{companyName}
+					{info?.companyName}
 				</Title>
 
 				{/* stock price */}

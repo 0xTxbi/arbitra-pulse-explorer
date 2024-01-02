@@ -1,9 +1,11 @@
+"use client";
+
 import { extractDomain } from "@/utils/extractDomain";
 import { Title, Text, Stack, Group, Badge } from "@mantine/core";
 import { IconWorld } from "@tabler/icons-react";
 import Link from "next/link";
 
-export function CompanyInfo({ companyUrl, description }) {
+export function CompanyInfo({ companyInfo }) {
 	return (
 		<Stack
 			justify="space-between"
@@ -20,14 +22,16 @@ export function CompanyInfo({ companyUrl, description }) {
 
 				<Badge
 					component={Link}
-					href={companyUrl}
+					href={`${companyInfo?.homepageUrl}`}
 					target="_blank"
 					style={{
 						cursor: "pointer",
 					}}
 					leftSection={<IconWorld size={15} />}
 				>
-					{extractDomain(companyUrl)}
+					{extractDomain(
+						companyInfo?.homepageUrl
+					)}
 				</Badge>
 
 				<Group>
@@ -35,7 +39,7 @@ export function CompanyInfo({ companyUrl, description }) {
 						size="sm"
 						c="dimmed"
 					>
-						{description}
+						{companyInfo?.description}
 					</Text>
 				</Group>
 			</Stack>

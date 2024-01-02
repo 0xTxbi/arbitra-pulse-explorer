@@ -1,16 +1,7 @@
-import {
-	Title,
-	Text,
-	Stack,
-	Group,
-	Badge,
-	NumberFormatter,
-	Divider,
-} from "@mantine/core";
-import { IconWorld } from "@tabler/icons-react";
+import { Title, Stack } from "@mantine/core";
 import { StatInfo } from "./StatInfo";
 
-export function MarketStats() {
+export function MarketStats({ quickInfo }) {
 	return (
 		<Stack
 			justify="space-between"
@@ -27,16 +18,16 @@ export function MarketStats() {
 				{/* company info */}
 				<StatInfo
 					title="Market Cap"
-					value={110877796720}
+					value={quickInfo?.marketCap}
 					isCurrency
 				/>
 				<StatInfo
 					title="Employees"
-					value={116000}
+					value={quickInfo?.totalEmployees}
 				/>
 				<StatInfo
 					title="Address"
-					value="6801 ROCKLEDGE DR"
+					value={quickInfo?.address}
 				/>
 			</Stack>
 		</Stack>
