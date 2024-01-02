@@ -5,6 +5,7 @@ import { TopGainers } from "./sections/TopGainers";
 import { UpcomingEarnings } from "./sections/UpcomingEarnings";
 import { FeaturedStock } from "./sections/FeaturedStock";
 import { DashboardNews } from "./sections/DashboardNews";
+import { useCookies } from "react-cookie";
 
 const child = (
 	<Skeleton
@@ -15,6 +16,11 @@ const child = (
 );
 
 export function Dashboard() {
+	const [cookies] = useCookies(["token"]);
+
+	const token = cookies.token;
+	console.log(token);
+
 	return (
 		<Container
 			my="md"
