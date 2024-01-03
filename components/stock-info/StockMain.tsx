@@ -1,5 +1,4 @@
 "use client";
-
 import {
 	Title,
 	Text,
@@ -49,11 +48,11 @@ export function StockMain({ info }) {
 
 					{/* add to watchlist button */}
 					<Button
-						onClick={() =>
+						onClick={() => {
 							addToWatchlist(
 								info?.symbol
-							)
-						}
+							);
+						}}
 						size="xs"
 						variant="gradient"
 						loading={watchlistLoading}

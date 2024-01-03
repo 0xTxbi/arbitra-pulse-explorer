@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
+import useNotification from "./useNotification";
 
 const useWatchlist = () => {
 	const [cookies] = useCookies(["token"]);
 
+	const { updateNotification } = useNotification();
 	const [watchlistInfo, setWatchlistInfo] = useState(null);
 	const [watchlistLoading, setWatchlistLoading] =
 		useState<boolean>(false);
@@ -88,6 +90,18 @@ const useWatchlist = () => {
 	useEffect(() => {
 		fetchWatchlist();
 	}, []);
+
+	useEffect(() => {
+		if (watchlistAddSuccess) {
+			updateNotification({
+				loading: false,
+				title: "Added to Watchlist",
+				message: "This stock has been successfully added to your watchlist.",
+				autoClose: 3000,
+				withCloseButton: true,
+			});
+		}
+	}, [watchlistAddSuccess]);
 
 	return {
 		watchlistInfo,
