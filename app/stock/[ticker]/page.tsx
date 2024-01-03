@@ -27,9 +27,9 @@ export default function Page({ params }: { params: { ticker: string } }) {
 		flex: "0 0 40%",
 	};
 
-	console.log(stockInfo, stockInfoLoading, stockError);
+	console.log(stockInfoLoading);
 
-	return (
+	return stockInfoLoading ? (
 		<Flex
 			style={containerStyle}
 			direction={{ base: "column", sm: "row" }}
@@ -37,64 +37,67 @@ export default function Page({ params }: { params: { ticker: string } }) {
 			justify={{ sm: "center" }}
 		>
 			<div style={box1Style}>
-				{stockInfoLoading ? (
-					<Skeleton
-						height="100%"
-						width="100%"
-					/>
-				) : (
-					<StockMain info={stockInfo} />
-				)}
+				<Skeleton
+					height="100%"
+					width="100%"
+				/>
 			</div>
 			<div style={box2Style}>
 				<Grid gutter="xl">
 					<Grid.Col span={6}>
-						{stockInfoLoading ? (
-							<Skeleton
-								height="100%"
-								width="100%"
-							/>
-						) : (
-							<Sentiment />
-						)}
+						<Skeleton
+							height="100%"
+							width="100%"
+						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
-						{stockInfoLoading ? (
-							<Skeleton
-								height="100%"
-								width="100%"
-							/>
-						) : (
-							<CompanyInfo
-								companyInfo={
-									stockInfo
-								}
-							/>
-						)}
+						<Skeleton
+							height={300}
+							width="100%"
+						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
-						{stockInfoLoading ? (
-							<Skeleton
-								height="100%"
-								width="100%"
-							/>
-						) : (
-							<MarketStats
-								quickInfo={
-									stockInfo
-								}
-							/>
-						)}
+						<Skeleton
+							height="100%"
+							width="100%"
+						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
-						{stockInfoLoading ? (
-							<Skeleton
-								height="100%"
-								width="100%"
-							/>
-						) : (
-							<News />
-						)}
+						<Skeleton
+							height={300}
+							width="100%"
+						/>
+					</Grid.Col>
+				</Grid>
+			</div>
+		</Flex>
+	) : (
+		<Flex
+			style={containerStyle}
+			direction={{ base: "column", sm: "row" }}
+			gap={{ base: "xl", sm: "lg" }}
+			justify={{ sm: "center" }}
+		>
+			<div style={box1Style}>
+				<StockMain info={stockInfo} />
+			</div>
+			<div style={box2Style}>
+				<Grid gutter="xl">
+					<Grid.Col span={6}>
+						<Sentiment />
+					</Grid.Col>
+					<Grid.Col span={6}>
+						<CompanyInfo
+							companyInfo={stockInfo}
+						/>
+					</Grid.Col>
+					<Grid.Col span={6}>
+						<MarketStats
+							quickInfo={stockInfo}
+						/>
+					</Grid.Col>
+					<Grid.Col span={6}>
+						<News />
 					</Grid.Col>
 				</Grid>
 			</div>
