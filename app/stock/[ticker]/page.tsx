@@ -49,7 +49,14 @@ export default function Page({ params }: { params: { ticker: string } }) {
 			<div style={box2Style}>
 				<Grid gutter="xl">
 					<Grid.Col span={6}>
-						<Sentiment />
+						{stockInfoLoading ? (
+							<Skeleton
+								height="100%"
+								width="100%"
+							/>
+						) : (
+							<Sentiment />
+						)}
 					</Grid.Col>
 					<Grid.Col span={6}>
 						{stockInfoLoading ? (
@@ -66,12 +73,28 @@ export default function Page({ params }: { params: { ticker: string } }) {
 						)}
 					</Grid.Col>
 					<Grid.Col span={6}>
-						<MarketStats
-							quickInfo={stockInfo}
-						/>
+						{stockInfoLoading ? (
+							<Skeleton
+								height="100%"
+								width="100%"
+							/>
+						) : (
+							<MarketStats
+								quickInfo={
+									stockInfo
+								}
+							/>
+						)}
 					</Grid.Col>
 					<Grid.Col span={6}>
-						<News />
+						{stockInfoLoading ? (
+							<Skeleton
+								height="100%"
+								width="100%"
+							/>
+						) : (
+							<News />
+						)}
 					</Grid.Col>
 				</Grid>
 			</div>
