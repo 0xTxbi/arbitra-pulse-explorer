@@ -17,10 +17,7 @@ export function StatInfo({ title, value, isCurrency }: StatInfoProps) {
 				>
 					{title}
 				</Title>
-				<Text
-					size="sm"
-					c="dimmed"
-				>
+				<Text size="sm">
 					{typeof value === "number" ? (
 						isCurrency ? (
 							<NumberFormatter
