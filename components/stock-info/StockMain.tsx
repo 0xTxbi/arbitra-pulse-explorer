@@ -7,11 +7,23 @@ import {
 	Group,
 	NumberFormatter,
 	Button,
+	Loader,
+	rem,
 } from "@mantine/core";
 import StockChart from "./StockChart";
 import { IconBookmark } from "@tabler/icons-react";
+import useWatchlist from "@/hooks/useWatchlist";
 
 export function StockMain({ info }) {
+	const {
+		addToWatchlist,
+		watchlistAddSuccess,
+		watchlistLoading,
+		watchlistError,
+	} = useWatchlist();
+
+	console.log(watchlistAddSuccess, watchlistLoading, watchlistError);
+
 	return (
 		<Stack
 			h="100%"
@@ -37,19 +49,40 @@ export function StockMain({ info }) {
 
 					{/* add to watchlist button */}
 					<Button
+						onClick={() =>
+							addToWatchlist(
+								info?.symbol
+							)
+						}
 						size="xs"
 						variant="gradient"
+						loading={watchlistLoading}
+						disabled={watchlistLoading}
 						gradient={{
 							from: "blue",
 							to: "red",
 						}}
 						leftSection={
-							<IconBookmark
-								size={12}
-							/>
+							watchlistLoading ? (
+								<Loader
+									type="dots"
+									size={rem(
+										12
+									)}
+									color="white"
+								/>
+							) : (
+								<IconBookmark
+									size={
+										12
+									}
+								/>
+							)
 						}
 					>
-						Add to Watchlist
+						{watchlistLoading
+							? "Adding"
+							: "Add to Watchlist"}
 					</Button>
 				</Group>
 
