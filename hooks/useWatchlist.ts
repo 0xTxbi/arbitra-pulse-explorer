@@ -144,6 +144,7 @@ const useWatchlist = () => {
 
 			if (response.ok) {
 				setWatchlistClearSuccess(true);
+				fetchWatchlist();
 				// reset error state
 				setWatchlistError(null);
 			} else {
