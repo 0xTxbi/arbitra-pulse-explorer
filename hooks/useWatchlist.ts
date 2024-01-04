@@ -14,6 +14,8 @@ const useWatchlist = () => {
 	);
 	const [watchlistAddSuccess, setWatchlistAddSuccess] =
 		useState<boolean>(false);
+	const [watchlistRemoveSuccess, setWatchlistRemoveSuccess] =
+		useState<boolean>(false);
 
 	// function to fetch stock information
 	const fetchWatchlist = async () => {
@@ -80,6 +82,39 @@ const useWatchlist = () => {
 		} catch (error) {
 			setWatchlistError(
 				`An error occurred while adding ${stockSymbol} to watchlist`
+			);
+		} finally {
+			setWatchlistLoading(false);
+		}
+	};
+
+	// function to add stock symbol to watchlist
+	const removeFromWatchlist = async (stockSymbol: string) => {
+		try {
+			setWatchlistLoading(true);
+
+			const response = await fetch(
+				`https://arbitra-pulse-stock-info.fly.dev/watchlist/remove/${stockSymbol}`,
+				{
+					method: "DELETE",
+					headers: {
+						Authorization: `Bearer ${cookies.token}`,
+					},
+				}
+			);
+
+			if (response.ok) {
+				setWatchlistRemoveSuccess(true);
+				// reset error state
+				setWatchlistError(null);
+			} else {
+				setWatchlistError(
+					`Failed to remove ${stockSymbol} from your watchlist. Please try again`
+				);
+			}
+		} catch (error) {
+			setWatchlistError(
+				`An error occurred while removing ${stockSymbol} from your watchlist`
 			);
 		} finally {
 			setWatchlistLoading(false);
