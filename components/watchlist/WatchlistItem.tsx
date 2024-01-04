@@ -8,7 +8,6 @@ export function WatchlistItem({ item }: any) {
 			p="md"
 			w={250}
 			radius="md"
-			mr={15}
 			key={item?.symbol}
 		>
 			<Stack>

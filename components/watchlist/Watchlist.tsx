@@ -19,8 +19,15 @@ import Link from "next/link";
 import { IconTrash } from "@tabler/icons-react";
 
 export function Watchlist() {
-	const { watchlistInfo, watchlistLoading, watchlistError } =
-		useWatchlist();
+	const {
+		watchlistInfo,
+		watchlistLoading,
+		clearWatchlist,
+		clearWatchlistLoading,
+		watchlistError,
+	} = useWatchlist();
+
+	console.log(clearWatchlistLoading);
 
 	return (
 		<Container
@@ -91,17 +98,15 @@ export function Watchlist() {
 						>
 							<Button
 								onClick={() => {
-									// addToWatchlist(
-									// 	info?.symbol
-									// );
+									clearWatchlist();
 								}}
 								size="xs"
 								variant="gradient"
 								loading={
-									watchlistLoading
+									clearWatchlistLoading
 								}
 								disabled={
-									watchlistLoading
+									clearWatchlistLoading
 								}
 								gradient={{
 									from: "blue",
@@ -129,7 +134,7 @@ export function Watchlist() {
 							</Button>
 						</Group>
 						<Group
-							justify="center"
+							justify="space-between"
 							mt="xl"
 						>
 							{watchlistInfo?.map(

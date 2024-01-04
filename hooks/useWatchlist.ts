@@ -16,6 +16,10 @@ const useWatchlist = () => {
 		useState<boolean>(false);
 	const [watchlistRemoveSuccess, setWatchlistRemoveSuccess] =
 		useState<boolean>(false);
+
+	// clear watchlist states
+	const [clearWatchlistLoading, setClearWatchlistLoading] =
+		useState<boolean>(false);
 	const [watchlistClearSuccess, setWatchlistClearSuccess] =
 		useState<boolean>(false);
 
@@ -126,7 +130,7 @@ const useWatchlist = () => {
 	// function to clear watchlist
 	const clearWatchlist = async () => {
 		try {
-			setWatchlistLoading(true);
+			setClearWatchlistLoading(true);
 
 			const response = await fetch(
 				`https://arbitra-pulse-stock-info.fly.dev/watchlist/clear`,
@@ -152,7 +156,7 @@ const useWatchlist = () => {
 				`An error occurred while clearing your watchlist`
 			);
 		} finally {
-			setWatchlistLoading(false);
+			setClearWatchlistLoading(false);
 		}
 	};
 
@@ -180,6 +184,7 @@ const useWatchlist = () => {
 		watchlistAddSuccess,
 		watchlistClearSuccess,
 		watchlistLoading,
+		clearWatchlistLoading,
 		watchlistError,
 	};
 };
