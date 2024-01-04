@@ -92,47 +92,51 @@ export function Watchlist() {
 					</SimpleGrid>
 				) : (
 					<>
-						<Group
-							justify="flex-end"
-							mt="xl"
-						>
-							<Button
-								onClick={() => {
-									clearWatchlist();
-								}}
-								size="xs"
-								variant="gradient"
-								loading={
-									clearWatchlistLoading
-								}
-								disabled={
-									clearWatchlistLoading
-								}
-								gradient={{
-									from: "blue",
-									to: "red",
-								}}
-								leftSection={
-									watchlistLoading ? (
-										<Loader
-											type="dots"
-											size={rem(
-												12
-											)}
-											color="white"
-										/>
-									) : (
-										<IconTrash
-											size={
-												12
-											}
-										/>
-									)
-								}
+						{watchlistInfo?.length > 0 && (
+							<Group
+								justify="flex-end"
+								mt="xl"
 							>
-								Clear Watchlist
-							</Button>
-						</Group>
+								<Button
+									onClick={() => {
+										clearWatchlist();
+									}}
+									size="xs"
+									variant="gradient"
+									loading={
+										clearWatchlistLoading
+									}
+									disabled={
+										clearWatchlistLoading
+									}
+									gradient={{
+										from: "blue",
+										to: "red",
+									}}
+									leftSection={
+										watchlistLoading ? (
+											<Loader
+												type="dots"
+												size={rem(
+													12
+												)}
+												color="white"
+											/>
+										) : (
+											<IconTrash
+												size={
+													12
+												}
+											/>
+										)
+									}
+								>
+									Clear
+									Watchlist
+								</Button>
+							</Group>
+						)}
+
 						<Group
 							justify="space-between"
 							mt="xl"
