@@ -7,12 +7,16 @@ import {
 	Skeleton,
 	Group,
 	Anchor,
+	Button,
+	Loader,
+	rem,
 } from "@mantine/core";
 import classes from "./Watchlist.module.css";
 
 import { WatchlistItem } from "./WatchlistItem";
 import useWatchlist from "@/hooks/useWatchlist";
 import Link from "next/link";
+import { IconTrash } from "@tabler/icons-react";
 
 export function Watchlist() {
 	const { watchlistInfo, watchlistLoading, watchlistError } =
@@ -80,29 +84,76 @@ export function Watchlist() {
 						/>
 					</SimpleGrid>
 				) : (
-					<Group
-						justify="center"
-						mt="xl"
-					>
-						{watchlistInfo?.map(
-							(watchlistItem) => (
-								<Link
-									href={`/stock/${watchlistItem?.symbol}`}
-									style={{
-										textDecoration:
-											"none",
-										color: "white",
-									}}
-								>
-									<WatchlistItem
-										item={
-											watchlistItem
-										}
-									/>
-								</Link>
-							)
-						)}
-					</Group>
+					<>
+						<Group
+							justify="flex-end"
+							mt="xl"
+						>
+							<Button
+								onClick={() => {
+									// addToWatchlist(
+									// 	info?.symbol
+									// );
+								}}
+								size="xs"
+								variant="gradient"
+								loading={
+									watchlistLoading
+								}
+								disabled={
+									watchlistLoading
+								}
+								gradient={{
+									from: "blue",
+									to: "red",
+								}}
+								leftSection={
+									watchlistLoading ? (
+										<Loader
+											type="dots"
+											size={rem(
+												12
+											)}
+											color="white"
+										/>
+									) : (
+										<IconTrash
+											size={
+												12
+											}
+										/>
+									)
+								}
+							>
+								Clear Watchlist
+							</Button>
+						</Group>
+						<Group
+							justify="center"
+							mt="xl"
+						>
+							{watchlistInfo?.map(
+								(
+									watchlistItem
+								) => (
+									<Link
+										href={`/stock/${watchlistItem?.symbol}`}
+										style={{
+											textDecoration:
+												"none",
+											color: "white",
+										}}
+									>
+										<WatchlistItem
+											item={
+												watchlistItem
+											}
+										/>
+									</Link>
+								)
+							)}
+						</Group>
+					</>
 				)}
 
 				{watchlistInfo?.length < 1 && (

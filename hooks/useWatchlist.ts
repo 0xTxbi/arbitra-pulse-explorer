@@ -16,6 +16,8 @@ const useWatchlist = () => {
 		useState<boolean>(false);
 	const [watchlistRemoveSuccess, setWatchlistRemoveSuccess] =
 		useState<boolean>(false);
+	const [watchlistClearSuccess, setWatchlistClearSuccess] =
+		useState<boolean>(false);
 
 	// function to fetch stock information
 	const fetchWatchlist = async () => {
@@ -88,7 +90,7 @@ const useWatchlist = () => {
 		}
 	};
 
-	// function to add stock symbol to watchlist
+	// function to remove stock symbol from watchlist
 	const removeFromWatchlist = async (stockSymbol: string) => {
 		try {
 			setWatchlistLoading(true);
@@ -121,6 +123,39 @@ const useWatchlist = () => {
 		}
 	};
 
+	// function to clear watchlist
+	const clearWatchlist = async () => {
+		try {
+			setWatchlistLoading(true);
+
+			const response = await fetch(
+				`https://arbitra-pulse-stock-info.fly.dev/watchlist/clear`,
+				{
+					method: "DELETE",
+					headers: {
+						Authorization: `Bearer ${cookies.token}`,
+					},
+				}
+			);
+
+			if (response.ok) {
+				setWatchlistClearSuccess(true);
+				// reset error state
+				setWatchlistError(null);
+			} else {
+				setWatchlistError(
+					`Failed to clear your watchlist. Please try again`
+				);
+			}
+		} catch (error) {
+			setWatchlistError(
+				`An error occurred while clearing your watchlist`
+			);
+		} finally {
+			setWatchlistLoading(false);
+		}
+	};
+
 	// automatically fetch stock info when the component loads
 	useEffect(() => {
 		fetchWatchlist();
@@ -141,7 +176,9 @@ const useWatchlist = () => {
 	return {
 		watchlistInfo,
 		addToWatchlist,
+		clearWatchlist,
 		watchlistAddSuccess,
+		watchlistClearSuccess,
 		watchlistLoading,
 		watchlistError,
 	};
