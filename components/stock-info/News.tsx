@@ -1,21 +1,33 @@
 import { Carousel } from "@mantine/carousel";
 import { Paper, Text, Title, Button, Stack } from "@mantine/core";
+import Link from "next/link";
 
 interface CardProps {
 	image: string;
 	title: string;
 	category: string;
+	link: string;
+	author: string;
+	description: string;
 }
 
-function Card({ image, title, category }: CardProps) {
+function Card({
+	image,
+	title,
+	author,
+	description,
+	category,
+	link,
+}: CardProps) {
 	return (
 		<Paper
 			shadow="md"
 			p="xl"
+			w="100%"
 			radius="md"
 			style={{
 				height: "100%",
-				backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image})`,
+				backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80)`,
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 			}}
@@ -24,11 +36,21 @@ function Card({ image, title, category }: CardProps) {
 				<Text size="xs">{category}</Text>
 				<Title
 					order={3}
-					size="h2"
+					size="h5"
+					lineClamp={1}
 				>
 					{title}
 				</Title>
+				<Text
+					size="xs"
+					lineClamp={3}
+				>
+					{description}
+				</Text>
 				<Button
+					component={Link}
+					href={link}
+					target="_blank"
 					variant="gradient"
 					gradient={{
 						from: "blue",
@@ -43,33 +65,18 @@ function Card({ image, title, category }: CardProps) {
 	);
 }
 
-const data = [
-	{
-		image: "https://images.unsplash.com/photo-1559494007-9f5847c49d94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-		title: "Hawaii beaches review: better than you think",
-		category: "beach",
-	},
-	{
-		image: "https://images.unsplash.com/photo-1608481337062-4093bf3ed404?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-		title: "Mountains at night: 12 best locations to enjoy the view",
-		category: "nature",
-	},
-	{
-		image: "https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-		title: "Aurora in Norway: when to visit for best experience",
-		category: "nature",
-	},
-];
-
-export function News() {
-	const slides = data.map((item) => (
-		<Carousel.Slide key={item.title}>
-			<Card {...item} />
+export function News({ stockNews }) {
+	const slides = stockNews?.map((news) => (
+		<Carousel.Slide key={news.article_id}>
+			<Card {...news} />
 		</Carousel.Slide>
 	));
 
 	return (
-		<Stack>
+		<Stack
+			w={300}
+			gap="xl"
+		>
 			<Title
 				order={4}
 				size="h4"

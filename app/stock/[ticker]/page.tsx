@@ -6,11 +6,16 @@ import { News } from "@/components/stock-info/News";
 import { Sentiment } from "@/components/stock-info/Sentiment";
 import { StockMain } from "@/components/stock-info/StockMain";
 import useStockInfo from "@/hooks/useStockInfo";
+import useStockNews from "@/hooks/useStockNews";
 
 import { Flex, Grid, Skeleton } from "@mantine/core";
 
 export default function Page({ params }: { params: { ticker: string } }) {
 	const { stockInfo, stockInfoLoading, stockError } = useStockInfo(
+		params.ticker
+	);
+
+	const { stockNews, stockNewsLoading, stockNewsError } = useStockNews(
 		params.ticker
 	);
 
@@ -95,7 +100,18 @@ export default function Page({ params }: { params: { ticker: string } }) {
 						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
-						<News />
+						{stockNewsLoading ? (
+							<Skeleton
+								height={300}
+								width="100%"
+							/>
+						) : (
+							<News
+								stockNews={
+									stockNews
+								}
+							/>
+						)}
 					</Grid.Col>
 				</Grid>
 			</div>

@@ -27,7 +27,6 @@ const useStockNews = (ticker: string) => {
 
 			// check if request was successful – status code 200
 			if (response.ok) {
-				console.log(response);
 				const data = await response.json();
 
 				setStockNews(data);
