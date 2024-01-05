@@ -5,6 +5,7 @@ import { MarketStats } from "@/components/stock-info/MarketStats";
 import { News } from "@/components/stock-info/News";
 import { Sentiment } from "@/components/stock-info/Sentiment";
 import { StockMain } from "@/components/stock-info/StockMain";
+import useSentiment from "@/hooks/useSentiment";
 import useStockInfo from "@/hooks/useStockInfo";
 import useStockNews from "@/hooks/useStockNews";
 
@@ -18,6 +19,12 @@ export default function Page({ params }: { params: { ticker: string } }) {
 	const { stockNews, stockNewsLoading, stockNewsError } = useStockNews(
 		params.ticker
 	);
+
+	// stock sentiment hook
+	const { sentimentInfo, sentimentInfoLoading, sentimentError } =
+		useSentiment(params.ticker);
+
+	console.log(sentimentInfo, sentimentInfoLoading, sentimentError);
 
 	const containerStyle = {
 		gap: "sm",
