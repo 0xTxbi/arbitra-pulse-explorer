@@ -24,8 +24,6 @@ export default function Page({ params }: { params: { ticker: string } }) {
 	const { sentimentInfo, sentimentInfoLoading, sentimentError } =
 		useSentiment(params.ticker);
 
-	console.log(sentimentInfo, sentimentInfoLoading, sentimentError);
-
 	const containerStyle = {
 		gap: "sm",
 		margin: 0,
@@ -94,7 +92,18 @@ export default function Page({ params }: { params: { ticker: string } }) {
 			<div style={box2Style}>
 				<Grid gutter="xl">
 					<Grid.Col span={6}>
-						<Sentiment />
+						{sentimentInfoLoading ? (
+							<Skeleton
+								height={300}
+								width="100%"
+							/>
+						) : (
+							<Sentiment
+								stockSentiment={
+									sentimentInfo?.sentiment
+								}
+							/>
+						)}
 					</Grid.Col>
 					<Grid.Col span={6}>
 						<CompanyInfo

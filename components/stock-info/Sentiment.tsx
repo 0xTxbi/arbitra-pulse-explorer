@@ -6,9 +6,22 @@ import {
 	ActionIcon,
 	rem,
 } from "@mantine/core";
-import { IconCheck } from "@tabler/icons-react";
+import { IconAlertTriangle, IconCheck } from "@tabler/icons-react";
 
-export function Sentiment() {
+interface StockSentimentProps {
+	score: number;
+	confidenceLevel: number;
+}
+
+export function Sentiment({
+	stockSentiment,
+}: {
+	stockSentiment: StockSentimentProps;
+}) {
+	const score = stockSentiment && stockSentiment.score;
+	const color = score > 50 ? "teal" : "red";
+	const label = score > 50 ? "positive sentiment" : "negative sentiment";
+
 	return (
 		<Center h="100%">
 			{/* Stock Sentiment */}
@@ -16,28 +29,47 @@ export function Sentiment() {
 				<RingProgress
 					sections={[
 						{
-							value: 100,
-							color: "teal",
+							value: stockSentiment?.score,
+							color,
 						},
 					]}
 					label={
 						<Center>
 							<ActionIcon
-								color="teal"
+								color={
+									stockSentiment?.score >
+									50
+										? "teal"
+										: "red"
+								}
 								variant="light"
 								radius="xl"
 								size="xl"
 							>
-								<IconCheck
-									style={{
-										width: rem(
-											22
-										),
-										height: rem(
-											22
-										),
-									}}
-								/>
+								{stockSentiment?.score >
+								50 ? (
+									<IconCheck
+										style={{
+											width: rem(
+												22
+											),
+											height: rem(
+												22
+											),
+										}}
+									/>
+								) : (
+									<IconAlertTriangle
+										style={{
+											width: rem(
+												22
+											),
+											height: rem(
+												22
+											),
+										}}
+									/>
+								)}
 							</ActionIcon>
 						</Center>
 					}
@@ -45,9 +77,9 @@ export function Sentiment() {
 
 				<Badge
 					variant="outline"
-					color="teal"
+					color={color}
 				>
-					positive sentiment
+					{label}
 				</Badge>
 			</Stack>
 		</Center>
