@@ -1,6 +1,15 @@
-import { Badge, Paper, Stack, Text } from "@mantine/core";
+import useWatchlist from "@/hooks/useWatchlist";
+import { ActionIcon, Group, Paper, Stack, Text } from "@mantine/core";
+import { IconMinus } from "@tabler/icons-react";
+import Link from "next/link";
 
 export function WatchlistItem({ item }: any) {
+	const {
+		removeFromWatchlist,
+		watchlistRemoveSuccess,
+		watchlistRemoveLoading,
+	} = useWatchlist();
+
 	console.log(item);
 	return (
 		<Paper
@@ -11,31 +20,39 @@ export function WatchlistItem({ item }: any) {
 			key={item?.symbol}
 		>
 			<Stack>
-				<Badge
-					radius="sm"
-					variant="light"
-					color="teal"
-				>
-					{item?.exchange}
-				</Badge>
-				<Text
-					fw={700}
-					fz="xl"
-				>
-					{item?.instrumentName}
-				</Text>
-
-				<Text
-					c="dimmed"
-					fz="sm"
+				<Link
+					href={`/stock/${item?.symbol}`}
+					style={{
+						textDecoration: "none",
+						color: "white",
+					}}
 				>
 					<Text
-						component="span"
 						fw={700}
+						fz="xl"
 					>
 						{item?.symbol}
-					</Text>{" "}
-				</Text>
+					</Text>
+				</Link>
+
+				<Group justify="flex-end">
+					<ActionIcon
+						onClick={() => {
+							removeFromWatchlist(
+								item?.symbol
+							);
+						}}
+						disabled={
+							watchlistRemoveLoading
+						}
+						loading={watchlistRemoveLoading}
+						variant="outline"
+						color="red"
+						radius="xl"
+					>
+						<IconMinus size={10} />
+					</ActionIcon>
+				</Group>
 			</Stack>
 		</Paper>
 	);

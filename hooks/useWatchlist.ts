@@ -14,7 +14,11 @@ const useWatchlist = () => {
 	);
 	const [watchlistAddSuccess, setWatchlistAddSuccess] =
 		useState<boolean>(false);
+
+	// add to watchlist states
 	const [watchlistRemoveSuccess, setWatchlistRemoveSuccess] =
+		useState<boolean>(false);
+	const [watchlistRemoveLoading, setWatchlistRemoveLoading] =
 		useState<boolean>(false);
 
 	// clear watchlist states
@@ -97,7 +101,7 @@ const useWatchlist = () => {
 	// function to remove stock symbol from watchlist
 	const removeFromWatchlist = async (stockSymbol: string) => {
 		try {
-			setWatchlistLoading(true);
+			setWatchlistRemoveLoading(true);
 
 			const response = await fetch(
 				`https://arbitra-pulse-stock-info.fly.dev/watchlist/remove/${stockSymbol}`,
@@ -111,6 +115,7 @@ const useWatchlist = () => {
 
 			if (response.ok) {
 				setWatchlistRemoveSuccess(true);
+				fetchWatchlist();
 				// reset error state
 				setWatchlistError(null);
 			} else {
@@ -123,7 +128,7 @@ const useWatchlist = () => {
 				`An error occurred while removing ${stockSymbol} from your watchlist`
 			);
 		} finally {
-			setWatchlistLoading(false);
+			setWatchlistRemoveLoading(false);
 		}
 	};
 
@@ -181,10 +186,13 @@ const useWatchlist = () => {
 	return {
 		watchlistInfo,
 		addToWatchlist,
+		removeFromWatchlist,
 		clearWatchlist,
 		watchlistAddSuccess,
+		watchlistRemoveSuccess,
 		watchlistClearSuccess,
 		watchlistLoading,
+		watchlistRemoveLoading,
 		clearWatchlistLoading,
 		watchlistError,
 	};

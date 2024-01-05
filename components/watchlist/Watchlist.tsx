@@ -15,7 +15,6 @@ import classes from "./Watchlist.module.css";
 
 import { WatchlistItem } from "./WatchlistItem";
 import useWatchlist from "@/hooks/useWatchlist";
-import Link from "next/link";
 import { IconTrash } from "@tabler/icons-react";
 
 export function Watchlist() {
@@ -145,20 +144,11 @@ export function Watchlist() {
 								(
 									watchlistItem
 								) => (
-									<Link
-										href={`/stock/${watchlistItem?.symbol}`}
-										style={{
-											textDecoration:
-												"none",
-											color: "white",
-										}}
-									>
-										<WatchlistItem
-											item={
-												watchlistItem
-											}
-										/>
-									</Link>
+									<WatchlistItem
+										item={
+											watchlistItem
+										}
+									/>
 								)
 							)}
 						</Group>
