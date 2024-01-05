@@ -10,7 +10,6 @@ import {
 	IconCheck,
 } from "@tabler/icons-react";
 import {
-	Anchor,
 	Button,
 	Container,
 	Group,
@@ -330,14 +329,14 @@ export function Register() {
 					size="sm"
 				>
 					have an existing account?{" "}
-					<Anchor
+					<Link
+						style={{
+							textDecoration: "none",
+						}}
 						href="/login"
-						// c="dimmed"
-						lh={1}
-						size="sm"
 					>
 						Sign In
-					</Anchor>{" "}
+					</Link>{" "}
 					instead
 				</Text>
 			</Group>

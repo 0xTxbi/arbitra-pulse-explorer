@@ -1,5 +1,4 @@
 import {
-	Anchor,
 	Button,
 	Container,
 	Group,
@@ -19,6 +18,7 @@ import { IconCheck, IconLogin } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export function Login() {
 	const router = useRouter();
@@ -180,13 +180,14 @@ export function Login() {
 					size="sm"
 				>
 					don't have an existing account?{" "}
-					<Anchor
+					<Link
+						style={{
+							textDecoration: "none",
+						}}
 						href="/register"
-						lh={1}
-						size="sm"
 					>
 						Create an Account
-					</Anchor>{" "}
+					</Link>{" "}
 					instead
 				</Text>
 			</Group>
