@@ -1,5 +1,4 @@
 import "@mantine/core/styles.css";
-import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { theme } from "../theme";
 // carousel style
@@ -14,7 +13,7 @@ export const metadata = {
 		"a seamless and intuitive interface for exploring real-time stock sentiments and related information via the Arbitra Pulse API.",
 };
 
-export default function RootLayout({ children }: { children: any }) {
+export default async function RootLayout({ children }: { children: any }) {
 	return (
 		<html
 			lang="en"
