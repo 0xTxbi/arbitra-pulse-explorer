@@ -1,3 +1,4 @@
+import useUpcomingEarnings from "@/hooks/useUpcomingEarnings";
 import {
 	ActionIcon,
 	Avatar,
@@ -7,46 +8,50 @@ import {
 	Text,
 	Title,
 } from "@mantine/core";
-import { IconAlarmPlus } from "@tabler/icons-react";
-
-const data = { title: "AAPL", value: "$1,500", diff: 34 };
+import { IconAlarmPlus, IconCalendar } from "@tabler/icons-react";
 
 function Company() {
+	const {
+		upcomingEarningsInfo,
+		upcomingEarningsLoading,
+		upcomingEarningsError,
+	} = useUpcomingEarnings();
+
+	console.log(
+		upcomingEarningsInfo,
+		upcomingEarningsLoading,
+		upcomingEarningsError
+	);
 	return (
 		<Group justify="space-between">
 			<Group>
 				{/* Date */}
-				<Avatar
-					size="lg"
-					src="https://static.vecteezy.com/system/resources/previews/020/336/735/original/tesla-logo-tesla-icon-transparent-png-free-vector.jpg"
-				/>
-
+				<IconCalendar />
 				{/* Company */}
 				<Stack gap="xs">
 					<Text
 						c="white"
 						size="md"
 					>
-						Tesla, Inc.
+						{upcomingEarningsInfo?.company}
 					</Text>
 					<Text
 						c="white"
 						size="xs"
 					>
-						22nd December, 2023
+						{upcomingEarningsInfo?.date}
 					</Text>
 				</Stack>
 			</Group>
 
 			{/* Reminder */}
 			<ActionIcon
+				variant="default"
+				disabled
 				size="lg"
 				color="teal"
 			>
-				<IconAlarmPlus
-					size="1.6rem"
-					stroke={1.5}
-				/>
+				<IconAlarmPlus stroke={1.5} />
 			</ActionIcon>
 		</Group>
 	);
@@ -65,8 +70,6 @@ export function UpcomingEarnings() {
 				Upcoming Earnings
 			</Title>
 
-			<Company />
-			<Company />
 			<Company />
 		</Stack>
 	);
