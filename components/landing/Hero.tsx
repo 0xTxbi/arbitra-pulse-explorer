@@ -50,7 +50,7 @@ export function Hero() {
 				</Container>
 
 				<div className={classes.controls}>
-					<Link href="/register">
+					<Link href="/login">
 						<Button
 							variant="gradient"
 							gradient={{
