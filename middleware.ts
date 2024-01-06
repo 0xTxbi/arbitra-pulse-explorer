@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { cookies } from "next/headers";
-import { jwtDecode } from "jwt-decode";
 import { checkJWTValidity } from "./utils/checkJwtValidity";
 
 export default async function middleware(req: NextRequest) {
