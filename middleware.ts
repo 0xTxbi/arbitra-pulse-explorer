@@ -9,15 +9,27 @@ export default async function middleware(req: NextRequest) {
 	// retrieve token
 	let token = cookieStore.get("token")?.value;
 
-	// check if jwt is valid
+	// check if token is defined
+	if (!token) {
+		console.error("Token is undefined");
+		return;
+	}
+
+	// check if JWT is valid
 	function checkJWTValidity(token: string): boolean {
 		// decode token and retrieve expiry date
-		const decodedToken = jwtDecode(token).exp;
+		const decodedToken = jwtDecode(token);
+
+		// check if token is valid
+		if (!decodedToken || !decodedToken.exp) {
+			console.error("Invalid token");
+			return false;
+		}
 
 		// retrieve current time in unix format
 		const currentDate = Math.floor(new Date().getTime() / 1000);
 
-		return decodedToken > currentDate;
+		return decodedToken.exp > currentDate;
 	}
 
 	const isAuthenticated = checkJWTValidity(token);
