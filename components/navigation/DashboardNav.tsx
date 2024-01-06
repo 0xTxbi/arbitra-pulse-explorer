@@ -27,6 +27,7 @@ import classes from "./DashboardNav.module.css";
 import Logo from "../ui/Logo";
 import Link from "next/link";
 import LiveTimeAndDate from "../ui/LiveTimeAndDate";
+import { useLogout } from "@/hooks/useLogout";
 
 const mockUserData = {
 	name: "txbi",
@@ -35,6 +36,9 @@ const mockUserData = {
 };
 
 export function DashboardNav() {
+	// log out hook
+	const { handleLogout } = useLogout();
+
 	const theme = useMantineTheme();
 	const [opened, { toggle }] = useDisclosure(false);
 	const [userMenuOpened, setUserMenuOpened] = useState(false);
@@ -221,6 +225,9 @@ export function DashboardNav() {
 								Account settings
 							</Menu.Item>
 							<Menu.Item
+								onClick={() =>
+									handleLogout()
+								}
 								leftSection={
 									<IconLogout
 										style={{
