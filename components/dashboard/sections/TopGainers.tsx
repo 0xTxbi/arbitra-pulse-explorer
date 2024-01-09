@@ -1,11 +1,11 @@
 import useMarketGainers from "@/hooks/useMarketGainers";
+import { truncateText } from "@/utils/truncateText";
 import { Carousel } from "@mantine/carousel";
 import {
 	ActionIcon,
 	Badge,
 	Group,
 	Paper,
-	SimpleGrid,
 	Skeleton,
 	Stack,
 	Text,
@@ -13,45 +13,53 @@ import {
 	Title,
 } from "@mantine/core";
 import { IconArrowUpRight, IconPlus } from "@tabler/icons-react";
-import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
+import { useMemo } from "react";
 
-const data = { title: "AAPL", value: "$1,500", diff: 34 };
+interface MarketGainer {
+	symbol: string;
+	company: string;
+	price: number;
+	percent_change: number;
+}
 
-function GainerItem({ marketGainer }) {
+function GainerItem({ marketGainer }: { marketGainer: MarketGainer }) {
+	console.log(marketGainer);
 	return (
 		<Paper
 			withBorder
 			p="md"
 			radius="md"
-			key={data.title}
 		>
 			<Group justify="space-between">
 				<div>
 					<Text
 						c="dimmed"
 						tt="uppercase"
-						fw={700}
-						fz="xs"
+						size="xs"
 					>
-						{data.title}
+						{marketGainer.symbol}
 					</Text>
 					<Text
 						fw={700}
-						fz="xl"
+						truncate="end"
+						size="lg"
 					>
-						{data.value}
+						{truncateText(
+							marketGainer.company,
+							15
+						)}
+					</Text>
+
+					<Text
+						fw={500}
+						fz="sm"
+					>
+						{marketGainer.price}
 					</Text>
 				</div>
 				<ThemeIcon
 					color="gray"
 					variant="light"
-					style={{
-						color:
-							data.diff > 0
-								? "var(--mantine-color-teal-6)"
-								: "var(--mantine-color-red-6)",
-					}}
 					size={38}
 					radius="md"
 				>
@@ -68,11 +76,11 @@ function GainerItem({ marketGainer }) {
 				mt="md"
 			>
 				<Badge
-					color={data.diff > 0 ? "teal" : "red"}
+					color={3 > 0 ? "teal" : "red"}
 					radius="sm"
 					fw={700}
 				>
-					{data.diff}%
+					{marketGainer.percent_change}
 				</Badge>
 
 				{/* add to watchlist */}
@@ -96,11 +104,13 @@ function GainerItem({ marketGainer }) {
 }
 
 export function TopGainers() {
-	// auto play carousel
-	const autoplay = useRef(Autoplay({ delay: 2000 }));
 	const { marketGainersInfo, marketGainersLoading, marketGainersError } =
 		useMarketGainers();
 
+	const memoizedMarketGainersInfo = useMemo(
+		() => marketGainersInfo,
+		[marketGainersInfo]
+	);
 	console.log(
 		marketGainersInfo,
 		marketGainersLoading,
@@ -108,13 +118,17 @@ export function TopGainers() {
 	);
 
 	return (
-		<Stack>
+		<Stack
+			justify="space-around"
+			h="100%"
+		>
 			<Title
 				order={4}
-				size="h5"
+				size="h4"
 			>
 				Today's top gainers
 			</Title>
+
 			{marketGainersLoading ? (
 				<Skeleton
 					height={200}
@@ -122,21 +136,24 @@ export function TopGainers() {
 				/>
 			) : (
 				<Carousel
-					height={200}
-					plugins={[autoplay.current]}
 					slideSize={{
 						base: "100%",
 						sm: "50%",
 						md: "33.333333%",
 					}}
-					slideGap={{ base: 0, sm: "md" }}
+					slideGap="md"
 					loop
+					withControls={false}
 					align="start"
 					slidesToScroll="auto"
 				>
-					{marketGainersInfo?.map(
+					{memoizedMarketGainersInfo?.map(
 						(marketGainer) => (
-							<Carousel.Slide>
+							<Carousel.Slide
+								key={
+									marketGainer.symbol
+								}
+							>
 								<GainerItem
 									marketGainer={
 										marketGainer
