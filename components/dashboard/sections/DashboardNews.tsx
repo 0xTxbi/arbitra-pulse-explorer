@@ -1,22 +1,16 @@
-import { CompanyInfo } from "@/components/stock-info/CompanyInfo";
-import StockChart from "@/components/stock-info/StockChart";
 import {
-	Avatar,
 	Badge,
 	Divider,
-	Flex,
 	Grid,
 	GridCol,
 	Group,
 	Image,
-	SimpleGrid,
 	Stack,
 	Text,
 	Title,
 } from "@mantine/core";
 import NextImage from "next/image";
-import { IconCategory, IconClock, IconUser } from "@tabler/icons-react";
-import { truncateText } from "@/utils/truncateText";
+import { IconClock, IconUser } from "@tabler/icons-react";
 
 function NewsItem({ newsItem }) {
 	return (
@@ -84,12 +78,12 @@ function NewsItem({ newsItem }) {
 export function DashboardNews({ news }) {
 	console.log(news);
 	return (
-		<Stack>
+		<Stack justify="space-between">
 			<Title
 				order={4}
 				size="h4"
 			>
-				Today's News
+				Todays News
 			</Title>
 			<Text
 				size="sm"

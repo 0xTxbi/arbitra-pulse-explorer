@@ -15,7 +15,7 @@ const useStockQuote = (ticker: string, market: string) => {
 			setStockQuoteLoading(true);
 
 			const response = await fetch(
-				`https://arbitra-pulse-stock-info.fly.dev/quote/${ticker}/${market}`
+				`https://arbitra-pulse-stock-info.fly.dev/quote/${ticker}`
 			);
 
 			// check if request was successful – status code 200
