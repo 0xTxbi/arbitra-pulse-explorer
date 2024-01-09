@@ -125,7 +125,7 @@ export function TopGainers() {
 
 			{marketGainersLoading ? (
 				<Skeleton
-					height={200}
+					height="100%"
 					width="100%"
 				/>
 			) : (

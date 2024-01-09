@@ -16,10 +16,9 @@ import {
 } from "@mantine/core";
 import NextImage from "next/image";
 import { IconCategory, IconClock, IconUser } from "@tabler/icons-react";
+import { truncateText } from "@/utils/truncateText";
 
-const data = { title: "AAPL", value: "$1,500", diff: 34 };
-
-function NewsItem() {
+function NewsItem({ newsItem }) {
 	return (
 		<Stack p={0}>
 			<Grid>
@@ -37,7 +36,9 @@ function NewsItem() {
 									/>
 								}
 							>
-								Business Insider
+								{
+									newsItem.creator
+								}
 							</Badge>
 							<Badge
 								variant="transparent"
@@ -49,7 +50,9 @@ function NewsItem() {
 									/>
 								}
 							>
-								7 hours ago
+								{
+									newsItem.pubDate
+								}
 							</Badge>
 						</Group>
 
@@ -58,10 +61,7 @@ function NewsItem() {
 							order={4}
 							size="h5"
 						>
-							Pound jumps as Bank of
-							England warns no
-							interest rate cuts
-							coming soon
+							{newsItem.title}
 						</Title>
 					</Stack>
 				</GridCol>
@@ -81,17 +81,27 @@ function NewsItem() {
 	);
 }
 
-export function DashboardNews() {
+export function DashboardNews({ news }) {
+	console.log(news);
 	return (
 		<Stack>
 			<Title
 				order={4}
-				size="h5"
+				size="h4"
 			>
 				Today's News
 			</Title>
-			<NewsItem />
-			<NewsItem />
+			<Text
+				size="sm"
+				c="dimmed"
+			>
+				todays news specially curated for your interests
+				and watchlist.
+			</Text>
+
+			{news.map((newsItem) => (
+				<NewsItem newsItem={newsItem} />
+			))}
 		</Stack>
 	);
 }

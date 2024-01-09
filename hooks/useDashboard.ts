@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 
-const useDashboard = (ticker: string) => {
+const useDashboard = () => {
 	const [cookies] = useCookies(["token"]);
 
 	const [dashboardInfo, setDashboardInfo] = useState(null);
@@ -52,7 +52,7 @@ const useDashboard = (ticker: string) => {
 	// automatically retrieve user's dashboard when the component loads
 	useEffect(() => {
 		fetchDashboard();
-	}, [ticker]);
+	}, []);
 
 	return {
 		fetchDashboard,

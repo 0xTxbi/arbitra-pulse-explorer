@@ -47,19 +47,7 @@ function Company({ earningsInfo }) {
 	);
 }
 
-export function UpcomingEarnings() {
-	const {
-		upcomingEarningsInfo,
-		upcomingEarningsLoading,
-		upcomingEarningsError,
-	} = useUpcomingEarnings();
-
-	console.log(
-		upcomingEarningsInfo,
-		upcomingEarningsLoading,
-		upcomingEarningsError
-	);
-
+export function UpcomingEarnings({ upcomingEarningsInfo }) {
 	return (
 		<Stack
 			p={10}
@@ -72,14 +60,7 @@ export function UpcomingEarnings() {
 				Upcoming Earnings
 			</Title>
 
-			{upcomingEarningsLoading ? (
-				<Skeleton
-					height={200}
-					width="100%"
-				/>
-			) : (
-				<Company earningsInfo={upcomingEarningsInfo} />
-			)}
+			<Company earningsInfo={upcomingEarningsInfo} />
 		</Stack>
 	);
 }
