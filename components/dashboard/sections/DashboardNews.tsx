@@ -99,7 +99,7 @@ export function DashboardNews({ news }) {
 				and watchlist.
 			</Text>
 
-			{news.map((newsItem) => (
+			{news?.map((newsItem) => (
 				<NewsItem newsItem={newsItem} />
 			))}
 		</Stack>

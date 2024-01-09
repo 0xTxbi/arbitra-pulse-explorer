@@ -20,6 +20,8 @@ export default function Page({ params }: { params: { ticker: string } }) {
 		params.ticker
 	);
 
+	console.log(stockInfo);
+
 	// stock sentiment hook
 	const { sentimentInfo, sentimentInfoLoading, sentimentError } =
 		useSentiment(params.ticker);
