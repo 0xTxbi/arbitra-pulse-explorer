@@ -1,29 +1,24 @@
 import useMarketGainers from "@/hooks/useMarketGainers";
+import { Carousel } from "@mantine/carousel";
 import {
 	ActionIcon,
 	Badge,
 	Group,
 	Paper,
 	SimpleGrid,
+	Skeleton,
 	Stack,
 	Text,
 	ThemeIcon,
 	Title,
 } from "@mantine/core";
 import { IconArrowUpRight, IconPlus } from "@tabler/icons-react";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
 
 const data = { title: "AAPL", value: "$1,500", diff: 34 };
 
-function GainerItem() {
-	const { marketGainersInfo, marketGainersLoading, marketGainersError } =
-		useMarketGainers();
-
-	console.log(
-		marketGainersInfo,
-		marketGainersLoading,
-		marketGainersError
-	);
-
+function GainerItem({ marketGainer }) {
 	return (
 		<Paper
 			withBorder
@@ -101,6 +96,17 @@ function GainerItem() {
 }
 
 export function TopGainers() {
+	// auto play carousel
+	const autoplay = useRef(Autoplay({ delay: 2000 }));
+	const { marketGainersInfo, marketGainersLoading, marketGainersError } =
+		useMarketGainers();
+
+	console.log(
+		marketGainersInfo,
+		marketGainersLoading,
+		marketGainersError
+	);
+
 	return (
 		<Stack>
 			<Title
@@ -109,14 +115,38 @@ export function TopGainers() {
 			>
 				Today's top gainers
 			</Title>
-			<SimpleGrid
-				cols={{ base: 1, sm: 2, lg: 3 }}
-				key={data.title}
-			>
-				<GainerItem />
-				<GainerItem />
-				<GainerItem />
-			</SimpleGrid>
+			{marketGainersLoading ? (
+				<Skeleton
+					height={200}
+					width="100%"
+				/>
+			) : (
+				<Carousel
+					height={200}
+					plugins={[autoplay.current]}
+					slideSize={{
+						base: "100%",
+						sm: "50%",
+						md: "33.333333%",
+					}}
+					slideGap={{ base: 0, sm: "md" }}
+					loop
+					align="start"
+					slidesToScroll="auto"
+				>
+					{marketGainersInfo?.map(
+						(marketGainer) => (
+							<Carousel.Slide>
+								<GainerItem
+									marketGainer={
+										marketGainer
+									}
+								/>
+							</Carousel.Slide>
+						)
+					)}
+				</Carousel>
+			)}
 		</Stack>
 	);
 }

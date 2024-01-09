@@ -22,7 +22,7 @@ const useMarketGainers = () => {
 			if (response.ok) {
 				const data = await response.json();
 
-				setMarketGainersInfo(data);
+				setMarketGainersInfo(data.market_gainers);
 				// reset error state
 				setMarketGainersError(null);
 			} else {
