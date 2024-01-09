@@ -8,10 +8,13 @@ import { StockMain } from "@/components/stock-info/StockMain";
 import useSentiment from "@/hooks/useSentiment";
 import useStockInfo from "@/hooks/useStockInfo";
 import useStockNews from "@/hooks/useStockNews";
+import useStockQuote from "@/hooks/useStockQuote";
 
 import { Flex, Grid, Skeleton } from "@mantine/core";
 
 export default function Page({ params }: { params: { ticker: string } }) {
+	console.log(params.ticker);
+
 	const { stockInfo, stockInfoLoading, stockError } = useStockInfo(
 		params.ticker
 	);
@@ -19,8 +22,6 @@ export default function Page({ params }: { params: { ticker: string } }) {
 	const { stockNews, stockNewsLoading, stockNewsError } = useStockNews(
 		params.ticker
 	);
-
-	console.log(stockInfo);
 
 	// stock sentiment hook
 	const { sentimentInfo, sentimentInfoLoading, sentimentError } =
@@ -89,7 +90,10 @@ export default function Page({ params }: { params: { ticker: string } }) {
 			justify={{ sm: "center" }}
 		>
 			<div style={box1Style}>
-				<StockMain info={stockInfo} />
+				<StockMain
+					info={stockInfo}
+					ticker={params.ticker}
+				/>
 			</div>
 			<div style={box2Style}>
 				<Grid gutter="xl">

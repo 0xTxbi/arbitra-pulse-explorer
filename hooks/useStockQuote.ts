@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useStockQuote = (ticker: string, market: string) => {
+const useStockQuote = (ticker: string) => {
 	const [stockQuoteInfo, setStockQuoteInfo] = useState(null);
 
 	const [stockQuoteLoading, setStockQuoteLoading] =
@@ -10,7 +10,7 @@ const useStockQuote = (ticker: string, market: string) => {
 	);
 
 	// function to fetch stock quote
-	const fetchStockQuote = async () => {
+	const fetchStockQuote = async (ticker) => {
 		try {
 			setStockQuoteLoading(true);
 
@@ -22,7 +22,7 @@ const useStockQuote = (ticker: string, market: string) => {
 			if (response.ok) {
 				const data = await response.json();
 
-				setStockQuoteInfo(data);
+				setStockQuoteInfo(data.stock_info);
 				// reset error state
 				setStockQuoteError(null);
 			} else {
@@ -44,7 +44,7 @@ const useStockQuote = (ticker: string, market: string) => {
 
 	// automatically fetch stock quote when the component loads
 	useEffect(() => {
-		fetchStockQuote();
+		fetchStockQuote(ticker);
 	}, [ticker]);
 
 	return { stockQuoteInfo, stockQuoteLoading, stockQuoteError };

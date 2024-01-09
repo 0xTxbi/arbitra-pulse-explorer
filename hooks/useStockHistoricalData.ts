@@ -10,7 +10,7 @@ const useStockHistoricalData = (ticker: string) => {
 		useState<string | null>(null);
 
 	// function to fetch stock historical
-	const fetchStockHistoricalData = async () => {
+	const fetchStockHistoricalData = async (ticker) => {
 		try {
 			setStockHistoricalDataLoading(true);
 
@@ -44,7 +44,7 @@ const useStockHistoricalData = (ticker: string) => {
 
 	// automatically fetch stock historical data when the component loads
 	useEffect(() => {
-		fetchStockHistoricalData();
+		fetchStockHistoricalData(ticker);
 	}, [ticker]);
 
 	return {

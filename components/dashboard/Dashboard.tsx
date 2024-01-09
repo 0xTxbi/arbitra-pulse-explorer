@@ -61,7 +61,7 @@ export function Dashboard() {
 						span={{ base: 12, xs: 8 }}
 						mt="5rem"
 					>
-						<FeaturedStock />
+						{DashboardSkeleton}
 					</Grid.Col>
 					<Grid.Col
 						span={{ base: 12, xs: 4 }}
