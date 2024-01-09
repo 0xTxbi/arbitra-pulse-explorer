@@ -1,3 +1,4 @@
+import useMarketGainers from "@/hooks/useMarketGainers";
 import {
 	ActionIcon,
 	Badge,
@@ -14,6 +15,15 @@ import { IconArrowUpRight, IconPlus } from "@tabler/icons-react";
 const data = { title: "AAPL", value: "$1,500", diff: 34 };
 
 function GainerItem() {
+	const { marketGainersInfo, marketGainersLoading, marketGainersError } =
+		useMarketGainers();
+
+	console.log(
+		marketGainersInfo,
+		marketGainersLoading,
+		marketGainersError
+	);
+
 	return (
 		<Paper
 			withBorder
