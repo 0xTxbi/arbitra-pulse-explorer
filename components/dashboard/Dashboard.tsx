@@ -19,7 +19,7 @@ const child = (
 export function Dashboard() {
 	return (
 		<Container
-			my="md"
+			mt="5rem"
 			size="xl"
 		>
 			<Grid gutter="xl">

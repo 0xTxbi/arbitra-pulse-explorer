@@ -23,7 +23,6 @@ interface MarketGainer {
 }
 
 function GainerItem({ marketGainer }: { marketGainer: MarketGainer }) {
-	console.log(marketGainer);
 	return (
 		<Paper
 			withBorder
@@ -110,11 +109,6 @@ export function TopGainers() {
 	const memoizedMarketGainersInfo = useMemo(
 		() => marketGainersInfo,
 		[marketGainersInfo]
-	);
-	console.log(
-		marketGainersInfo,
-		marketGainersLoading,
-		marketGainersError
 	);
 
 	return (

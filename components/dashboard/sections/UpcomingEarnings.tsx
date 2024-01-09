@@ -4,24 +4,14 @@ import {
 	Avatar,
 	Group,
 	Paper,
+	Skeleton,
 	Stack,
 	Text,
 	Title,
 } from "@mantine/core";
 import { IconAlarmPlus, IconCalendar } from "@tabler/icons-react";
 
-function Company() {
-	const {
-		upcomingEarningsInfo,
-		upcomingEarningsLoading,
-		upcomingEarningsError,
-	} = useUpcomingEarnings();
-
-	console.log(
-		upcomingEarningsInfo,
-		upcomingEarningsLoading,
-		upcomingEarningsError
-	);
+function Company({ earningsInfo }) {
 	return (
 		<Group justify="space-between">
 			<Group>
@@ -33,13 +23,13 @@ function Company() {
 						c="white"
 						size="md"
 					>
-						{upcomingEarningsInfo?.company}
+						{earningsInfo?.company}
 					</Text>
 					<Text
 						c="white"
 						size="xs"
 					>
-						{upcomingEarningsInfo?.date}
+						{earningsInfo?.date}
 					</Text>
 				</Stack>
 			</Group>
@@ -58,6 +48,18 @@ function Company() {
 }
 
 export function UpcomingEarnings() {
+	const {
+		upcomingEarningsInfo,
+		upcomingEarningsLoading,
+		upcomingEarningsError,
+	} = useUpcomingEarnings();
+
+	console.log(
+		upcomingEarningsInfo,
+		upcomingEarningsLoading,
+		upcomingEarningsError
+	);
+
 	return (
 		<Stack
 			p={10}
@@ -70,7 +72,14 @@ export function UpcomingEarnings() {
 				Upcoming Earnings
 			</Title>
 
-			<Company />
+			{upcomingEarningsLoading ? (
+				<Skeleton
+					height={200}
+					width="100%"
+				/>
+			) : (
+				<Company earningsInfo={upcomingEarningsInfo} />
+			)}
 		</Stack>
 	);
 }
