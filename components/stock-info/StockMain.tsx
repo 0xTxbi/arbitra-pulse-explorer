@@ -93,7 +93,10 @@ export function StockMain({ info }) {
 						thousandSeparator
 					/>
 				</Text>
-				<StockChart height={500} />
+				<StockChart
+					height={600}
+					ticker={info?.symbol}
+				/>
 			</div>
 		</Stack>
 	);
