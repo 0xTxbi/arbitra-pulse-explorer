@@ -9,7 +9,11 @@ import {
 	Text,
 	Title,
 } from "@mantine/core";
-import { IconAlarmPlus, IconCalendar } from "@tabler/icons-react";
+import {
+	IconAlarmPlus,
+	IconCalendar,
+	IconCalendarClock,
+} from "@tabler/icons-react";
 
 function Company({ earningsInfo }) {
 	return (
@@ -57,7 +61,11 @@ export function UpcomingEarnings({ upcomingEarningsInfo }) {
 				order={4}
 				size="h5"
 			>
-				Upcoming Earnings
+				Upcoming Earnings{" "}
+				<IconCalendarClock
+					size={15}
+					stroke={1}
+				/>
 			</Title>
 
 			<Company earningsInfo={upcomingEarningsInfo} />

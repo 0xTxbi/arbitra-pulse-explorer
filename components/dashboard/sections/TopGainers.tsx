@@ -12,7 +12,11 @@ import {
 	ThemeIcon,
 	Title,
 } from "@mantine/core";
-import { IconArrowUpRight, IconPlus } from "@tabler/icons-react";
+import {
+	IconArrowUpRight,
+	IconPlus,
+	IconTrendingUp2,
+} from "@tabler/icons-react";
 import Link from "next/link";
 import { useMemo } from "react";
 
@@ -86,6 +90,7 @@ function GainerItem({ marketGainer }: { marketGainer: MarketGainer }) {
 				{/* add to watchlist */}
 				<ActionIcon
 					variant="outline"
+					disabled
 					color="teal"
 					size="sm"
 					aria-label="Settings"
@@ -121,7 +126,11 @@ export function TopGainers() {
 				order={4}
 				size="h4"
 			>
-				Today's top gainers
+				Today's top gainers{" "}
+				<IconTrendingUp2
+					size={15}
+					stroke={1}
+				/>
 			</Title>
 
 			{marketGainersLoading ? (

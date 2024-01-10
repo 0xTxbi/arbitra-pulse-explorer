@@ -9,8 +9,10 @@ import {
 	Text,
 	Title,
 } from "@mantine/core";
-import NextImage from "next/image";
-import { IconClock, IconUser } from "@tabler/icons-react";
+
+import { IconClock, IconNews, IconUser } from "@tabler/icons-react";
+import { EmptyNews } from "./EmptyNews";
+import Link from "next/link";
 
 function NewsItem({ newsItem }) {
 	return (
@@ -51,21 +53,30 @@ function NewsItem({ newsItem }) {
 						</Group>
 
 						{/* headline */}
-						<Title
-							order={4}
-							size="h5"
+						<Link
+							href={newsItem.link}
+							target="_blank"
+							style={{
+								textDecoration:
+									"none",
+								color: "inherit",
+							}}
 						>
-							{newsItem.title}
-						</Title>
+							<Title
+								order={4}
+								size="h5"
+							>
+								{newsItem.title}
+							</Title>
+						</Link>
 					</Stack>
 				</GridCol>
 				<GridCol span={4}>
 					<Image
-						component={NextImage}
 						radius="md"
 						width={100}
 						height={100}
-						src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQEBzCXut4G7TOvskZ695WqAgzdKC47nanCxwvmhxjrHPqy45I4TJzf0io3wVk"
+						src={newsItem.image}
 						alt="news featured image"
 					/>
 				</GridCol>
@@ -76,26 +87,34 @@ function NewsItem({ newsItem }) {
 }
 
 export function DashboardNews({ news }) {
-	console.log(news);
 	return (
 		<Stack justify="space-between">
 			<Title
 				order={4}
 				size="h4"
 			>
-				Todays News
+				Todays News{" "}
+				<IconNews
+					size={15}
+					stroke={1}
+				/>
 			</Title>
-			<Text
-				size="sm"
-				c="dimmed"
-			>
-				todays news specially curated for your interests
-				and watchlist.
-			</Text>
+
+			{news?.length >= 1 && (
+				<Text
+					size="sm"
+					c="dimmed"
+				>
+					todays news specially curated for your
+					interests and watchlist.
+				</Text>
+			)}
 
 			{news?.map((newsItem) => (
 				<NewsItem newsItem={newsItem} />
 			))}
+
+			{news?.length < 1 && <EmptyNews />}
 		</Stack>
 	);
 }

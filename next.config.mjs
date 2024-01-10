@@ -23,6 +23,10 @@ export default withBundleAnalyzer({
 				protocol: "https",
 				hostname: "encrypted-tbn2.gstatic.com",
 			},
+			{
+				protocol: "https",
+				hostname: "img.freepik.com",
+			},
 		],
 	},
 	experimental: {

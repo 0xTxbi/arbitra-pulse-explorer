@@ -1,6 +1,7 @@
 import { Title, Text, Button, Container, Anchor } from "@mantine/core";
 import classes from "./Hero.module.css";
 import Link from "next/link";
+import { IconLogin } from "@tabler/icons-react";
 
 export function Hero() {
 	return (
@@ -52,6 +53,13 @@ export function Hero() {
 				<div className={classes.controls}>
 					<Link href="/login">
 						<Button
+							leftSection={
+								<IconLogin
+									size={
+										12
+									}
+								/>
+							}
 							variant="gradient"
 							gradient={{
 								from: "blue",

@@ -22,9 +22,6 @@ const useStockQuote = (ticker: string) => {
 			if (response.ok) {
 				const data = await response.json();
 
-				console.log(data);
-				console.log(response);
-
 				setStockQuoteInfo(data.stock_info);
 
 				if (data.error) {

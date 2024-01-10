@@ -57,8 +57,8 @@ export function Register() {
 				return {
 					username:
 						values.username.trim().length <
-						1
-							? "Your username must include at least 1 character"
+						4
+							? "Your username must include at least 4 characters"
 							: null,
 					// TODO: improve regex
 					email: /^\S+@\S+$/.test(values.email)
@@ -298,7 +298,7 @@ export function Register() {
 						Next step
 					</Button>
 				) : (
-					<Link href="/dashboard">
+					<Link href="/login">
 						<Button
 							variant="gradient"
 							gradient={{
@@ -314,7 +314,8 @@ export function Register() {
 							}
 							onClick={nextStep}
 						>
-							View Dashboard
+							Login to access
+							Dashboard
 						</Button>
 					</Link>
 				)}

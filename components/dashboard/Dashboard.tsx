@@ -3,9 +3,12 @@ import { Container, Grid, Skeleton } from "@mantine/core";
 import { Welcome } from "./sections/Welcome";
 import { TopGainers } from "./sections/TopGainers";
 import { UpcomingEarnings } from "./sections/UpcomingEarnings";
-import { FeaturedStock } from "./sections/FeaturedStock";
+
 import { DashboardNews } from "./sections/DashboardNews";
 import useDashboard from "@/hooks/useDashboard";
+import { AboutProject } from "./sections/AboutProject";
+import { QuantScrape } from "./sections/QuantScrape";
+import { Upcoming } from "./sections/Upcoming";
 
 const DashboardSkeleton = (
 	<Skeleton
@@ -26,7 +29,7 @@ export function Dashboard() {
 			size="xl"
 		>
 			{dashboardInfoLoading ? (
-				<Grid>
+				<Grid gutter="xl">
 					<Grid.Col span={{ base: 12, xs: 4 }}>
 						{DashboardSkeleton}
 					</Grid.Col>
@@ -58,13 +61,13 @@ export function Dashboard() {
 						<TopGainers />
 					</Grid.Col>
 					<Grid.Col
-						span={{ base: 12, xs: 8 }}
+						span={{ base: 12, xs: 6 }}
 						mt="5rem"
 					>
-						{DashboardSkeleton}
+						<AboutProject />
 					</Grid.Col>
 					<Grid.Col
-						span={{ base: 12, xs: 4 }}
+						span={{ base: 12, xs: 6 }}
 						mt="5rem"
 					>
 						<UpcomingEarnings
@@ -74,10 +77,10 @@ export function Dashboard() {
 						/>
 					</Grid.Col>
 					<Grid.Col span={{ base: 12, xs: 3 }}>
-						{DashboardSkeleton}
+						<Upcoming />
 					</Grid.Col>
 					<Grid.Col span={{ base: 12, xs: 3 }}>
-						{DashboardSkeleton}
+						<QuantScrape />
 					</Grid.Col>
 					<Grid.Col span={{ base: 12, xs: 6 }}>
 						<DashboardNews
