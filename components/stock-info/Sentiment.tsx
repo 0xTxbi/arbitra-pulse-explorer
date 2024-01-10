@@ -31,9 +31,9 @@ export function Sentiment({ ticker }) {
 	useEffect(() => {
 		if (sentimentInfo) {
 			setScore(sentimentInfo?.score);
-			setColor(sentimentInfo?.score > 50 ? "teal" : "red");
+			setColor(sentimentInfo?.score >= 50 ? "teal" : "red");
 			setLabel(
-				sentimentInfo.score > 50
+				sentimentInfo.score >= 50
 					? "positive sentiment"
 					: "negative sentiment"
 			);
@@ -65,7 +65,7 @@ export function Sentiment({ ticker }) {
 							<Center>
 								<ActionIcon
 									color={
-										sentimentInfo?.score >
+										sentimentInfo?.score >=
 										50
 											? "teal"
 											: "red"
@@ -74,7 +74,7 @@ export function Sentiment({ ticker }) {
 									radius="xl"
 									size="xl"
 								>
-									{sentimentInfo?.score >
+									{sentimentInfo?.score >=
 									50 ? (
 										<IconCheck
 											style={{
