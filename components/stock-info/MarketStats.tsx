@@ -7,7 +7,7 @@ export function MarketStats({ quickInfo, marketInfo }) {
 	return (
 		<Stack
 			justify="space-between"
-			gap="lg"
+			h={"100%"}
 		>
 			{/* Stock Basic Details */}
 			<Stack>

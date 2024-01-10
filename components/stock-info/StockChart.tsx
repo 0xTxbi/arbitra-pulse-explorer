@@ -67,7 +67,7 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 		) {
 			const chart = createChart(chartContainerRef.current, {
 				width: chartWidth,
-				height: chartHeight * 0.5,
+				height: chartHeight,
 				layout: {
 					background: { color: "transparent" },
 					textColor: "#d1d4dc",
@@ -127,7 +127,7 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 		>
 			{stockHistoricalDataLoading ? (
 				<Skeleton
-					height={chartHeight * 0.7}
+					height={chartHeight}
 					width={chartWidth}
 				/>
 			) : (

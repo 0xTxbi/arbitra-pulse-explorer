@@ -1,3 +1,4 @@
+import useSentiment from "@/hooks/useSentiment";
 import {
 	Stack,
 	Badge,
@@ -7,20 +8,36 @@ import {
 	rem,
 } from "@mantine/core";
 import { IconAlertTriangle, IconCheck } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 
 interface StockSentimentProps {
 	score: number;
 	confidenceLevel: number;
 }
 
-export function Sentiment({
-	stockSentiment,
-}: {
-	stockSentiment: StockSentimentProps;
-}) {
-	const score = stockSentiment && stockSentiment.score;
-	const color = score > 50 ? "teal" : "red";
-	const label = score > 50 ? "positive sentiment" : "negative sentiment";
+export function Sentiment({ ticker }) {
+	// stock sentiment hook
+	const { sentimentInfo, sentimentInfoLoading, sentimentError } =
+		useSentiment(ticker);
+
+	const [score, setScore] = useState(null);
+	const [color, setColor] = useState("");
+	const [label, setLabel] = useState("");
+
+	console.log(sentimentInfo);
+	console.log;
+
+	useEffect(() => {
+		if (sentimentInfo) {
+			setScore(sentimentInfo?.score);
+			setColor(sentimentInfo?.score > 50 ? "teal" : "red");
+			setLabel(
+				sentimentInfo.score > 50
+					? "positive sentiment"
+					: "negative sentiment"
+			);
+		}
+	}, [sentimentInfo]);
 
 	return (
 		<Center h="100%">
@@ -29,7 +46,11 @@ export function Sentiment({
 				<RingProgress
 					sections={[
 						{
-							value: stockSentiment?.score,
+							value:
+								sentimentInfo?.score >=
+								50
+									? 100
+									: sentimentInfo?.score,
 							color,
 						},
 					]}
@@ -37,7 +58,7 @@ export function Sentiment({
 						<Center>
 							<ActionIcon
 								color={
-									stockSentiment?.score >
+									sentimentInfo?.score >
 									50
 										? "teal"
 										: "red"
@@ -46,7 +67,7 @@ export function Sentiment({
 								radius="xl"
 								size="xl"
 							>
-								{stockSentiment?.score >
+								{sentimentInfo?.score >
 								50 ? (
 									<IconCheck
 										style={{

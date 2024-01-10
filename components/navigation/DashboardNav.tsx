@@ -24,10 +24,11 @@ import {
 } from "@tabler/icons-react";
 
 import classes from "./DashboardNav.module.css";
-import Logo from "../ui/Logo";
+
 import Link from "next/link";
 import LiveTimeAndDate from "../ui/LiveTimeAndDate";
 import { useLogout } from "@/hooks/useLogout";
+import { AuthLogo } from "../ui/Logo";
 
 const mockUserData = {
 	name: "txbi",
@@ -50,7 +51,7 @@ export function DashboardNav() {
 				size="xl"
 			>
 				<Group justify="space-between">
-					<Logo />
+					<AuthLogo />
 
 					<Link
 						href="/search"

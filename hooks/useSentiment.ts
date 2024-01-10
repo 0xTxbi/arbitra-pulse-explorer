@@ -22,7 +22,7 @@ const useSentiment = (ticker: string) => {
 			if (response.ok) {
 				const data = await response.json();
 
-				setSentimentInfo(data);
+				setSentimentInfo(data.sentiment);
 				// reset error state
 				setSentimentError(null);
 			} else {

@@ -24,9 +24,10 @@ import {
 } from "@tabler/icons-react";
 
 import classes from "./SearchNav.module.css";
-import Logo from "../ui/Logo";
+
 import Link from "next/link";
 import LiveTimeAndDate from "../ui/LiveTimeAndDate";
+import { Logo } from "../ui/Logo";
 
 const mockUserData = {
 	name: "txbi",

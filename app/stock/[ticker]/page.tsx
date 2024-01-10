@@ -1,11 +1,9 @@
 "use client";
-
 import { CompanyInfo } from "@/components/stock-info/CompanyInfo";
 import { MarketStats } from "@/components/stock-info/MarketStats";
 import { News } from "@/components/stock-info/News";
 import { Sentiment } from "@/components/stock-info/Sentiment";
 import { StockMain } from "@/components/stock-info/StockMain";
-import useSentiment from "@/hooks/useSentiment";
 import useStockInfo from "@/hooks/useStockInfo";
 import useStockNews from "@/hooks/useStockNews";
 import useStockQuote from "@/hooks/useStockQuote";
@@ -30,10 +28,6 @@ export default function Page({ params }: { params: { ticker: string } }) {
 	const { stockNews, stockNewsLoading, stockNewsError } = useStockNews(
 		params.ticker
 	);
-
-	// stock sentiment hook
-	const { sentimentInfo, sentimentInfoLoading, sentimentError } =
-		useSentiment(params.ticker);
 
 	const containerStyle = {
 		gap: "sm",
@@ -107,18 +101,9 @@ export default function Page({ params }: { params: { ticker: string } }) {
 			<div style={box2Style}>
 				<Grid gutter="xl">
 					<Grid.Col span={6}>
-						{sentimentInfoLoading ? (
-							<Skeleton
-								height={300}
-								width="100%"
-							/>
-						) : (
-							<Sentiment
-								stockSentiment={
-									sentimentInfo?.sentiment
-								}
-							/>
-						)}
+						<Sentiment
+							ticker={params.ticker}
+						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
 						<CompanyInfo
