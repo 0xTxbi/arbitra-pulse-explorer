@@ -13,6 +13,7 @@ import {
 import StockChart from "./StockChart";
 import { IconBookmark } from "@tabler/icons-react";
 import useWatchlist from "@/hooks/useWatchlist";
+import StockBasicFin from "./StockBasicFin";
 
 export function StockMain({ info, ticker, marketInfo }) {
 	console.log(marketInfo);
@@ -91,6 +92,12 @@ export function StockMain({ info, ticker, marketInfo }) {
 
 			<Text size="xl"></Text>
 			<StockChart ticker={ticker} />
+			{/* stock fin deets */}
+			<StockBasicFin
+				marketCap={marketInfo?.market_cap}
+				volume={marketInfo?.volume}
+				prevClose={marketInfo?.previous_close}
+			/>
 		</Stack>
 	);
 }
