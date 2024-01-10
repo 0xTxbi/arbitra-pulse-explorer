@@ -13,7 +13,11 @@ interface StockChartProps {
 	ticker: string;
 }
 
-const StockChart: React.FC<StockChartProps> = ({ width, height, ticker }) => {
+const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
+	// chart dimensions
+	const [chartWidth, setChartWidth] = useState<number>(0);
+	const [chartHeight, setChartHeight] = useState<number>(0);
+
 	const [processedHistoricalData, setProcessedHistoricalData] =
 		useState<any>();
 	const [dateRange, setDateRange] = useState<{
@@ -29,6 +33,7 @@ const StockChart: React.FC<StockChartProps> = ({ width, height, ticker }) => {
 	} = useStockHistoricalData(ticker);
 
 	const chartContainerRef = useRef<HTMLDivElement | null>(null);
+	const boxRef = useRef<HTMLDivElement | null>(null);
 
 	console.log(stockHistoricalDataError);
 
@@ -61,8 +66,8 @@ const StockChart: React.FC<StockChartProps> = ({ width, height, ticker }) => {
 			dateRange
 		) {
 			const chart = createChart(chartContainerRef.current, {
-				width,
-				height,
+				width: chartWidth,
+				height: chartHeight * 0.5,
 				layout: {
 					background: { color: "transparent" },
 					textColor: "#d1d4dc",
@@ -104,26 +109,29 @@ const StockChart: React.FC<StockChartProps> = ({ width, height, ticker }) => {
 		}
 	}, [processedHistoricalData, stockHistoricalDataLoading, dateRange]);
 
+	useEffect(() => {
+		console.log(boxRef);
+		if (boxRef.current) {
+			setChartHeight(boxRef.current.offsetHeight);
+			setChartWidth(boxRef.current.offsetWidth);
+			console.log("Width: ", boxRef.current.offsetWidth);
+			console.log("Height: ", boxRef.current.offsetHeight);
+		}
+	}, []);
+
 	return (
 		<Box
+			ref={boxRef}
 			h="100%"
 			mt="2rem"
 		>
 			{stockHistoricalDataLoading ? (
 				<Skeleton
-					height={height}
-					width={width}
+					height={chartHeight * 0.7}
+					width={chartWidth}
 				/>
 			) : (
-				<div
-					ref={chartContainerRef}
-					style={{
-						width: "100%",
-						height: "100%",
-						padding: 0,
-						backgroundColor: "transparent",
-					}}
-				/>
+				<div ref={chartContainerRef} />
 			)}
 		</Box>
 	);

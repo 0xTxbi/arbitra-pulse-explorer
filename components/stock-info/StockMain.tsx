@@ -36,83 +36,71 @@ export function StockMain({ info, ticker }) {
 			gap="lg"
 		>
 			{/* Stock Basic Details */}
-			<div>
-				<Badge
-					variant="filled"
-					size="md"
-					radius="xs"
+
+			<Badge
+				variant="filled"
+				size="md"
+				radius="xs"
+			>
+				{info?.symbol}
+			</Badge>
+
+			<Group justify="space-between">
+				<Title
+					order={2}
+					size="h1"
 				>
-					{info?.symbol}
-				</Badge>
+					{info?.companyName}
+				</Title>
 
-				<Group justify="space-between">
-					<Title
-						order={2}
-						size="h1"
-					>
-						{info?.companyName}
-					</Title>
+				{/* add to watchlist button */}
+				<Button
+					onClick={() => {
+						addToWatchlist(info?.symbol);
+					}}
+					size="xs"
+					variant="gradient"
+					loading={watchlistLoading}
+					disabled={watchlistLoading}
+					gradient={{
+						from: "blue",
+						to: "red",
+					}}
+					leftSection={
+						watchlistLoading ? (
+							<Loader
+								type="dots"
+								size={rem(12)}
+								color="white"
+							/>
+						) : (
+							<IconBookmark
+								size={12}
+							/>
+						)
+					}
+				>
+					{watchlistLoading
+						? "Adding"
+						: "Add to Watchlist"}
+				</Button>
+			</Group>
 
-					{/* add to watchlist button */}
-					<Button
-						onClick={() => {
-							addToWatchlist(
-								info?.symbol
-							);
-						}}
-						size="xs"
-						variant="gradient"
-						loading={watchlistLoading}
-						disabled={watchlistLoading}
-						gradient={{
-							from: "blue",
-							to: "red",
-						}}
-						leftSection={
-							watchlistLoading ? (
-								<Loader
-									type="dots"
-									size={rem(
-										12
-									)}
-									color="white"
-								/>
-							) : (
-								<IconBookmark
-									size={
-										12
-									}
-								/>
-							)
-						}
-					>
-						{watchlistLoading
-							? "Adding"
-							: "Add to Watchlist"}
-					</Button>
-				</Group>
-
-				{/* stock price */}
-				{stockQuoteLoading ? (
-					<Skeleton
-						height={30}
-						width="50%"
-					/>
-				) : (
-					<NumberFormatter
-						prefix="$"
-						value={
-							stockQuoteInfo?.current_price
-						}
-						thousandSeparator
-					/>
-				)}
-				<Text size="xl"></Text>
-				<StockChart
-					height={600}
-					ticker={ticker}
+			{/* stock price */}
+			{stockQuoteLoading ? (
+				<Skeleton
+					height={30}
+					width="50%"
 				/>
-			</div>
+			) : (
+				<NumberFormatter
+					prefix="$"
+					value={stockQuoteInfo?.current_price}
+					thousandSeparator
+				/>
+			)}
+			<Text size="xl"></Text>
+			<StockChart ticker={ticker} />
 		</Stack>
 	);
 }
