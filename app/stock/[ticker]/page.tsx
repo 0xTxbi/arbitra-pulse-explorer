@@ -21,10 +21,12 @@ export default function Page({ params }: { params: { ticker: string } }) {
 
 	console.log(stockQuoteInfo, stockQuoteLoading, stockQuoteError);
 
+	// stock info
 	const { stockInfo, stockInfoLoading, stockError } = useStockInfo(
 		params.ticker
 	);
 
+	// stock news
 	const { stockNews, stockNewsLoading, stockNewsError } = useStockNews(
 		params.ticker
 	);
@@ -46,7 +48,7 @@ export default function Page({ params }: { params: { ticker: string } }) {
 		flex: "0 0 40%",
 	};
 
-	return stockInfoLoading ? (
+	return stockInfoLoading || stockQuoteLoading ? (
 		<Flex
 			style={containerStyle}
 			direction={{ base: "column", sm: "row" }}
@@ -98,6 +100,7 @@ export default function Page({ params }: { params: { ticker: string } }) {
 			<div style={box1Style}>
 				<StockMain
 					info={stockInfo}
+					marketInfo={stockQuoteInfo}
 					ticker={params.ticker}
 				/>
 			</div>
@@ -119,6 +122,9 @@ export default function Page({ params }: { params: { ticker: string } }) {
 					</Grid.Col>
 					<Grid.Col span={6}>
 						<CompanyInfo
+							marketInfo={
+								stockQuoteInfo
+							}
 							companyInfo={stockInfo}
 						/>
 					</Grid.Col>

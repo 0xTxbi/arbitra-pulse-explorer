@@ -8,19 +8,14 @@ import {
 	Button,
 	Loader,
 	rem,
-	Skeleton,
 	Badge,
 } from "@mantine/core";
 import StockChart from "./StockChart";
 import { IconBookmark } from "@tabler/icons-react";
 import useWatchlist from "@/hooks/useWatchlist";
-import useStockQuote from "@/hooks/useStockQuote";
 
-export function StockMain({ info, ticker }) {
-	const { stockQuoteInfo, stockQuoteLoading, stockQuoteError } =
-		useStockQuote(ticker);
-
-	console.log(stockQuoteInfo, stockQuoteLoading, stockQuoteError);
+export function StockMain({ info, ticker, marketInfo }) {
+	console.log(marketInfo);
 
 	const {
 		addToWatchlist,
@@ -38,11 +33,11 @@ export function StockMain({ info, ticker }) {
 			{/* Stock Basic Details */}
 
 			<Badge
-				variant="filled"
-				size="md"
+				variant="light"
+				size="lg"
 				radius="xs"
 			>
-				{info?.symbol}
+				{marketInfo?.symbol}
 			</Badge>
 
 			<Group justify="space-between">
@@ -50,7 +45,7 @@ export function StockMain({ info, ticker }) {
 					order={2}
 					size="h1"
 				>
-					{info?.companyName}
+					{marketInfo?.company}
 				</Title>
 
 				{/* add to watchlist button */}
@@ -87,18 +82,13 @@ export function StockMain({ info, ticker }) {
 			</Group>
 
 			{/* stock price */}
-			{stockQuoteLoading ? (
-				<Skeleton
-					height={30}
-					width="50%"
-				/>
-			) : (
-				<NumberFormatter
-					prefix="$"
-					value={stockQuoteInfo?.current_price}
-					thousandSeparator
-				/>
-			)}
+
+			<NumberFormatter
+				prefix="$"
+				value={marketInfo?.current_price}
+				thousandSeparator
+			/>
+
 			<Text size="xl"></Text>
 			<StockChart ticker={ticker} />
 		</Stack>
