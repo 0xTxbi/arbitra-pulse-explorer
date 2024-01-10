@@ -6,6 +6,7 @@ import {
 	Center,
 	ActionIcon,
 	rem,
+	Skeleton,
 } from "@mantine/core";
 import { IconAlertTriangle, IconCheck } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
@@ -42,67 +43,74 @@ export function Sentiment({ ticker }) {
 	return (
 		<Center h="100%">
 			{/* Stock Sentiment */}
-			<Stack align="center">
-				<RingProgress
-					sections={[
-						{
-							value:
-								sentimentInfo?.score >=
-								50
-									? 100
-									: sentimentInfo?.score,
-							color,
-						},
-					]}
-					label={
-						<Center>
-							<ActionIcon
-								color={
-									sentimentInfo?.score >
-									50
-										? "teal"
-										: "red"
-								}
-								variant="light"
-								radius="xl"
-								size="xl"
-							>
-								{sentimentInfo?.score >
-								50 ? (
-									<IconCheck
-										style={{
-											width: rem(
-												22
-											),
-											height: rem(
-												22
-											),
-										}}
-									/>
-								) : (
-									<IconAlertTriangle
-										style={{
-											width: rem(
-												22
-											),
-											height: rem(
-												22
-											),
-										}}
-									/>
-								)}
-							</ActionIcon>
-						</Center>
-					}
+			{sentimentInfoLoading ? (
+				<Skeleton
+					height="100%"
+					width="100%"
 				/>
+			) : (
+				<Stack align="center">
+					<RingProgress
+						sections={[
+							{
+								value:
+									sentimentInfo?.score >=
+									50
+										? 100
+										: sentimentInfo?.score,
+								color,
+							},
+						]}
+						label={
+							<Center>
+								<ActionIcon
+									color={
+										sentimentInfo?.score >
+										50
+											? "teal"
+											: "red"
+									}
+									variant="light"
+									radius="xl"
+									size="xl"
+								>
+									{sentimentInfo?.score >
+									50 ? (
+										<IconCheck
+											style={{
+												width: rem(
+													22
+												),
+												height: rem(
+													22
+												),
+											}}
+										/>
+									) : (
+										<IconAlertTriangle
+											style={{
+												width: rem(
+													22
+												),
+												height: rem(
+													22
+												),
+											}}
+										/>
+									)}
+								</ActionIcon>
+							</Center>
+						}
+					/>
 
-				<Badge
-					variant="outline"
-					color={color}
-				>
-					{label}
-				</Badge>
-			</Stack>
+					<Badge
+						variant="outline"
+						color={color}
+					>
+						{label}
+					</Badge>
+				</Stack>
+			)}
 		</Center>
 	);
 }

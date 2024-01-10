@@ -15,7 +15,7 @@ const useStockQuote = (ticker: string) => {
 			setStockQuoteLoading(true);
 
 			const response = await fetch(
-				`https://arbitra-pulse-stock-info.fly.dev/quote/${ticker}`
+				`https://quantscrape.fly.dev/quote/${ticker}`
 			);
 
 			// check if request was successful – status code 200
@@ -47,7 +47,12 @@ const useStockQuote = (ticker: string) => {
 		fetchStockQuote(ticker);
 	}, [ticker]);
 
-	return { stockQuoteInfo, stockQuoteLoading, stockQuoteError };
+	return {
+		fetchStockQuote,
+		stockQuoteInfo,
+		stockQuoteLoading,
+		stockQuoteError,
+	};
 };
 
 export default useStockQuote;

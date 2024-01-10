@@ -14,16 +14,39 @@ import StockChart from "./StockChart";
 import { IconBookmark } from "@tabler/icons-react";
 import useWatchlist from "@/hooks/useWatchlist";
 import StockBasicFin from "./StockBasicFin";
+import { useEffect, useState } from "react";
 
 export function StockMain({ info, ticker, marketInfo }) {
+	const [existsInWatchlist, setExistsInWatchlist] = useState();
+
 	console.log(marketInfo);
 
 	const {
 		addToWatchlist,
+		watchlistInfo,
+
 		watchlistAddSuccess,
 		watchlistLoading,
+		removeFromWatchlist,
+		watchlistRemoveLoading,
+		watchlistRemoveSuccess,
 		watchlistError,
 	} = useWatchlist();
+
+	console.log(watchlistInfo);
+
+	const checkIfSymbolExistsInWatchlist = () => {
+		const symbolExists = watchlistInfo?.some(
+			(item) => item.symbol === marketInfo?.symbol
+		);
+		setExistsInWatchlist(symbolExists);
+	};
+
+	useEffect(() => {
+		checkIfSymbolExistsInWatchlist();
+	}, [marketInfo, watchlistInfo]);
+
+	console.log(existsInWatchlist);
 
 	return (
 		<Stack
@@ -49,37 +72,81 @@ export function StockMain({ info, ticker, marketInfo }) {
 					{marketInfo?.company}
 				</Title>
 
-				{/* add to watchlist button */}
-				<Button
-					onClick={() => {
-						addToWatchlist(info?.symbol);
-					}}
-					size="xs"
-					variant="gradient"
-					loading={watchlistLoading}
-					disabled={watchlistLoading}
-					gradient={{
-						from: "blue",
-						to: "red",
-					}}
-					leftSection={
-						watchlistLoading ? (
-							<Loader
-								type="dots"
-								size={rem(12)}
-								color="white"
-							/>
-						) : (
-							<IconBookmark
-								size={12}
-							/>
-						)
-					}
-				>
-					{watchlistLoading
-						? "Adding"
-						: "Add to Watchlist"}
-				</Button>
+				{existsInWatchlist ? (
+					<Button
+						onClick={() => {
+							removeFromWatchlist(
+								info?.symbol
+							);
+						}}
+						size="xs"
+						variant="gradient"
+						loading={watchlistLoading}
+						disabled={watchlistLoading}
+						gradient={{
+							from: "blue",
+							to: "red",
+						}}
+						leftSection={
+							watchlistLoading ? (
+								<Loader
+									type="dots"
+									size={rem(
+										12
+									)}
+									color="white"
+								/>
+							) : (
+								<IconBookmark
+									size={
+										12
+									}
+								/>
+							)
+						}
+					>
+						{watchlistLoading
+							? "Removing"
+							: "Remove from Watchlist"}
+					</Button>
+				) : (
+					<Button
+						onClick={() => {
+							addToWatchlist(
+								info?.symbol
+							);
+						}}
+						size="xs"
+						variant="gradient"
+						loading={watchlistLoading}
+						disabled={watchlistLoading}
+						gradient={{
+							from: "blue",
+							to: "red",
+						}}
+						leftSection={
+							watchlistLoading ? (
+								<Loader
+									type="dots"
+									size={rem(
+										12
+									)}
+									color="white"
+								/>
+							) : (
+								<IconBookmark
+									size={
+										12
+									}
+								/>
+							)
+						}
+					>
+						{watchlistLoading
+							? "Adding"
+							: "Add to Watchlist"}
+					</Button>
+				)}
 			</Group>
 
 			{/* stock price */}

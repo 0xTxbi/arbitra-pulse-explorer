@@ -6,11 +6,11 @@ export function MarketStats({ quickInfo, marketInfo }) {
 	const formattedDate = formatDate(quickInfo?.listDate);
 	return (
 		<Stack
-			justify="space-between"
+			justify="flex-end"
 			h={"100%"}
 		>
 			{/* Stock Basic Details */}
-			<Stack>
+			<Stack mt="4rem">
 				<Title
 					order={4}
 					size="h4"
@@ -22,11 +22,7 @@ export function MarketStats({ quickInfo, marketInfo }) {
 					title="Date Listed"
 					value={formattedDate}
 				/>
-				<StatInfo
-					title="Market Cap"
-					value={marketInfo?.market_cap}
-					isCurrency
-				/>
+
 				<StatInfo
 					title="Employees"
 					value={quickInfo?.totalEmployees}

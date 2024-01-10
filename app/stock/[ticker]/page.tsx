@@ -8,14 +8,16 @@ import useStockInfo from "@/hooks/useStockInfo";
 import useStockNews from "@/hooks/useStockNews";
 import useStockQuote from "@/hooks/useStockQuote";
 
-import { Flex, Grid, Skeleton } from "@mantine/core";
+import { Button, Center, Flex, Grid, Skeleton, Text } from "@mantine/core";
 
 export default function Page({ params }: { params: { ticker: string } }) {
-	console.log(params.ticker);
-
 	// stock quote
-	const { stockQuoteInfo, stockQuoteLoading, stockQuoteError } =
-		useStockQuote(params.ticker);
+	const {
+		fetchStockQuote,
+		stockQuoteInfo,
+		stockQuoteLoading,
+		stockQuoteError,
+	} = useStockQuote(params.ticker);
 
 	console.log(stockQuoteInfo, stockQuoteLoading, stockQuoteError);
 
@@ -92,6 +94,20 @@ export default function Page({ params }: { params: { ticker: string } }) {
 			justify={{ sm: "center" }}
 		>
 			<div style={box1Style}>
+				{stockQuoteError && (
+					<Center>
+						<Text>{stockQuoteError}</Text>
+						<Button
+							onClick={() =>
+								fetchStockQuote(
+									params.ticker
+								)
+							}
+						>
+							Retry
+						</Button>
+					</Center>
+				)}
 				<StockMain
 					info={stockInfo}
 					marketInfo={stockQuoteInfo}
