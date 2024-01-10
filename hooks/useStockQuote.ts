@@ -22,7 +22,16 @@ const useStockQuote = (ticker: string) => {
 			if (response.ok) {
 				const data = await response.json();
 
+				console.log(data);
+				console.log(response);
+
 				setStockQuoteInfo(data.stock_info);
+
+				if (data.error) {
+					setStockQuoteError(
+						"Failed to fetch stock quote"
+					);
+				}
 				// reset error state
 				setStockQuoteError(null);
 			} else {

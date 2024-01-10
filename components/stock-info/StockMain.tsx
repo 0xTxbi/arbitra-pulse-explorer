@@ -46,8 +46,6 @@ export function StockMain({ info, ticker, marketInfo }) {
 		checkIfSymbolExistsInWatchlist();
 	}, [marketInfo, watchlistInfo]);
 
-	console.log(existsInWatchlist);
-
 	return (
 		<Stack
 			h="100%"
