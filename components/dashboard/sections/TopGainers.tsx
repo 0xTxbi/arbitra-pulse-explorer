@@ -13,6 +13,7 @@ import {
 	Title,
 } from "@mantine/core";
 import { IconArrowUpRight, IconPlus } from "@tabler/icons-react";
+import Link from "next/link";
 import { useMemo } from "react";
 
 interface MarketGainer {
@@ -148,11 +149,20 @@ export function TopGainers() {
 									marketGainer.symbol
 								}
 							>
-								<GainerItem
-									marketGainer={
-										marketGainer
-									}
-								/>
+								<Link
+									href={`/stock/${marketGainer.symbol}`}
+									style={{
+										textDecoration:
+											"none",
+										color: "white",
+									}}
+								>
+									<GainerItem
+										marketGainer={
+											marketGainer
+										}
+									/>
+								</Link>
 							</Carousel.Slide>
 						)
 					)}

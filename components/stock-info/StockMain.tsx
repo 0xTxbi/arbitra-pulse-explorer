@@ -9,6 +9,7 @@ import {
 	Loader,
 	rem,
 	Skeleton,
+	Badge,
 } from "@mantine/core";
 import StockChart from "./StockChart";
 import { IconBookmark } from "@tabler/icons-react";
@@ -36,12 +37,13 @@ export function StockMain({ info, ticker }) {
 		>
 			{/* Stock Basic Details */}
 			<div>
-				<Text
-					size="sm"
-					c="dimmed"
+				<Badge
+					variant="filled"
+					size="md"
+					radius="xs"
 				>
 					{info?.symbol}
-				</Text>
+				</Badge>
 
 				<Group justify="space-between">
 					<Title

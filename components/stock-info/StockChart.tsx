@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createChart } from "lightweight-charts";
 import useStockHistoricalData from "@/hooks/useStockHistoricalData";
-import { Box, Skeleton } from "@mantine/core";
+import { Box, Button, Skeleton } from "@mantine/core";
 import {
 	getEarliestAndLatestDates,
 	processHistoricalData,
@@ -22,6 +22,7 @@ const StockChart: React.FC<StockChartProps> = ({ width, height, ticker }) => {
 	}>();
 
 	const {
+		fetchStockHistoricalData,
 		stockHistoricalDataInfo,
 		stockHistoricalDataLoading,
 		stockHistoricalDataError,
@@ -41,7 +42,16 @@ const StockChart: React.FC<StockChartProps> = ({ width, height, ticker }) => {
 				getEarliestAndLatestDates(processedData);
 			setDateRange({ earliestDate, latestDate });
 		}
-	}, [stockHistoricalDataInfo]);
+
+		if (stockHistoricalDataError) {
+			<Button
+				onClick={() => fetchStockHistoricalData(ticker)}
+				loading={stockHistoricalDataLoading}
+			>
+				Retry
+			</Button>;
+		}
+	}, [stockHistoricalDataInfo, stockHistoricalDataError]);
 
 	useEffect(() => {
 		if (
@@ -76,7 +86,10 @@ const StockChart: React.FC<StockChartProps> = ({ width, height, ticker }) => {
 				crosshair: { horzLine: { visible: false } },
 			});
 
-			const lineSeries = chart.addLineSeries();
+			const lineSeries = chart.addAreaSeries({
+				topColor: "#1971c2",
+				lineColor: "#1971c2",
+			});
 
 			lineSeries.setData(processedHistoricalData);
 

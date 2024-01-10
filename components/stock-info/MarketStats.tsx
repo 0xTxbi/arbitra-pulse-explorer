@@ -2,7 +2,7 @@ import { Title, Stack } from "@mantine/core";
 import { StatInfo } from "./StatInfo";
 import { formatDate } from "@/utils/formatDate";
 
-export function MarketStats({ quickInfo }) {
+export function MarketStats({ quickInfo, marketInfo }) {
 	const formattedDate = formatDate(quickInfo?.listDate);
 	return (
 		<Stack
@@ -24,7 +24,7 @@ export function MarketStats({ quickInfo }) {
 				/>
 				<StatInfo
 					title="Market Cap"
-					value={quickInfo?.marketCap}
+					value={marketInfo?.market_cap}
 					isCurrency
 				/>
 				<StatInfo

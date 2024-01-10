@@ -48,6 +48,7 @@ const useStockHistoricalData = (ticker: string) => {
 	}, [ticker]);
 
 	return {
+		fetchStockHistoricalData,
 		stockHistoricalDataInfo,
 		stockHistoricalDataLoading,
 		stockHistoricalDataError,

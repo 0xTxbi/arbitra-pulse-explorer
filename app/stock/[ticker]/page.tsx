@@ -15,6 +15,12 @@ import { Flex, Grid, Skeleton } from "@mantine/core";
 export default function Page({ params }: { params: { ticker: string } }) {
 	console.log(params.ticker);
 
+	// stock quote
+	const { stockQuoteInfo, stockQuoteLoading, stockQuoteError } =
+		useStockQuote(params.ticker);
+
+	console.log(stockQuoteInfo, stockQuoteLoading, stockQuoteError);
+
 	const { stockInfo, stockInfoLoading, stockError } = useStockInfo(
 		params.ticker
 	);
@@ -119,6 +125,9 @@ export default function Page({ params }: { params: { ticker: string } }) {
 					<Grid.Col span={6}>
 						<MarketStats
 							quickInfo={stockInfo}
+							marketInfo={
+								stockQuoteInfo
+							}
 						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
