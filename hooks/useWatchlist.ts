@@ -51,13 +51,13 @@ const useWatchlist = () => {
 			} else {
 				// handle non-successful response
 				setWatchlistError(
-					"Failed to fetch stock information"
+					"Failed to fetch your watchlist"
 				);
 			}
 		} catch (error) {
 			// handle any unexpected errors during the request
 			setWatchlistError(
-				"An error occurred while fetching stock information"
+				"An error occurred while fetching your watchlist"
 			);
 		} finally {
 			// set loading back to false after the request completion

@@ -28,7 +28,6 @@ export const useLogin = () => {
 
 			if (response.ok) {
 				const data = await response.json();
-				console.log(data);
 
 				// store token in a secure http-only cookie
 				setCookie("token", data.token, {

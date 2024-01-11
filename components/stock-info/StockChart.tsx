@@ -1,11 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createChart } from "lightweight-charts";
 import useStockHistoricalData from "@/hooks/useStockHistoricalData";
-import { Box, Button, Center, Skeleton, Text } from "@mantine/core";
+import {
+	Box,
+	Button,
+	Center,
+	Container,
+	Skeleton,
+	Stack,
+	Text,
+} from "@mantine/core";
 import {
 	getEarliestAndLatestDates,
 	processHistoricalData,
 } from "@/utils/processHistoricalData";
+import { IconReload } from "@tabler/icons-react";
 
 interface StockChartProps {
 	width?: number;
@@ -36,6 +45,7 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 	const boxRef = useRef<HTMLDivElement | null>(null);
 
 	console.log(stockHistoricalDataLoading);
+	console.log(stockHistoricalDataInfo);
 	console.log(stockHistoricalDataError);
 
 	useEffect(() => {
@@ -48,20 +58,7 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 				getEarliestAndLatestDates(processedData);
 			setDateRange({ earliestDate, latestDate });
 		}
-
-		if (stockHistoricalDataError) {
-			<Button
-				onClick={() => fetchStockHistoricalData(ticker)}
-				loading={stockHistoricalDataLoading}
-			>
-				Retry
-			</Button>;
-		}
-	}, [
-		stockHistoricalDataInfo,
-		stockHistoricalDataLoading,
-		stockHistoricalDataError,
-	]);
+	}, [stockHistoricalDataInfo, stockHistoricalDataLoading]);
 
 	useEffect(() => {
 		if (
@@ -115,7 +112,6 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 	}, [processedHistoricalData, stockHistoricalDataLoading, dateRange]);
 
 	useEffect(() => {
-		console.log(boxRef);
 		if (boxRef.current) {
 			setChartHeight(boxRef.current.offsetHeight);
 			setChartWidth(boxRef.current.offsetWidth);
@@ -129,28 +125,44 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 			mt="2rem"
 		>
 			{stockHistoricalDataError && (
-				<Center>
-					<Text>{stockHistoricalDataError}</Text>
-					<Button
-						onClick={() =>
-							fetchStockHistoricalData(
-								ticker
-							)
-						}
-					>
-						Retry
-					</Button>
+				<Center h={chartHeight}>
+					<Stack gap="lg">
+						<Text>
+							{
+								stockHistoricalDataError
+							}
+						</Text>
+						<Button
+							leftSection={
+								<IconReload
+									size={
+										12
+									}
+								/>
+							}
+							size="sm"
+							color="red"
+							variant="light"
+							onClick={() =>
+								fetchStockHistoricalData(
+									ticker
+								)
+							}
+						>
+							Retry
+						</Button>
+					</Stack>
 				</Center>
 			)}
-			{stockHistoricalDataLoading ||
-			!stockHistoricalDataError ? (
+
+			{stockHistoricalDataLoading && (
 				<Skeleton
 					height={chartHeight}
 					width={chartWidth}
 				/>
-			) : (
-				<div ref={chartContainerRef} />
 			)}
+
+			<div ref={chartContainerRef} />
 		</Box>
 	);
 };

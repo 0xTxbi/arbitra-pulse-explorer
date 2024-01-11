@@ -34,6 +34,7 @@ export function StockMain({ info, ticker, marketInfo }) {
 	} = useWatchlist();
 
 	console.log(watchlistInfo);
+	console.log(watchlistError);
 
 	const checkIfSymbolExistsInWatchlist = () => {
 		const symbolExists = watchlistInfo?.some(
@@ -71,7 +72,7 @@ export function StockMain({ info, ticker, marketInfo }) {
 					{marketInfo?.company}
 				</Title>
 
-				{existsInWatchlist ? (
+				{existsInWatchlist && !watchlistError ? (
 					<Button
 						onClick={() => {
 							removeFromWatchlist(
@@ -118,7 +119,10 @@ export function StockMain({ info, ticker, marketInfo }) {
 						size="xs"
 						variant="gradient"
 						loading={watchlistLoading}
-						disabled={watchlistLoading}
+						disabled={
+							watchlistLoading ||
+							watchlistError
+						}
 						gradient={{
 							from: "blue",
 							to: "red",
