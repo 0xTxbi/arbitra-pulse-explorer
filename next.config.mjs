@@ -25,7 +25,7 @@ export default withBundleAnalyzer({
 			},
 			{
 				protocol: "https",
-				hostname: "img.freepik.com",
+				hostname: "wallpapercave.com",
 			},
 		],
 	},

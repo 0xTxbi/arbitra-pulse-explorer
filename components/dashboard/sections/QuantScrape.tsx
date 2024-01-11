@@ -26,8 +26,9 @@ export function QuantScrape() {
 
 			<Group gap="md">
 				<Button
+					disabled
 					variant="light"
-					color="red"
+					color="teal"
 					leftSection={<IconBook size={12} />}
 				>
 					Docs

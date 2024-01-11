@@ -80,7 +80,9 @@ export function Welcome() {
 				>
 					<Button
 						size="xs"
-						// todo: link account settings page
+						variant="default"
+						component={Link}
+						href="/settings"
 					>
 						<IconSettingsBolt
 							style={{

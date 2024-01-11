@@ -22,7 +22,7 @@ export function Upcoming() {
 			radius="md"
 			style={{
 				height: "100%",
-				backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://img.freepik.com/free-vector/abstract-blur-background_1048-10914.jpg?w=1380&t=st=1704913747~exp=1704914347~hmac=211fa373e0264efd63493bc6e70cb2c9802c62ba15591143247353d19a0b716e)`,
+				backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://wallpapercave.com/dwp1x/wp11455899.jpg)`,
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 			}}

@@ -12,6 +12,9 @@ const useStockHistoricalData = (ticker: string) => {
 	// function to fetch stock historical
 	const fetchStockHistoricalData = async (ticker) => {
 		try {
+			// reset error state
+			setStockHistoricalDataError(null);
+
 			setStockHistoricalDataLoading(true);
 
 			const response = await fetch(
@@ -28,13 +31,13 @@ const useStockHistoricalData = (ticker: string) => {
 			} else {
 				// handle non-successful response
 				setStockHistoricalDataError(
-					"Failed to fetch stock information"
+					"Failed to fetch stock historical data"
 				);
 			}
 		} catch (error) {
 			// handle any unexpected errors during the request
 			setStockHistoricalDataError(
-				"An error occurred while fetching stock information"
+				"An error occurred while fetching stock historical data"
 			);
 		} finally {
 			// set loading back to false after the request completion

@@ -56,8 +56,9 @@ export function StockMain({ info, ticker, marketInfo }) {
 
 			<Badge
 				variant="light"
-				size="lg"
-				radius="xs"
+				size="xl"
+				py="1rem"
+				radius="sm"
 			>
 				{marketInfo?.symbol}
 			</Badge>

@@ -15,7 +15,7 @@ export default function Dashboard() {
 			my="md"
 			size="xl"
 		>
-			<Grid>
+			<Grid gutter="xl">
 				<Grid.Col span={{ base: 12, xs: 4 }}>
 					{child}
 				</Grid.Col>

@@ -27,7 +27,7 @@ function Card({
 			radius="md"
 			style={{
 				height: "100%",
-				backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80)`,
+				backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${image})`,
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 			}}
@@ -51,6 +51,7 @@ function Card({
 					component={Link}
 					href={link}
 					target="_blank"
+					size="xs"
 					variant="gradient"
 					gradient={{
 						from: "blue",

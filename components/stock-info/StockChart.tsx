@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createChart } from "lightweight-charts";
 import useStockHistoricalData from "@/hooks/useStockHistoricalData";
-import { Box, Button, Skeleton, Text } from "@mantine/core";
+import { Box, Button, Center, Skeleton, Text } from "@mantine/core";
 import {
 	getEarliestAndLatestDates,
 	processHistoricalData,
@@ -35,6 +35,7 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 	const chartContainerRef = useRef<HTMLDivElement | null>(null);
 	const boxRef = useRef<HTMLDivElement | null>(null);
 
+	console.log(stockHistoricalDataLoading);
 	console.log(stockHistoricalDataError);
 
 	useEffect(() => {
@@ -56,7 +57,11 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 				Retry
 			</Button>;
 		}
-	}, [stockHistoricalDataInfo, stockHistoricalDataError]);
+	}, [
+		stockHistoricalDataInfo,
+		stockHistoricalDataLoading,
+		stockHistoricalDataError,
+	]);
 
 	useEffect(() => {
 		if (
@@ -124,18 +129,20 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 			mt="2rem"
 		>
 			{stockHistoricalDataError && (
-				<>
+				<Center>
 					<Text>{stockHistoricalDataError}</Text>
 					<Button
 						onClick={() =>
-							fetchStockHistoricalData()
+							fetchStockHistoricalData(
+								ticker
+							)
 						}
 					>
 						Retry
 					</Button>
-				</>
+				</Center>
 			)}
-			{stockHistoricalDataLoading &&
+			{stockHistoricalDataLoading ||
 			!stockHistoricalDataError ? (
 				<Skeleton
 					height={chartHeight}

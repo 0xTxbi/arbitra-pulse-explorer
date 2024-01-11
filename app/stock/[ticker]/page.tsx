@@ -32,8 +32,7 @@ export default function Page({ params }: { params: { ticker: string } }) {
 	);
 
 	const containerStyle = {
-		gap: "sm",
-		margin: 0,
+		gap: "xl",
 	};
 
 	const box1Style = {
@@ -50,6 +49,7 @@ export default function Page({ params }: { params: { ticker: string } }) {
 			direction={{ base: "column", sm: "row" }}
 			gap={{ base: "xl", sm: "lg" }}
 			justify={{ sm: "center" }}
+			mt="5rem"
 		>
 			<div style={box1Style}>
 				<Skeleton
