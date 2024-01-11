@@ -1,7 +1,16 @@
-import { Title, Text, Button, Container, Anchor } from "@mantine/core";
+import {
+	Title,
+	Text,
+	Button,
+	Container,
+	Anchor,
+	Badge,
+	Center,
+	Stack,
+} from "@mantine/core";
 import classes from "./Hero.module.css";
 import Link from "next/link";
-import { IconLogin } from "@tabler/icons-react";
+import { IconArrowRight, IconLogin } from "@tabler/icons-react";
 
 export function Hero() {
 	return (
@@ -9,7 +18,33 @@ export function Hero() {
 			className={classes.wrapper}
 			size={1400}
 		>
-			<div className={classes.inner}>
+			<Stack
+				align="center"
+				gap="xs"
+			>
+				<Center>
+					<Badge
+						variant="light"
+						rightSection={
+							<IconArrowRight
+								size={12}
+							/>
+						}
+					>
+						<Link
+							href="https://github.com/0xTxbi/arbitra-pulse"
+							target="_blank"
+							style={{
+								textDecoration:
+									"none",
+								color: "inherit",
+							}}
+						>
+							visit the Arbitra Pulse
+							docs
+						</Link>
+					</Badge>
+				</Center>
 				<Title className={classes.title}>
 					your stock and{" "}
 					<Text
@@ -71,7 +106,7 @@ export function Hero() {
 						</Button>
 					</Link>
 				</div>
-			</div>
+			</Stack>
 		</Container>
 	);
 }
