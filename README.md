@@ -2,10 +2,10 @@
 
 ![Hero](/public/assets/screen-grabs/hero.png)
 
-Arbitra Pulse Explorer serves as the frontend for the Arbitra Pulse API — a
-robust Stock Sentiment Analysis API I've meticulously built. It is geared to
-deliver real-time stock data, sentiment analysis, and personalized user
-experiences.
+Arbitra Pulse Explorer serves as the frontend for the
+[Arbitra Pulse API](https://github.com/0xTxbi/arbitra-pulse) — a robust Stock
+Sentiment Analysis API I've meticulously built. It is geared to deliver
+real-time stock data, sentiment analysis, and personalized user experiences.
 
 Crafted to streamline my decision-making in financial investments, this UI
 interacts seamlessly with the comprehensive API features. It's a personal
@@ -14,9 +14,9 @@ efficiently.
 
 ## Purpose
 
-The goal here is simple: create a seamless, user-friendly experience for diving
-into stock sentiments and related data, reflecting my journey towards financial
-empowerment.
+The goal here is simple: **create a seamless, user-friendly experience** for
+diving into stock sentiments and related data, reflecting my journey towards
+financial empowerment.
 
 ## Screen Grabs
 
@@ -52,9 +52,10 @@ favorite stocks with the watchlist feature._
 
 ### Crypto Insights
 
-_Unlock crypto news and sentiment analysis—expanding soon!_
+_Unlock crypto news and sentiment analysis — expanding pretty soon_
 
 ---
 
-_Explore the Arbitra Pulse source code and delve into the [documentation](#) for
-detailed information on its endpoints, usage, and more._
+_Explore the Arbitra Pulse
+[source code](https://github.com/0xTxbi/arbitra-pulse) and delve into the
+[documentation](#) for detailed information on its endpoints, usage, and more._
