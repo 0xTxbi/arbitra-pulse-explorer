@@ -6,18 +6,19 @@ export function MarketStats({ quickInfo, marketInfo }) {
 	const formattedDate = formatDate(quickInfo?.listDate);
 	return (
 		<Stack
-			justify="flex-end"
+			justify="space-between"
 			h={"100%"}
 		>
 			{/* Stock Basic Details */}
-			<Stack mt="4rem">
-				<Title
-					order={4}
-					size="h4"
-				>
-					Quick Info
-				</Title>
-				{/* company info */}
+
+			<Title
+				order={4}
+				size="h4"
+			>
+				Quick Info
+			</Title>
+			{/* company info */}
+			<Stack>
 				<StatInfo
 					title="Date Listed"
 					value={formattedDate}

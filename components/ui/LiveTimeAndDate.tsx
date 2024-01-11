@@ -10,6 +10,8 @@ const LiveTimeAndDate: React.FC = () => {
 		<Group>
 			<Group gap="xs">
 				<Badge
+					variant="light"
+					p={12}
 					leftSection={
 						timeOfDay === "morning" ? (
 							<IconSunrise
@@ -27,6 +29,8 @@ const LiveTimeAndDate: React.FC = () => {
 				</Badge>
 			</Group>
 			<Badge
+				variant="light"
+				p={12}
 				color="red"
 				leftSection={<IconClock size={15} />}
 			>

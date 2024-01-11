@@ -61,11 +61,7 @@ export function UpcomingEarnings({ upcomingEarningsInfo }) {
 				order={4}
 				size="h5"
 			>
-				Upcoming Earnings{" "}
-				<IconCalendarClock
-					size={15}
-					stroke={1}
-				/>
+				Upcoming Earnings
 			</Title>
 
 			<Company earningsInfo={upcomingEarningsInfo} />

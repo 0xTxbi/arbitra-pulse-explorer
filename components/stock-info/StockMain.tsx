@@ -49,10 +49,8 @@ export function StockMain({ info, ticker, marketInfo }) {
 
 	return (
 		<Stack
-			mt="2rem"
 			h="100%"
 			justify="space-between"
-			gap="lg"
 		>
 			{/* Stock Basic Details */}
 

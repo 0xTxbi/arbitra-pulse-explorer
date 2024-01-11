@@ -33,6 +33,7 @@ export default function Page({ params }: { params: { ticker: string } }) {
 
 	const containerStyle = {
 		gap: "xl",
+		marginTop: "5rem",
 	};
 
 	const box1Style = {

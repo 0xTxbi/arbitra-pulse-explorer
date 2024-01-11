@@ -95,15 +95,18 @@ function PreviousClose({ value }) {
 export default function StockBasicFin({ marketCap, volume, prevClose }) {
 	return (
 		<Stack
-			mt="2rem"
 			justify="space-between"
-			gap="lg"
+			gap="xs"
 		>
 			<Title
 				order={4}
-				size="h3"
+				size="h4"
 			>
-				Financials <IconSparkles stroke={1.5} />
+				Financials{" "}
+				<IconSparkles
+					stroke={1.5}
+					size={20}
+				/>
 			</Title>
 			<SimpleGrid cols={3}>
 				<MarketCap value={marketCap} />
