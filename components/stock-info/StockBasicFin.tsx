@@ -95,6 +95,7 @@ function PreviousClose({ value }) {
 export default function StockBasicFin({ marketCap, volume, prevClose }) {
 	return (
 		<Stack
+			mt="2rem"
 			justify="space-between"
 			gap="lg"
 		>
