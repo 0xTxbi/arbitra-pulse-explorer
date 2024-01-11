@@ -44,10 +44,6 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 	const chartContainerRef = useRef<HTMLDivElement | null>(null);
 	const boxRef = useRef<HTMLDivElement | null>(null);
 
-	console.log(stockHistoricalDataLoading);
-	console.log(stockHistoricalDataInfo);
-	console.log(stockHistoricalDataError);
-
 	useEffect(() => {
 		if (stockHistoricalDataInfo) {
 			const processedData = processHistoricalData(
@@ -94,8 +90,10 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 			});
 
 			const lineSeries = chart.addAreaSeries({
-				topColor: "#1971c2",
-				lineColor: "#1971c2",
+				topColor: "rgba(38, 198, 218, 0.56)",
+				bottomColor: "rgba(38, 198, 218, 0.04)",
+				lineColor: "rgba(38, 198, 218, 1)",
+				lineWidth: 1,
 			});
 
 			lineSeries.setData(processedHistoricalData);
@@ -122,7 +120,7 @@ const StockChart: React.FC<StockChartProps> = ({ ticker }) => {
 		<Box
 			ref={boxRef}
 			h="100%"
-			mt="2rem"
+			mb="1rem"
 		>
 			{stockHistoricalDataError && (
 				<Center h={chartHeight}>
