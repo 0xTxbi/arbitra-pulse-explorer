@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	Title,
 	Text,
@@ -7,12 +9,15 @@ import {
 	Badge,
 	Center,
 	Stack,
+	em,
 } from "@mantine/core";
 import classes from "./Hero.module.css";
 import Link from "next/link";
 import { IconArrowRight, IconLogin } from "@tabler/icons-react";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 export function Hero() {
+	const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
 	return (
 		<Container
 			className={classes.wrapper}
@@ -45,7 +50,10 @@ export function Hero() {
 						</Link>
 					</Badge>
 				</Center>
-				<Title className={classes.title}>
+				<Title
+					className={classes.title}
+					ta={isMobile ? "center" : "center"}
+				>
 					your stock and{" "}
 					<Text
 						component="span"
@@ -69,6 +77,11 @@ export function Hero() {
 						size="lg"
 						c="dimmed"
 						className={classes.description}
+						ta={
+							isMobile
+								? "center"
+								: "center"
+						}
 					>
 						explore real-time stock
 						information and sentiment
